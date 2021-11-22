@@ -1,0 +1,13 @@
+<ng-template [ngIf]="isList">
+  <ax-chat-contacts-list
+    (onItemClick)="setFlag($event, false)"
+  ></ax-chat-contacts-list>
+</ng-template>
+
+<ng-template [ngIf]="!isList">
+  <ax-chat-item
+    (onBackClick)="setFlag(null, true)"
+    [id]="currentId"
+    [name]="currentName"
+  ></ax-chat-item>
+</ng-template>

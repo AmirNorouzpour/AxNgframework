@@ -1,0 +1,17 @@
+<div class="ax-report-filter">
+    <ng-container [ngSwitch]="colSetting.filter.type">
+        <ax-text-filter *ngSwitchCase="'text'" [colSetting]="colSetting" (filtersChange)="handleFiltersChange($event)"
+            [filters]="filters"></ax-text-filter>
+        <ax-boolean-filter *ngSwitchCase="'boolean'" [colSetting]="colSetting"
+            (filtersChange)="handleFiltersChange($event)" [filters]="filters"></ax-boolean-filter>
+        <ax-enum-filter *ngSwitchCase="'enum'" [colSetting]="colSetting" (filtersChange)="handleFiltersChange($event)"
+            [filters]="filters">
+        </ax-enum-filter>
+    </ng-container>
+    <div class="ax-report-filter__footer">
+        <button nz-button nzSize="small" nzType="primary" (click)="handleSearch()" class="search-button">
+            اعمال
+        </button>
+        <button nz-button nzSize="small" (click)="handleReset()">انصراف</button>
+    </div>
+</div>

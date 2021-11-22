@@ -1,0 +1,25 @@
+.ax-tree {
+  padding: 8px;
+  margin: 8px 0;
+  display: block;
+  border-radius: 2px;
+
+  &__ {
+    &toolbar-wrapper {
+      margin: 8px 0;
+    }
+
+    &tree {
+      background-color: #fff;
+      padding: 8px;
+    }
+
+    &switcher-icon {
+      font-size: 10px;
+    }
+  }
+
+  .ant-tree .ant-tree-treenode {
+    padding: 0 0 8px;
+  }
+}

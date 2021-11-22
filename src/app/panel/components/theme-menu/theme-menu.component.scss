@@ -1,0 +1,65 @@
+@import "theme";
+
+.ax-theme-menu {
+  width: 180px;
+  padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  &__ {
+    &btn {
+      width: 100%;
+      font-size: 12px;
+      color: #6c757d;
+      text-align: right;
+      cursor: pointer;
+      display: flex;
+      padding: 8px;
+      border-radius: 2px;
+      align-items: center;
+      flex-direction: column-reverse;
+      margin-bottom: 4px;
+
+      &:last-child {
+        margin-bottom: -4px;
+      }
+
+      &_active {
+        background-color: #f2f3f5;
+        // border: 1px dashed var(--info-color);
+      }
+    }
+
+    &text {
+      flex-grow: 1;
+      margin-bottom: 2px;
+    }
+
+    &color {
+      display: inline-block;
+      border-radius: 2px;
+      width: 100%;
+      height: 8px;
+
+      &_theme-1 {
+        background-color: #214252;
+      }
+      &_theme-2 {
+        background-color: #000000;
+      }
+      &_theme-3 {
+        background-color: #0c9f29;
+      }
+      &_theme-4 {
+        background-color: #63027e;
+      }
+      &_theme-5 {
+        background-color: #1f6f8b;
+      }
+      &_theme-default {
+        background-color: $info-color;
+      }
+    }
+  }
+}

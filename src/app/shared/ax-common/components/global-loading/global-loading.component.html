@@ -1,0 +1,7 @@
+<div [ngClass]="{'global-loading_loader-hidden': !show}">
+    <div class="global-loading__overlay">
+        <div>
+            <mat-progress-bar mode="indeterminate" *ngIf="show"></mat-progress-bar>
+        </div>
+    </div>
+</div>

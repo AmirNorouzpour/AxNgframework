@@ -1,0 +1,15 @@
+<div *ngIf="model" class="ax-list-widget">
+    <table class="ax-list-widget__table" mat-table [dataSource]="model.data">
+
+        <ng-container *ngFor="let col of model.columns">
+            <ng-container matColumnDef="{{col.name}}">
+                <th class="ax-list-widget__th" mat-header-cell *matHeaderCellDef> {{col.title}} </th>
+                <td [ngClass]="{'ax-list-widget__td_datetime': col.type === 'DateTime'}" class="ax-list-widget__td"
+                    mat-cell *matCellDef="let element"> {{element[col.name]}} </td>
+            </ng-container>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="model.columns | listWidgetColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: model.columns | listWidgetColumns;"></tr>
+    </table>
+</div>

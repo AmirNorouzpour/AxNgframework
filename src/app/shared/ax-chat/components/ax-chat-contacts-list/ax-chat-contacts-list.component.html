@@ -1,0 +1,27 @@
+<div class="contacts-list-header">گفتگوی سازمانی</div>
+<div class="contacts-list">
+  <nz-spin [nzSpinning]="isSpinning">
+    <ul>
+      <li
+        *ngFor="let contact of contacts"
+        (click)="onClick(contact.id, contact.name)"
+      >
+        <a>
+          <div>
+            <div>
+              <img
+                class="rounded-circle avatar-xs"
+                src="https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png"
+                alt=""
+              />
+            </div>
+            <div style="flex: 1; padding: 5px 10px">{{ contact.name }}</div>
+            <div style="padding: 5px 10px; direction: ltr">
+              {{ contact.lastLoginDate | date: "HH:mm" }}
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </nz-spin>
+</div>

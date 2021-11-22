@@ -1,0 +1,15 @@
+<div class="ax-sidebar__header">
+    <div class="ax-sidebar__system-info">
+        <span class="ax-sidebar__system-info-icon">
+            <mat-icon>{{icon}}</mat-icon>
+        </span>
+        <span class="ax-sidebar__system-info-title">{{title}}</span>
+    </div>
+
+    <div class="ax-sidebar__toggle-btn">
+        <button mat-icon-button (click)="toggleCollapsed()">
+            <mat-icon>{{toggleBtnIcon}}</mat-icon>
+        </button>
+    </div>
+</div>
+<ax-side-menu [isCollapsed]="isCollapsed" [menuItems]="systemMenu"></ax-side-menu>

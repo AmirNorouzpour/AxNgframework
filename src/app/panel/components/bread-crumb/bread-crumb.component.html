@@ -1,0 +1,9 @@
+<div class="ax-bread-crumb">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item *ngFor="let item of items; let i = index">
+            <a *ngIf="i < items.length - 1" class="ax-bread-crumb__link" [routerLink]="[item.url]">{{item.label}}</a>
+            <span *ngIf="i == items.length - 1"
+                class="ax-bread-crumb__link ax-bread-crumb__link_active">{{item.label}}</span>
+        </nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>

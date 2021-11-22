@@ -1,0 +1,16 @@
+<div class="ax-notifications-menu">
+    <div class="ax-notifications-menu__header">
+        <span class="ax-notifications-menu__header-messages">پیام ها</span>
+        <span class="ax-notifications-menu__header-clear">حذف همه</span>
+    </div>
+    <div *ngIf="notifications$ | async as notifications" class="ax-notifications-menu__list">
+        <a *ngFor="let notification of notifications" class="ax-notifications-menu__list-item">
+            <mat-icon class="ax-notifications-menu__message-icon">mail_outline</mat-icon>
+            <div>
+                <p class="ax-notifications-menu__message-title">{{notification.title}}</p>
+                <p class="ax-notifications-menu__message-date">{{notification.sentDate}}</p>
+            </div>
+        </a>
+    </div>
+    <a class="ax-notifications-menu__view-all">نمایش همه</a>
+</div>

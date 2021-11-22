@@ -1,0 +1,65 @@
+<div class="ax-header__start-section">
+  <div class="ax-header__org">
+    <button mat-icon-button>
+      <mat-icon>home_work</mat-icon>
+    </button>
+    <span class="ax-header__org-title">{{ organizationName }}</span>
+  </div>
+  <div class="ax-header__separator"></div>
+  <div [matMenuTriggerFor]="systemMenu" class="ax-header__systems">
+    <mat-icon class="ax-header__systems-icon">apps</mat-icon>
+    <span class="ax-header__systems-text">{{'systems' | translate}}</span>
+    <mat-icon class="ax-header__systems-arrow-down">keyboard_arrow_down</mat-icon>
+    <mat-menu class="ax-header__systems-menu" xPosition="before" #systemMenu>
+      <ax-system-menu [systems]="systemList"></ax-system-menu>
+    </mat-menu>
+  </div>
+</div>
+<div class="ax-header__end-section">
+
+  <div [matMenuTriggerFor]="languageMenu" class="ax-header__user">
+    <button mat-icon-button>
+      <mat-icon class="ax-header__user-icon">language</mat-icon>
+    </button>
+    <mat-menu class="ax-header__language-menu" xPosition="after" #languageMenu>
+      <ax-language-menu></ax-language-menu>
+    </mat-menu>
+  </div>
+
+  <div [matMenuTriggerFor]="themeMenu" class="ax-header__user">
+    <button mat-icon-button>
+      <mat-icon class="ax-header__user-icon">color_lens</mat-icon>
+    </button>
+    <mat-menu class="ax-header__theme-menu" xPosition="after" #themeMenu>
+      <ax-theme-menu></ax-theme-menu>
+    </mat-menu>
+  </div>
+
+  <div class="ax-header__user">
+    <button mat-icon-button (click)="chatDrawer()">
+      <mat-icon class="ax-header__user-icon">chat</mat-icon>
+    </button>
+    <nz-drawer [nzClosable]="false" [nzVisible]="drawerVisible" nzPlacement="left" nzWidth="350px" (nzOnClose)="close()"
+      [nzBodyStyle]="{ padding: 0 }">
+      <ax-chat-container></ax-chat-container>
+    </nz-drawer>
+  </div>
+
+  <div [matMenuTriggerFor]="notificationMenu" class="ax-header__user">
+    <button mat-icon-button>
+      <mat-icon class="ax-header__user-icon">notifications</mat-icon>
+    </button>
+    <mat-menu class="ax-header__notifications-menu" xPosition="before" #notificationMenu>
+      <ax-notifications-menu></ax-notifications-menu>
+    </mat-menu>
+  </div>
+
+  <div [matMenuTriggerFor]="userMenu" class="ax-header__user">
+    <button mat-icon-button>
+      <mat-icon class="ax-header__user-icon">account_circle</mat-icon>
+    </button>
+    <mat-menu xPosition="before" #userMenu>
+      <ax-user-menu></ax-user-menu>
+    </mat-menu>
+  </div>
+</div>

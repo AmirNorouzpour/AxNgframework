@@ -1,0 +1,57 @@
+<div class="ax-chat-item">
+  <div class="header">
+    <div>
+      <img
+        class="rounded-circle avatar-xs"
+        src="https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png"
+        alt=""
+      />
+    </div>
+    <div class="name">{{ name }}</div>
+    <div class="back" (click)="onBack()">بازگشت</div>
+  </div>
+  <div class="content" #content>
+    <nz-spin [nzSpinning]="isSpinning">
+      <ul>
+        <li *ngFor="let msg of data">
+          <div
+            [ngClass]="{
+              'chat-row': true,
+              'chat-row_my': !msg.fromContact,
+              'chat-row_you': msg.fromContact
+            }"
+          >
+            <div class="img-top">
+              <img
+                class="rounded-circle avatar-xs"
+                [src]="
+                  !msg.fromContact
+                    ? 'https://cdn.iconscout.com/icon/free/png-512/avatar-372-456324.png'
+                    : 'https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png'
+                "
+              />
+            </div>
+            <div class="chat-item-text">
+              {{ msg.body }}
+              <div class="chat-item-date">
+                {{ msg.insertDateTime | date: "HH:mm" }}
+                {{ msg.sending }}
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nz-spin>
+  </div>
+  <div class="footer">
+    <div>
+      <input
+        [(ngModel)]="inputValue"
+        (keyup.enter)="onEnter($event.target.value)"
+        nz-input
+        type="text"
+        placeholder="یک پیام بنویسید"
+      />
+    </div>
+  </div>
+</div>

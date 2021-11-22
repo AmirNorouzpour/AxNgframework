@@ -1,0 +1,4 @@
+<nz-radio-group (ngModelChange)="handleChange($event)">
+    <label class="filter-radio-label" *ngFor="let item of colSetting.filter.options.items" nz-radio
+        [nzValue]="item.value">{{item.label}}</label>
+</nz-radio-group>

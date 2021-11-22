@@ -1,0 +1,24 @@
+.ax-list-widget {
+  min-height: 240px;
+  max-height: 240px;
+  overflow: hidden;
+  overflow-y: auto;
+
+  &__ {
+    &table {
+      width: 100%;
+      direction: rtl;
+    }
+    &th {
+      text-align: center;
+    }
+
+    &td {
+      text-align: center;
+      font-size: 12px;
+      &_datetime {
+        direction: ltr;
+      }
+    }
+  }
+}

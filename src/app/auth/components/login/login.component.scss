@@ -1,0 +1,182 @@
+@import "theme";
+
+@mixin login-col {
+  height: 100%;
+  width: 100%;
+}
+
+.login {
+  display: flex;
+  height: 100vh;
+
+  &__ {
+    &sider {
+      @include login-col;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-image: linear-gradient(
+        253deg,
+        $success-color 0,
+        var(--info-color) 100%
+      );
+      max-width: 400px;
+
+      &-text {
+        color: #fff;
+        font-size: 12px;
+        margin: 0 32px 4px 32px;
+        line-height: 24px;
+
+        &_large {
+          font-size: 14px;
+          margin-bottom: 16px;
+        }
+      }
+    }
+
+    &message {
+      color: red;
+      font-size: 0.8rem;
+    }
+
+    &form {
+      width: 100%;
+      max-width: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      box-sizing: border-box;
+
+      &_submitted {
+        .ng-invalid:not(form) {
+          border-right: 5px solid $danger-color;
+        }
+      }
+
+      &-wrapper {
+        @include login-col;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      &-title {
+        font-size: 1rem;
+        line-height: 58px;
+        //font-weight: bold;
+        color: #28b498;
+      }
+
+      &-group {
+        width: 100%;
+      }
+
+      &-input {
+        box-sizing: border-box;
+        width: 100%;
+        height: 48px;
+        background: #eef5f3;
+        outline: 0;
+        border: none;
+        font-family: "IranSans", serif;
+        font-size: 0.875rem;
+        border-radius: 5px;
+        color: #88908e;
+        padding: 0 16px;
+        transition: background-color 0.3s;
+        margin-bottom: 16px;
+
+        &::placeholder {
+          color: rgb(173, 173, 173);
+        }
+        &:focus {
+          background: #fff;
+          border: 1px solid #e1eae7;
+        }
+      }
+
+      &-button {
+        width: 100%;
+        height: 48px;
+        background-color: #28b498;
+        border-radius: 5px;
+        outline: 0;
+        border: none;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-family: "IranSans";
+        font-size: 0.875rem;
+        line-height: 16px;
+        text-align: center;
+        margin: 16px 0;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: #3cc6a5;
+        }
+
+        &:disabled {
+          background-color: #ddd;
+        }
+      }
+    }
+
+    &shape {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.08);
+      box-sizing: border-box;
+
+      &_first {
+        width: 140px;
+        height: 140px;
+        bottom: 4%;
+        left: 2.1875rem;
+        border-radius: 100%;
+      }
+
+      &_second {
+        width: 250px;
+        height: 250px;
+        bottom: 17%;
+        left: 4%;
+        border-radius: 100%;
+      }
+
+      &_third {
+        width: 0;
+        height: 0;
+        border-top: 60px solid transparent;
+        border-bottom: 70px solid transparent;
+        border-left: 160px solid rgba(255, 255, 255, 0.08);
+        top: 9%;
+        left: 15%;
+        background-color: transparent;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .login {
+    display: flex;
+    height: 100vh;
+
+    &__ {
+      &sider {
+        display: none;
+      }
+      &bg-wrapper {
+        display: none;
+      }
+    }
+  }
+}

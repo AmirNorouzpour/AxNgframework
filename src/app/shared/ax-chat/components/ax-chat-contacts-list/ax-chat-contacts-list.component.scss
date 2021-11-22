@@ -1,0 +1,64 @@
+@import "theme";
+
+.list-inline,
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+li a:last-child {
+  border-bottom: 1px solid #f5f7fb;
+}
+li a:first-child {
+  border-top: none;
+}
+li:hover {
+  background-color: #e0e0e0;
+}
+
+li a {
+  position: relative;
+  display: block;
+  padding: 15px 20px;
+  color: #7a7f9a;
+  transition: all 0.4s;
+  border-top: 1px solid #f5f7fb;
+  border-radius: 4px;
+}
+
+ul {
+  min-height: 300px;
+}
+
+li a div {
+  display: flex;
+  align-items: flex-start;
+}
+
+.avatar-xs {
+  height: 2.2rem;
+  width: 2.2rem;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+img,
+svg {
+  vertical-align: middle;
+}
+
+.contacts-list-header {
+  width: 100%;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  background-color: var(--info-color);
+  color: white;
+}

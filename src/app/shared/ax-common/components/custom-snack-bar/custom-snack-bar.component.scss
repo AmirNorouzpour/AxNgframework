@@ -1,0 +1,14 @@
+.ax-snack-bar {
+  text-align: right;
+  &__ {
+    &message,
+    &icon {
+      vertical-align: middle;
+      color: #fff;
+    }
+
+    &icon {
+      margin-left: 8px;
+    }
+  }
+}

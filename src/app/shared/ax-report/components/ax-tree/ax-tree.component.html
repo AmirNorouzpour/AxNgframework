@@ -1,0 +1,14 @@
+<div class="ax-tree__toolbar-wrapper" *ngIf="!hideToolbar">
+  <ax-toolbar (onItemClick)="onToolbarItemClick($event)" [items]="toolbarItems">
+  </ax-toolbar>
+</div>
+
+<div *ngIf="data" class="ax-tree__tree">
+  <nz-tree #treeRef [nzAsyncData]="lazyLoad" [nzData]="data" [nzCheckable]="checkable" [nzMultiple]="multiSelect"
+    (nzClick)="handleNodeClick($event)" (nzDblClick)="handleNodeDblClick($event)"
+    (nzExpandChange)="handleExpandChange($event)" (nzCheckBoxChange)="handleCheckBoxChange($event)" nzShowIcon>
+    <!-- <ng-template #multiExpandedIconTpl let-node let-origin="origin">
+      <i nz-icon [nzType]="node.isExpanded ? 'caret-down' : 'caret-left'" class="ax-tree__switcher-icon"></i>
+    </ng-template> -->
+  </nz-tree>
+</div>

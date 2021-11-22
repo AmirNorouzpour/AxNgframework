@@ -1,0 +1,15 @@
+<ng-container *ngIf="model">
+    <div class="ax-number-widget__main">
+        <div class="ax-number-widget__content">
+            <span class="ax-number-widget__title">{{model.label}}</span>
+            <span class="ax-number-widget__number">{{model.data}}</span>
+        </div>
+        <div class="ax-number-widget__icon-wrapper"
+            [ngClass]="'ax-number-widget__icon-wrapper_' + model?.color?.toLowerCase()">
+            <mat-icon class="ax-number-widget__icon">{{model.icon}}</mat-icon>
+        </div>
+    </div>
+    <div class="ax-number-widget__footer">
+        {{model.lastUpdated}}
+    </div>
+</ng-container>

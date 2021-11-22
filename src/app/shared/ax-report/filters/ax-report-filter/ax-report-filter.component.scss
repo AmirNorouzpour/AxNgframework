@@ -1,0 +1,27 @@
+.ax-report-filter {
+  padding: 8px;
+
+  &__ {
+    &footer {
+      margin-top: 8px;
+    }
+  }
+
+  > div {
+    margin-bottom: 8px;
+  }
+
+  & input {
+    width: 188px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  & button {
+    width: 90px;
+  }
+}
+
+.search-button {
+  margin-left: 8px;
+}

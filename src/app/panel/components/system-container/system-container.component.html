@@ -1,0 +1,22 @@
+<div *ngIf="currentSystem" class="system-container">
+    <div (click)="closeMobileMenu()" [ngClass]="{'system-container__overlay_visible': !mobileSidebarIsCollapsed}"
+        class="system-container__overlay">
+    </div>
+    <div class="system-container__sidebar-wrapper">
+        <ax-sidebar (onSidebarToggle)="handleSidebarToggle($event)" [systemMenu]="systemMenu"
+            [title]="currentSystem.title" [icon]="currentSystem.icon" [isCollapsed]="sidebarIsCollpased">
+        </ax-sidebar>
+    </div>
+    <div class="system-container__mobile-sidebar-wrapper">
+        <ax-sidebar (onSidebarToggle)="handleMobileSidebarToggle($event)" [systemMenu]="systemMenu"
+            [title]="currentSystem.title" [icon]="currentSystem.icon" [isCollapsed]="mobileSidebarIsCollapsed">
+        </ax-sidebar>
+    </div>
+    <div class="system-container__content">
+        <div class="system-container__bread-crumb">
+            <mat-icon (click)="openMobileMenu()" class="system-container__mobile-menu">menu</mat-icon>
+            <bread-crumb></bread-crumb>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

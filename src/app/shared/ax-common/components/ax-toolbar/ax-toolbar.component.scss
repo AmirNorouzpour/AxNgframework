@@ -1,0 +1,17 @@
+@import "theme";
+
+.ax-toolbar {
+  &__ {
+    &info {
+      color: var(--info-color);
+    }
+
+    &warning {
+      color: $warning-color;
+    }
+
+    &danger {
+      color: $danger-color;
+    }
+  }
+}

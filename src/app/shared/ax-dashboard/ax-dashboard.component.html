@@ -1,0 +1,9 @@
+<div class="container-fluid">
+    <div class="row">
+        <ng-container *ngFor="let chart of dashboardCharts">
+            <div [ngClass]="'col-sm-' + chart.width" class="px-2 mt-3">
+                <ax-chart-panel [chart]="chart"></ax-chart-panel>
+            </div>
+        </ng-container>
+    </div>
+</div>

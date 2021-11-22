@@ -1,0 +1,32 @@
+<div class="ax-toolbar">
+  <nz-space>
+    <ng-container *ngFor="let item of items">
+      <span *nzSpaceItem>
+        <button
+          nzShape="round"
+          [title]="item.tooltip ? item.tooltip : ''"
+          nz-popconfirm
+          [nzPopconfirmTitle]="item.confirmTitle"
+          [disabled]="item.disabled"
+          [nzPopconfirmTrigger]="item.hasConfirm && 'click'"
+          (nzOnConfirm)="handleItemClick($event, item.key)"
+          (click)="!item.hasConfirm && handleItemClick($event, item.key)"
+          nzPopconfirmPlacement="topRight"
+          nz-button
+          nzType="default"
+        >
+          <i
+            [ngClass]="item.color && 'ax-toolbar__' + item.color"
+            class="{{ item.cls }}"
+            nz-icon
+            nzType="{{ item.icon }}"
+            nzTheme="outline"
+          ></i>
+          <ng-container *ngIf="item.title">
+            {{ item.title }}
+          </ng-container>
+        </button>
+      </span>
+    </ng-container>
+  </nz-space>
+</div>

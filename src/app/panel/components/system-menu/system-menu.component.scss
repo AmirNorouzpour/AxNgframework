@@ -1,0 +1,56 @@
+@import "theme";
+
+.ax-system-menu {
+  max-width: 320px;
+  min-height: 60px;
+  padding: 0 8px;
+
+  &__ {
+    &list {
+      display: flex;
+      flex-wrap: wrap;
+
+      &-item {
+        width: 100px;
+
+        &-link {
+          color: #777;
+          text-align: center;
+          display: block;
+          line-height: 34px;
+          padding: 16px 16px 8px 16px;
+          border-radius: 2px;
+
+          &:hover {
+            background-color: #f3f7f9;
+          }
+        }
+
+        &-icon {
+          font-size: 24px;
+          color: #444;
+        }
+
+        &-title {
+          font-size: 12px;
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        &:nth-child(1) & {
+          &-icon {
+            color: var(--info-color);
+          }
+        }
+
+        &:nth-child(2) & {
+          &-icon {
+            color: $success-color;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+<div class="ax-table">
+  <div *ngIf="!hideToolbar" class="ax-table__toolbar-wrapper">
+    <ax-toolbar
+      (onItemClick)="onToolbarItemClick($event)"
+      [items]="tempToolbarItems"
+    >
+    </ax-toolbar>
+  </div>
+  <div class="ax-table__table">
+    <nz-table
+      [nzLoadingDelay]="300"
+      [nzNoResult]="noResultContent"
+      nzTableLayout=" fixed"
+      [nzLoading]="loading"
+      [nzTitle]="title"
+      #axTable
+      [nzData]="listOfCurrentPageData"
+      [nzSize]="'middle'"
+      [nzShowTotal]="rangeTemplate"
+      [(nzPageSize)]="pageSize"
+      [(nzPageIndex)]="pageIndex"
+      [nzTotal]="totalCount"
+      [nzFrontPagination]="false"
+      [nzShowSizeChanger]="true"
+      (nzQueryParams)="handleQueryParams($event)"
+    >
+      <thead>
+        <tr>
+          <th
+            class="ax-table__th_check"
+            [(nzChecked)]="checked"
+            [nzIndeterminate]="indeterminate"
+            (nzCheckedChange)="onAllChecked($event)"
+          ></th>
+          <th
+            [nzColumnKey]="col.index"
+            [nzSortFn]="true"
+            *ngFor="let col of columns"
+            nzEllipsis
+            [ngStyle]="{ width: col.width }"
+            class="ax-table__th"
+          >
+            {{ col.title }}
+            <ng-container *ngIf="col.filter">
+              <ng-container
+                *ngTemplateOutlet="filterTemplate; context: { col: col }"
+              ></ng-container>
+            </ng-container>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of axTable.data">
+          <td
+            [nzChecked]="setOfCheckedId.has(data.id)"
+            (nzCheckedChange)="onItemChecked(data.id, $event)"
+          ></td>
+          <td
+            (dblclick)="onItemDblClick(data.id, $event)"
+            *ngFor="let col of columns"
+            nz-tooltip
+            nzTooltipTitle="{{ col.showTooltip && data[col.index] }}"
+            nzEllipsis
+            class="ax-table__td"
+          >
+            {{ data[col.index] | columnType: [col.type, col.options] }}
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }} تا {{ range[1] }} از {{ total }} آیتم
+</ng-template>
+
+<ng-template #filterTemplate let-col="col">
+  <nz-filter-trigger [nzActive]="true" [nzDropdownMenu]="menu">
+    <i nz-icon nzType="filter"></i>
+  </nz-filter-trigger>
+
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+      <ax-report-filter
+        [(filters)]="filters[col.index]"
+        [colSetting]="col"
+        (search)="handleFilterSearch($event, col)"
+        (reset)="handleFilterReset($event)"
+      ></ax-report-filter>
+    </div>
+  </nz-dropdown-menu>
+</ng-template>

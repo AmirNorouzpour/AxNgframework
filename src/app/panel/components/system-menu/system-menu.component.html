@@ -1,0 +1,10 @@
+<div class="ax-system-menu">
+    <ul class="ax-system-menu__list">
+        <li *ngFor="let system of systems" class="ax-system-menu__list-item">
+            <a class="ax-system-menu__list-item-link" [routerLink]="['/panel/' + system.name.toLowerCase()]">
+                <mat-icon class="ax-system-menu__list-item-icon">{{system.icon}}</mat-icon>
+                <span class="ax-system-menu__list-item-title">{{system.title}}</span>
+            </a>
+        </li>
+    </ul>
+</div>

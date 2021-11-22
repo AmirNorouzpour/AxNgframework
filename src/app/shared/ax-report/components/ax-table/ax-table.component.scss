@@ -1,0 +1,38 @@
+.ax-table {
+  border-radius: 4px;
+  padding: 8px;
+  margin: 8px 0;
+
+  table {
+    width: 100%;
+  }
+
+  &__ {
+    &toolbar-wrapper {
+      margin: 8px 0 16px 0;
+    }
+
+    &th,
+    &td {
+      font-size: 13px;
+      &_check {
+        width: 60px;
+      }
+    }
+
+    &tooltip-overlay {
+      min-width: 320px;
+    }
+
+    &pagination {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -16px;
+    }
+  }
+}
+
+.ant-checkbox-group-item {
+  display: block !important;
+  margin-bottom: 8px;
+}

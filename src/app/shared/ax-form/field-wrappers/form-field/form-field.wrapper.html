@@ -1,0 +1,16 @@
+<nz-form-item>
+    <ng-container *ngIf="to.label && to.hideLabel !== true">
+        <nz-form-label [nzSm]="to.labelSm" [nzXs]="to.labelXs || 24" [nzMd]="to.labelMd" [nzLg]="to.labelLg"
+            [nzXl]="to.labelXl" [nzXXl]="to.labelXXl" [nzRequired]="to.required && to.hideRequiredMarker !== true"
+            [nzFor]="id">
+            {{ to.label }}
+        </nz-form-label>
+    </ng-container>
+    <nz-form-control [nzSm]="to.controlSm" [nzXs]="to.controlXs || 24" [nzMd]="to.controlMd" [nzLg]="to.controlLg"
+        [nzXl]="to.controlXl" [nzXXl]="to.controlXXl" [nzValidateStatus]="errorState" [nzErrorTip]="errorTpl">
+        <ng-container #fieldComponent></ng-container>
+        <ng-template #errorTpl let-control>
+            <formly-validation-message [field]="field"></formly-validation-message>
+        </ng-template>
+    </nz-form-control>
+</nz-form-item>

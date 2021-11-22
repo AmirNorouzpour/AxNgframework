@@ -1,0 +1,29 @@
+<ul class="ax-side-menu" [ngClass]="{'ax-side-menu_collapsed': isCollapsed, 'ax-side-menu_rtl': dir === 'rtl'}">
+    <ng-container *ngFor="let menuItem of menuItems">
+        <ng-container *ngTemplateOutlet="MenuItem;  context: {$implicit: menuItem};"></ng-container>
+    </ng-container>
+</ul>
+
+<ng-template #MenuItem let-menuItem>
+    <li [attr.data-key]="menuItem.key" (click)="handleMenuItemClick($event, menuItem)" class="ax-side-menu__item">
+        <div class="ax-side-menu__item-wrapper">
+            <mat-icon class="ax-side-menu__item-icon">{{menuItem.icon}}</mat-icon>
+            <a *ngIf="!menuItem.children && menuItem.key | keyToLink; else elseBlock"
+                [routerLink]="['/' + (menuItem.key | keyToLink)]" routerLinkActive="active-link"
+                class="ax-side-menu__item-title">{{menuItem.title}}</a>
+            <ng-template #elseBlock><span class="ax-side-menu__item-title">{{menuItem.title}}</span></ng-template>
+            <mat-icon *ngIf="menuItem.children && menuItem.children.length > 0" class="ax-side-menu__item-expand">
+                expand_more</mat-icon>
+        </div>
+        <ng-container *ngIf="menuItem.children && menuItem.children.length > 0">
+            <ul [@openClose]="menuItemsState[menuItem.key] ? 'open' : 'closed'" class="ax-side-menu__sub-menu"
+                [ngClass]="{'ax-side-menu__sub-menu_collapsed': isCollapsed}">
+                <div class="ax-side-menu__sub-menu-wrapper">
+                    <ng-container *ngFor="let menuItem of menuItem.children">
+                        <ng-container *ngTemplateOutlet="MenuItem;  context: {$implicit: menuItem};"></ng-container>
+                    </ng-container>
+                </div>
+            </ul>
+        </ng-container>
+    </li>
+</ng-template>
