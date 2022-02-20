@@ -1,6 +1,6 @@
 export interface ProductInstance {
   code: number;
   UserName: number;
-  dateTime: string;
+  insertDateTime: string;
   isActive: boolean;
 }

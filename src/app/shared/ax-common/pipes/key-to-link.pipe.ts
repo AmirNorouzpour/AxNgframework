@@ -14,6 +14,7 @@ const keyLinkMap = {
   "020105": "/panel/tracking/shifts",
   "020106": "/panel/tracking/personnels",
   "020201": "/panel/tracking/productInstances",
+  "020202": "/panel/tracking/productInstanceHistories",
 };
 
 @Pipe({

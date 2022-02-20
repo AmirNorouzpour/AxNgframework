@@ -14,7 +14,25 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-    <div nz-col [nzSpan]="10">
+    <div nz-col [nzSpan]="4">
+      <nz-form-item>
+        <nz-form-label [nzFor]="op">ایستگاه</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            name="op"
+            [(ngModel)]="op"
+            nzAllowClear
+            nzPlaceHolder="انتخاب کنید"
+            (nzOnSearch)="onSearch($event)"
+          >
+            <ng-container *ngFor="let item of OpsOptions">
+              <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="6">
       <nz-form-item>
         <nz-form-label [nzFor]="users">کاربر</nz-form-label>
         <nz-form-control>
@@ -28,8 +46,8 @@
           >
             <ng-container *ngFor="let item of options">
               <nz-option
-                [nzValue]="item.code"
-                [nzLabel]="item.name"
+                [nzValue]="item.id"
+                [nzLabel]="item.fullName"
               ></nz-option>
             </ng-container>
           </nz-select>
@@ -64,7 +82,7 @@
 <mat-datepicker #picker> </mat-datepicker>
 
 <ax-table
-  [dataService]="productInstanceService"
+  [dataService]="productHistoryService"
   [columns]="columns"
   [hideToolbar]="true"
   [queryParams]="filters"

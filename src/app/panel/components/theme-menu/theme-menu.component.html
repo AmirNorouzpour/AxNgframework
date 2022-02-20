@@ -1,9 +1,17 @@
 <div class="ax-theme-menu">
-    <div *ngFor="let theme of themeService.themes | async" (click)="onThemeClick(theme.key)" class="ax-theme-menu__btn"
-        [ngClass]="{'ax-theme-menu__btn_active': currentTheme === theme.key}" mat-button>
-        <span class="ax-theme-menu__color" [ngClass]="'ax-theme-menu__color_theme-' + theme.key"></span>
-        <span class="ax-theme-menu__text">
-            قالب {{theme.title}}
-        </span>
-    </div>
+  <div
+    *ngFor="let theme of themeService.themes | async"
+    (click)="onThemeClick(theme.key)"
+    class="ax-theme-menu__btn"
+    [ngClass]="{ 'ax-theme-menu__btn_active': currentTheme === theme.key }"
+    mat-button
+  >
+    <span
+      class="ax-theme-menu__color"
+      [ngClass]="'ax-theme-menu__color_theme-' + theme.key"
+    ></span>
+    <span class="ax-theme-menu__text">
+      {{ theme.title }}
+    </span>
+  </div>
 </div>

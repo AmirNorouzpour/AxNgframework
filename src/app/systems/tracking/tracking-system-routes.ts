@@ -19,6 +19,7 @@ import { Routes } from "@angular/router";
 import { PersonnelFormComponent } from "./components/personnel-form/personnel-form.component";
 import { ShiftFormComponent } from "./components/shift-form/shift-form.component";
 import { ProductInstanceListComponent } from "./components/product-instance-list/product-instance-list.component";
+import { ProductHistoryListComponent } from "./components/product-history-list/product-history-list.component";
 
 export const TrackingSystemRoutes: Routes = [
   {
@@ -234,6 +235,21 @@ export const TrackingSystemRoutes: Routes = [
       {
         path: "",
         component: ProductInstanceListComponent,
+        data: {
+          breadcrumb: null,
+        },
+      },
+    ],
+  },
+  {
+    path: "productInstanceHistories",
+    data: {
+      breadcrumb: "تاریخچه محصول",
+    },
+    children: [
+      {
+        path: "",
+        component: ProductHistoryListComponent,
         data: {
           breadcrumb: null,
         },

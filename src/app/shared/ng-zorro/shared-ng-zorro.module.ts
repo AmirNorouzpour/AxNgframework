@@ -19,7 +19,9 @@ import { NzPopconfirmModule } from "ng-zorro-antd/popconfirm";
 import { NzTreeModule } from "ng-zorro-antd/tree";
 import { NzDrawerModule } from "ng-zorro-antd/drawer";
 import { NzSpinModule } from "ng-zorro-antd/spin";
-import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzUploadModule } from "ng-zorro-antd/upload";
+import { NzAutocompleteModule } from "ng-zorro-antd/auto-complete";
+import { NzSelectModule } from "ng-zorro-antd/select";
 
 @NgModule({
   imports: [
@@ -43,7 +45,9 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NzTreeModule,
     NzDrawerModule,
     NzSpinModule,
-    NzUploadModule
+    NzUploadModule,
+    NzAutocompleteModule,
+    NzSelectModule
   ],
   exports: [
     NzTableModule,
@@ -67,6 +71,8 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NzSpinModule,
     NzUploadModule,
     NzIconModule,
+    NzAutocompleteModule,
+    NzSelectModule,
   ],
 })
 export class SharedNgZorroModule {}

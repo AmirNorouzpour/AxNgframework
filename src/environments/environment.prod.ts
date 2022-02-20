@@ -7,10 +7,10 @@ export const environment = {
   production: false,
 
   /**** Endpoint urls ****/
-  // apiEndPoint: "http://2.188.160.254/services/api",
-  apiEndPoint: "http://192.168.0.10/services/api",
-  signalREndPoint: "http://192.168.0.10/services/axhub",
-  // signalREndPoint: "http://2.188.160.254/services/axhub",
+  apiEndPoint: "http://2.188.160.254/services/api",
+  //apiEndPoint: "http://192.168.0.10/services/api",
+  //signalREndPoint: "http://192.168.0.10/services/axhub",
+  signalREndPoint: "http://2.188.160.254/services/axhub",
   /**** Versions ****/
   apiVersion1: "v1",
 
@@ -33,6 +33,7 @@ export const environment = {
   authorizationApi: "Permissions",
   msgApi: "Chat",
   productInstanceApi: "ProductInstances",
+  productInstanceHistoryApi: "ProductInstanceHistories",
 
   /**** Actions ****/
   axToken: "AxToken",

@@ -14,6 +14,7 @@ import { OperationStationFormComponent } from "./components/operation-station-fo
 import { PersonnelFormComponent } from "./components/personnel-form/personnel-form.component";
 import { ShiftFormComponent } from "./components/shift-form/shift-form.component";
 import { ProductInstanceListComponent } from "./components/product-instance-list/product-instance-list.component";
+import { ProductHistoryListComponent } from "./components/product-history-list/product-history-list.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ProductInstanceListComponent } from "./components/product-instance-list
     PersonnelFormComponent,
     ShiftFormComponent,
     ProductInstanceListComponent,
+    ProductHistoryListComponent,
   ],
   imports: [SharedModule, RouterModule.forChild([])],
 })

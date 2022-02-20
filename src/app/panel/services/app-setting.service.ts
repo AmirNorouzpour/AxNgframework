@@ -16,15 +16,14 @@ export class AppSetting implements Resolve<InitialData> {
   private _initialData: InitialData;
   private _userPermissions: string[];
   private _systemNameMap: any;
-  private _sidebarIsCollapsedSubject: BehaviorSubject<
-    boolean
-  > = new BehaviorSubject<boolean>(false);
-  private _mobileSidebarIsCollapsedSubject: BehaviorSubject<
-    boolean
-  > = new BehaviorSubject<boolean>(true);
+  private _sidebarIsCollapsedSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  private _mobileSidebarIsCollapsedSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(true);
 
   public sidebarIsCollapsed = this._sidebarIsCollapsedSubject.asObservable();
-  public mobileSidebarIsCollapsed = this._mobileSidebarIsCollapsedSubject.asObservable();
+  public mobileSidebarIsCollapsed =
+    this._mobileSidebarIsCollapsedSubject.asObservable();
 
   get initialData(): InitialData {
     return this._initialData;
@@ -33,7 +32,6 @@ export class AppSetting implements Resolve<InitialData> {
   get userPermissions(): string[] {
     return this._userPermissions;
   }
-
 
   getSystemNameById(id) {
     return Object.keys(this._systemNameMap).find(
@@ -64,8 +62,7 @@ export class AppSetting implements Resolve<InitialData> {
   constructor(
     private httpService: ApiHttpService,
     private apiEndpointsService: ApiEndpointsService
-  ) {
-  }
+  ) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
@@ -98,6 +95,10 @@ export class AppSetting implements Resolve<InitialData> {
 
   private createSystemNameMap(systemList: AxSystem[]) {
     return systemList.reduce((systemNameMap, system) => {
+      if (!system.name) {
+        //alert(system.title + " has not name!");
+        system.name = system.title;
+      }
       return { ...systemNameMap, [system.name.toLowerCase()]: system.id };
     }, {});
   }

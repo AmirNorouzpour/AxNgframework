@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
   }
 
   configureTranslateService() {
-    const lang = localStorage.getItem("lang") || "fa";
+    const lang = localStorage.getItem("lang") || "en";
     this.translateService.addLangs(["en", "fa"]);
-    this.translateService.setDefaultLang("fa");
+    this.translateService.setDefaultLang("en");
     this.translateService.use(lang);
     this.translateService.onLangChange.subscribe((params: LangChangeEvent) => {
       const direction = this.languageDirectionMapping[params.lang];

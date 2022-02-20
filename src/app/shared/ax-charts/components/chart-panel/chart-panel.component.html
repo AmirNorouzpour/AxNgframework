@@ -1,33 +1,69 @@
 <ax-card>
-    <div [ngClass]="'ax-chart-panel__h-' + chart.height">
-        <div *ngIf="chart.chartType !== 5" class="ax-chart-panel__header">
-            <div class="ax-chart-panel__title" title="{{chart.title}}">{{chart.title}}</div>
-            <div class="ax-chart-panel__toolbar">
-                <span [ngClass]="{'ax-chart-panel__live-indicator_active': liveChartReceivingData}" *ngIf="chart.isLive"
-                    class="ax-chart-panel__live-indicator">زنده</span>
-                <button (click)="loadChart(chart.id)" class="ax-chart-panel__toolbar-button" mat-icon-button>
-                    <mat-icon class="ax-chart-panel__toolbar-icon">refresh</mat-icon>
-                </button>
-                <!-- <button class="ax-chart-panel__toolbar-button" mat-icon-button>
+  <div [ngClass]="'ax-chart-panel__h-' + chart.height">
+    <div *ngIf="chart.chartType !== 5" class="ax-chart-panel__header">
+      <div class="ax-chart-panel__title" title="{{ chart.title }}">
+        {{ chart.title }}
+      </div>
+      <div class="ax-chart-panel__toolbar">
+        <span
+          [ngClass]="{
+            'ax-chart-panel__live-indicator_active': liveChartReceivingData
+          }"
+          *ngIf="chart.isLive"
+          class="ax-chart-panel__live-indicator"
+          >Live</span
+        >
+        <button
+          (click)="loadChart(chart.id)"
+          class="ax-chart-panel__toolbar-button"
+          mat-icon-button
+        >
+          <mat-icon class="ax-chart-panel__toolbar-icon">refresh</mat-icon>
+        </button>
+        <!-- <button class="ax-chart-panel__toolbar-button" mat-icon-button>
                     <mat-icon class="ax-chart-panel__toolbar-icon">more_vert</mat-icon>
                 </button> -->
-            </div>
-        </div>
-        <ng-container *ngIf="chartModel$ | async as model">
-            <ng-container [ngSwitch]="chart.chartType">
-                <ax-list-widget [chartId]="chart.id" [model]="model" *ngSwitchCase="0"></ax-list-widget>
-                <ax-pie-chart (onClick)="handleChartClick($event)" [chartId]="chart.id" [model]="model"
-                    *ngSwitchCase="1"></ax-pie-chart>
-                <ax-line-chart [chartId]="chart.id" [model]="model" *ngSwitchCase="2"></ax-line-chart>
-                <ax-bar-chart [chartId]="chart.id" [model]="model" *ngSwitchCase="3"></ax-bar-chart>
-                <ax-number-widget [chartId]="chart.id" [model]="model" *ngSwitchCase="5"></ax-number-widget>
-            </ng-container>
-        </ng-container>
+      </div>
     </div>
+    <ng-container *ngIf="chartModel$ | async as model">
+      <ng-container [ngSwitch]="chart.chartType">
+        <ax-list-widget
+          [chartId]="chart.id"
+          [model]="model"
+          *ngSwitchCase="0"
+        ></ax-list-widget>
+        <ax-pie-chart
+          (onClick)="handleChartClick($event)"
+          [chartId]="chart.id"
+          [model]="model"
+          *ngSwitchCase="1"
+        ></ax-pie-chart>
+        <ax-line-chart
+          [chartId]="chart.id"
+          [model]="model"
+          *ngSwitchCase="2"
+        ></ax-line-chart>
+        <ax-bar-chart
+          [chartId]="chart.id"
+          [model]="model"
+          *ngSwitchCase="3"
+        ></ax-bar-chart>
+        <ax-number-widget
+          [chartId]="chart.id"
+          [model]="model"
+          *ngSwitchCase="5"
+        ></ax-number-widget>
+      </ng-container>
+    </ng-container>
+  </div>
 </ax-card>
 <ng-container *ngIf="loading$ | async">
-    <div class="loading-wrapper">
-        <mat-progress-spinner class="example-section" [diameter]="diameter" [mode]="progressMode">
-        </mat-progress-spinner>
-    </div>
+  <div class="loading-wrapper">
+    <mat-progress-spinner
+      class="example-section"
+      [diameter]="diameter"
+      [mode]="progressMode"
+    >
+    </mat-progress-spinner>
+  </div>
 </ng-container>

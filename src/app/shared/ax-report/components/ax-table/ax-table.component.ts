@@ -1,5 +1,5 @@
-import { AppSetting } from './../../../../panel/services/app-setting.service';
-import { AxReportFilterComponent } from './../../filters/ax-report-filter/ax-report-filter.component';
+import { AppSetting } from "./../../../../panel/services/app-setting.service";
+import { AxReportFilterComponent } from "./../../filters/ax-report-filter/ax-report-filter.component";
 import {
   Component,
   OnInit,
@@ -11,6 +11,8 @@ import {
   TemplateRef,
   OnDestroy,
   ViewChild,
+  OnChanges,
+  SimpleChanges,
 } from "@angular/core";
 import { Observable, forkJoin, Subscription } from "rxjs";
 import { ResourceSerivce } from "shared/services/api/resource.service";
@@ -19,14 +21,13 @@ import { tap } from "rxjs/operators";
 import { AxReportFilter } from "shared/ax-report/models/ax-report-filter.model";
 import { reportDefaultToolbarItems } from "./../../models/ax-report-toolbar-items";
 
-
 @Component({
   selector: "ax-table",
   templateUrl: "./ax-table.component.html",
   styleUrls: ["./ax-table.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
-export class AxTableComponent implements OnInit, OnDestroy {
+export class AxTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() dataSet: Observable<any>;
   @Input() columns: any[];
   @Input() dataService: ResourceSerivce<any>;
@@ -80,16 +81,23 @@ export class AxTableComponent implements OnInit, OnDestroy {
   }
 
   refreshToolbarItems(): void {
-    this.tempToolbarItems = reportDefaultToolbarItems.concat(this.customToolbarItems).map(
-      (itm) => ({...itm, ...(this.toolbarItems && this.toolbarItems.find((item) => item.key === itm.key && item )) }))
+    this.tempToolbarItems = reportDefaultToolbarItems
+      .concat(this.customToolbarItems)
+      .map((itm) => ({
+        ...itm,
+        ...(this.toolbarItems &&
+          this.toolbarItems.find((item) => item.key === itm.key && item)),
+      }))
       .map((item) => {
-        if (item.permissionKey && !this.appSetting.userPermissions.includes(item.permissionKey)){
-          return {...item, disabled: true, tooltip: "عدم دسترسی"}
+        if (
+          item.permissionKey &&
+          !this.appSetting.userPermissions.includes(item.permissionKey)
+        ) {
+          return { ...item, disabled: true, tooltip: "عدم دسترسی" };
         }
         return item;
       })
       .filter(Boolean);
-
 
     if (this.setOfCheckedId.size === 0) {
       this.tempToolbarItems = this.tempToolbarItems.filter(
@@ -195,7 +203,6 @@ export class AxTableComponent implements OnInit, OnDestroy {
     this.loadFromServer();
   }
 
-
   onToolbarItemClick(itemKey): void {
     switch (itemKey) {
       case "refresh":
@@ -258,6 +265,11 @@ export class AxTableComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.dataService.onResourceSaved.subscribe(() => this.loadFromServer())
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.pageIndex = 1;
+    this.loadFromServer();
   }
 
   ngOnDestroy() {

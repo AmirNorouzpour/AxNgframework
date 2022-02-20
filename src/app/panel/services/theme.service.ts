@@ -10,12 +10,12 @@ export class ThemeService {
   public activeTheme$: BehaviorSubject<string> = new BehaviorSubject("default");
 
   themes = of([
-    { key: "default", title: "پیشفرض" },
-    { key: "1", title: "سورمه ای" },
-    { key: "2", title: "مشکی" },
-    { key: "3", title: "سبز" },
-    { key: "4", title: "بنفش" },
-    { key: "5", title: "متال" },
+    { key: "default", title: "Blue" },
+    { key: "1", title: "Dark Blue" },
+    { key: "2", title: "Black" },
+    { key: "3", title: "Green" },
+    { key: "4", title: "Purpule" },
+    { key: "5", title: "Metal" },
   ]);
 
   constructor() {
