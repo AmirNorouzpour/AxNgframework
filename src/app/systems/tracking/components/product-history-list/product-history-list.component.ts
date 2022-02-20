@@ -85,6 +85,7 @@ export class ProductHistoryListComponent implements OnInit {
     this.code = null;
     this.users = null;
     this.date = null;
+    this.op = null;
     this.filters = {};
   }
   isLoading = false;
