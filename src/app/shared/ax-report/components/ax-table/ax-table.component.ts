@@ -81,7 +81,10 @@ export class AxTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   refreshToolbarItems(): void {
-    this.tempToolbarItems = reportDefaultToolbarItems
+    if (!this.toolbarItems || this.toolbarItems.length == 0)
+      this.toolbarItems = reportDefaultToolbarItems;
+
+    this.tempToolbarItems = this.toolbarItems
       .concat(this.customToolbarItems)
       .map((itm) => ({
         ...itm,

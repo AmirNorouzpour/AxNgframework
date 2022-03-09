@@ -7,10 +7,10 @@ export const environment = {
   production: false,
 
   /**** Endpoint urls ****/
-  apiEndPoint: "http://localhost:6222/api",
+  apiEndPoint: "http://2.188.160.254/services/api",
   //apiEndPoint: "http://192.168.0.10/services/api",
   //signalREndPoint: "http://192.168.0.10/services/axhub",
-  signalREndPoint: "http://localhost:6222/axhub",
+  signalREndPoint: "http://2.188.160.254/services/axhub",
 
   /**** Versions ****/
   apiVersion1: "v1",
@@ -53,6 +53,7 @@ export const environment = {
   getWithChildren: "GetWithChildren",
   getTree: "GetTree",
   getUsersAndGroups: "GetUsersAndGroups",
+  exportToXlsxPih: "ExportToXlsx",
 
   /**** Routes ****/
   panelRoute: "panel",

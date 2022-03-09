@@ -5,6 +5,7 @@ import { UserService } from "src/app/systems/basic/services";
 import { OperationStation } from "../../models/operationStation.model";
 import { OperationStationService } from "../../services/operation-station.service";
 import { ProductHistoryService } from "../../services/product-history.service";
+import { saveAs } from "file-saver";
 
 @Component({
   selector: "app-product-history-list",
@@ -36,6 +37,41 @@ export class ProductHistoryListComponent implements OnInit {
       index: "enterTime",
     },
   ];
+
+  toolbarItems = [
+    {
+      key: "refresh",
+      title: "",
+      icon: "reload",
+      showAlways: true,
+    },
+  ];
+
+  customToolbarItems = [
+    {
+      key: "export",
+      title: "خروجی به اکسل",
+      showAlways: true,
+      showSingleSelect: true,
+      icon: "export",
+    },
+  ];
+
+  handleCustomCommand(e) {
+    if (e.key == "export") {
+      var parameters = {
+        code: this.code,
+        userIds: this.users?.join(),
+        date: this.date?.toJSON(),
+        op: this.op,
+      };
+      let date = new Date().toISOString();
+      this.productHistoryService.export(parameters).subscribe((data) => {
+        saveAs(data, date + ".xlsx");
+      });
+    }
+  }
+
   ngOnInit(): void {
     var users = this.userService.getList();
     users.subscribe((data) => {

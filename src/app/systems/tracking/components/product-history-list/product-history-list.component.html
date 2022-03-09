@@ -16,6 +16,24 @@
     </div>
     <div nz-col [nzSpan]="4">
       <nz-form-item>
+        <nz-form-label [nzFor]="op">خط تولید</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            name="line"
+            [(ngModel)]="op"
+            nzAllowClear
+            nzPlaceHolder="انتخاب کنید"
+            (nzOnSearch)="onSearch($event)"
+          >
+            <ng-container *ngFor="let item of OpsOptions">
+              <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <nz-form-item>
         <nz-form-label [nzFor]="op">ایستگاه</nz-form-label>
         <nz-form-control>
           <nz-select
@@ -84,7 +102,9 @@
 <ax-table
   [dataService]="productHistoryService"
   [columns]="columns"
-  [hideToolbar]="true"
+  [toolbarItems]="toolbarItems"
+  [customToolbarItems]="customToolbarItems"
+  (onCustomCommand)="handleCustomCommand($event)"
   [queryParams]="filters"
 >
 </ax-table>

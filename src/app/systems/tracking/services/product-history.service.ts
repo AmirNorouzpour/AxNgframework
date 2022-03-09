@@ -35,4 +35,11 @@ export class ProductHistoryService
     const id = route.params["productInstanceId"];
     return this.getById([id]).pipe(map((result) => result.data));
   }
+
+  export(parameters) {
+    return this.apiHttpService.get<Blob>(
+      this.apiEndpointsService.getPihXlsxEndpoint(parameters),
+      { responseType: "blob" }
+    );
+  }
 }

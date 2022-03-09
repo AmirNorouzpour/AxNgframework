@@ -26,19 +26,21 @@
     "@ngx-formly/core": "^5.10.23",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^5.0.0",
+    "@types/file-saver": "^2.0.5",
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
+    "file-saver": "^2.0.5",
     "jalali-moment": "^3.3.8",
     "loadash": "^1.0.0",
     "ng-zorro-antd": "^12.0.2",
     "ng2-charts": "^2.3.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^12.1.0",
+    "@angular-devkit/build-angular": "^12.0.1",
     "@angular/cli": "^12.0.1",
     "@angular/compiler-cli": "^12.0.1",
     "@angular/language-service": "^12.0.1",

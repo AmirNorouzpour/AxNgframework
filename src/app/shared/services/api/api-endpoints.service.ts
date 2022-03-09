@@ -86,11 +86,8 @@ export class ApiEndpointsService {
   }
 
   getUserNotificationListEndpoint() {
-    const {
-      apiVersion1,
-      userMessagesApi,
-      getUserNotificationList,
-    } = environment;
+    const { apiVersion1, userMessagesApi, getUserNotificationList } =
+      environment;
     return this.createUrl(
       apiVersion1,
       userMessagesApi,
@@ -157,5 +154,23 @@ export class ApiEndpointsService {
     return this.createUrl(apiVersion1, authorizationApi, getTree, [
       ...(parameters ? parameters : []),
     ]);
+  }
+
+  getPihXlsxEndpoint(filters) {
+    const { apiVersion1, productInstanceHistoryApi, exportToXlsxPih } =
+      environment;
+    return this.createUrl(
+      apiVersion1,
+      productInstanceHistoryApi,
+      exportToXlsxPih,
+      [],
+      (queryStringParameters) => {
+        if (filters) {
+          for (var key in filters) {
+            queryStringParameters.push(key, filters[key]);
+          }
+        }
+      }
+    );
   }
 }

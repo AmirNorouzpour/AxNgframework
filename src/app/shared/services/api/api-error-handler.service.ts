@@ -1,4 +1,4 @@
-import { AuthService } from './../../../auth/services/auth.service';
+import { AuthService } from "./../../../auth/services/auth.service";
 import { Injectable } from "@angular/core";
 import { HttpErrorResponse } from "@angular/common/http";
 import { ApiError } from "shared/models";
@@ -13,7 +13,7 @@ export class ApiErrorHandlerService {
 
   constructor(
     private snackBarService: SnackBarService,
-    private router: Router,
+    private router: Router
   ) {}
 
   handleError(error: any, options: any) {
@@ -22,12 +22,11 @@ export class ApiErrorHandlerService {
     }
     if (error instanceof HttpErrorResponse) {
       switch (error.status) {
-        case 500:
         case 400:
         case 401: {
-            localStorage.removeItem("access_token");
-            localStorage.removeItem("exp");
-            this.router.navigate(["/auth"]);
+          localStorage.removeItem("access_token");
+          localStorage.removeItem("exp");
+          this.router.navigate(["/auth"]);
         }
         default:
           throw new Error("خطا در برقراری ارتباط با سرور");
