@@ -76,7 +76,7 @@ export class MachineFormComponent extends AxForm<Machine> implements OnInit {
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: "کد کارخانه",
+                  label: "کد ماشین",
                   required: true,
                 },
               },

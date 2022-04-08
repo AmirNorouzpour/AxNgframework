@@ -156,6 +156,13 @@ export class ApiEndpointsService {
     ]);
   }
 
+  getDamagedEndpoint(parameters?: string[]) {
+    const { apiVersion1, productInstanceApi, getDamagedList } = environment;
+    return this.createUrl(apiVersion1, productInstanceApi, getDamagedList, [
+      ...(parameters ? parameters : []),
+    ]);
+  }
+
   getPihXlsxEndpoint(filters) {
     const { apiVersion1, productInstanceHistoryApi, exportToXlsxPih } =
       environment;

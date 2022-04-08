@@ -21,7 +21,7 @@ export class ApiHttpService {
   //#region private
   private handleResponse<R>(response): R {
     const { body: result } = response;
-    if (!result || !result.isSuccess) {
+    if ((!result || !result.isSuccess) && !(result instanceof Blob)) {
       throw new ApiError(result.message, result.statusCode);
     }
     result.metaData = this.getMetaDataFromResponseHeader(response);
@@ -40,7 +40,8 @@ export class ApiHttpService {
   //#endregion private
 
   public get<R>(url: string, options?: any): Observable<R> {
-    //this.loaderService.show();
+    this.loaderService.show();
+    // debugger
     return <Observable<R>>(
       this.http
         .get<R>(url, Object.assign({}, options, { observe: this.observe }))
@@ -48,8 +49,8 @@ export class ApiHttpService {
           map((response) => this.handleResponse<R>(response)),
           catchError((error) =>
             throwError(this.errorHandlerService.handleError(error, options))
-          )
-          // finalize(() => this.loaderService.hide())
+          ),
+          finalize(() => this.loaderService.hide())
         )
     );
   }

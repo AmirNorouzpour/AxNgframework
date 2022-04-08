@@ -52,7 +52,8 @@ export const environment = {
   getWithChildren: "GetWithChildren",
   getTree: "GetTree",
   getUsersAndGroups: "GetUsersAndGroups",
-
+  exportToXlsxPih: "ExportToXlsx",
+  getDamagedList: "GetDamagedList",
   /**** Routes ****/
   panelRoute: "panel",
   authRoute: "auth",
