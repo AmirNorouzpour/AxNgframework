@@ -68,11 +68,6 @@ export class ProductHistoryListComponent implements OnInit {
       let date = new Date().toISOString();
       this.productHistoryService.export(parameters).subscribe((data) => {
         saveAs(data, date + ".xlsx");
-        var blob = new Blob([data], {
-          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        });
-        var url = window.URL.createObjectURL(blob);
-        window.open(url);
       });
     }
   }
