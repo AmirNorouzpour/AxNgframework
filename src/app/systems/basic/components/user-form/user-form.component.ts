@@ -65,36 +65,36 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
               colXXl: 6,
             },
             fieldGroup: [
-              {
-                key: "test",
-                type: "select",
-                templateOptions: {
-                  label: "تست",
-                  lazyLoad: true,
-                  groupProp: "groupLabel",
-                  required: true,
-                  loadData: (searchTerm) => {
-                    const { form } = this.baseFormComponent;
-                    const firstName = form.get("firstName").value;
-                    const lastName = form.get("lastName").value;
+              // {
+              //   key: "test",
+              //   type: "select",
+              //   templateOptions: {
+              //     label: "تست",
+              //     lazyLoad: true,
+              //     groupProp: "groupLabel",
+              //     required: true,
+              //     loadData: (searchTerm) => {
+              //       const { form } = this.baseFormComponent;
+              //       const firstName = form.get("firstName").value;
+              //       const lastName = form.get("lastName").value;
 
-                    form.get("firstName").valueChanges.subscribe((value) => {
-                      this.cdr.detectChanges();
-                    });
+              //       form.get("firstName").valueChanges.subscribe((value) => {
+              //         this.cdr.detectChanges();
+              //       });
 
-                    return of([
-                      {
-                        value: "1",
-                        label: firstName + lastName,
-                      },
-                      {
-                        value: "2",
-                        label: firstName,
-                      },
-                    ]);
-                  },
-                },
-              },
+              //       return of([
+              //         {
+              //           value: "1",
+              //           label: firstName + lastName,
+              //         },
+              //         {
+              //           value: "2",
+              //           label: firstName,
+              //         },
+              //       ]);
+              //     },
+              //   },
+              // },
               {
                 key: "firstName",
                 type: "input",

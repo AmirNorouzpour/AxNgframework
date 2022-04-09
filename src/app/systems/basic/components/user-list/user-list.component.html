@@ -1,4 +1,9 @@
-<ax-table [dataService]="userService" [columns]="columns" (onNew)="handleNew()" (onEdit)="handleEdit($event)"
-  [customToolbarItems]="customToolbarItems" (onCustomCommand)="handleCustomCommand($event)"
-  [toolbarItems]="toolbarItems">
+<ax-table
+  [dataService]="userService"
+  [columns]="columns"
+  (onNew)="handleNew()"
+  (onEdit)="handleEdit($event)"
+  [customToolbarItems]="customToolbarItems"
+  (onCustomCommand)="handleCustomCommand($event)"
+>
 </ax-table>

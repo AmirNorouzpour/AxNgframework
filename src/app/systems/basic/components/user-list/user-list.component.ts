@@ -19,11 +19,6 @@ export class UserListComponent implements OnInit {
     },
   ];
 
-  toolbarItems = [{
-    key: "edit",
-    permissionKey: "010101"
-  }];
-
   columns = [
     {
       title: "نام کاربری",
