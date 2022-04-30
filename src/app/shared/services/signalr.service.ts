@@ -83,7 +83,7 @@ export class SignalRService {
             connectionId: connectionId,
           }
         )
-        .subscribe((result) => result.isSuccess && resolve(connectionId));
+        .subscribe((result) => result?.isSuccess && resolve(connectionId));
     });
   }
 

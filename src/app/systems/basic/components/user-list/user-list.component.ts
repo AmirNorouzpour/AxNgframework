@@ -1,8 +1,10 @@
 import { GenderType } from "./../../models/gender-type.model";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { UserService } from "./../../services";
 import { AxTableColumnType } from "shared/ax-common/model/ax-table-column-type";
 import { Router } from "@angular/router";
+import { ChangePasswordComponent } from "../change-password/change-password.component";
+import { NzModalService } from "ng-zorro-antd/modal";
 
 @Component({
   selector: "app-user-list",
@@ -12,10 +14,10 @@ import { Router } from "@angular/router";
 export class UserListComponent implements OnInit {
   customToolbarItems = [
     {
-      key: "custom1",
-      title: "تست دستور سفارشی",
+      key: "changePwd",
+      title: "تغییر رمز عبور",
       showAlways: true,
-      icon: "folder-open",
+      icon: "lock",
     },
   ];
 
@@ -90,7 +92,12 @@ export class UserListComponent implements OnInit {
     },
   ];
 
-  constructor(public userService: UserService, private router: Router) {}
+  constructor(
+    public userService: UserService,
+    private router: Router,
+    private modal: NzModalService,
+    private viewContainerRef: ViewContainerRef
+  ) {}
 
   handleNew() {
     this.router.navigate(["/panel/basic/users/new"]);
@@ -101,7 +108,25 @@ export class UserListComponent implements OnInit {
   }
 
   handleCustomCommand(e) {
-    console.log(e);
+    if (e.key == "changePwd") {
+      var it = e.setOfCheckedId.values();
+      //get first entry:
+      var id = it.next();
+      const modal = this.modal.create({
+        nzTitle: "تغییر رمز عبور",
+        nzContent: ChangePasswordComponent,
+        nzViewContainerRef: this.viewContainerRef,
+        nzFooter: [
+          {
+            label: "تائید",
+            type: "primary",
+            onClick: (componentInstance) => {
+              componentInstance!.onSave(id);
+            },
+          },
+        ],
+      });
+    }
   }
 
   ngOnInit(): void {}

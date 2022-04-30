@@ -40,7 +40,7 @@ export class ApiHttpService {
   //#endregion private
 
   public get<R>(url: string, options?: any): Observable<R> {
-    this.loaderService.show();
+    // this.loaderService.show();
     // debugger
     return <Observable<R>>(
       this.http
@@ -49,8 +49,8 @@ export class ApiHttpService {
           map((response) => this.handleResponse<R>(response)),
           catchError((error) =>
             throwError(this.errorHandlerService.handleError(error, options))
-          ),
-          finalize(() => this.loaderService.hide())
+          )
+          // finalize(() => this.loaderService.hide())
         )
     );
   }

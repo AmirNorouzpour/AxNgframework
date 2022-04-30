@@ -18,7 +18,8 @@ import { ApiResult } from "shared/models";
 })
 export class UserService
   extends ResourceSerivce<User>
-  implements Resolve<User> {
+  implements Resolve<User>
+{
   constructor(
     apiHttpService: ApiHttpService,
     apiEndpointsService: ApiEndpointsService
@@ -36,11 +37,20 @@ export class UserService
 
   getUsersAndGroups(parameters, queryParams) {
     const resourceEndpoint = this.apiEndpointsService.getResourceEndpoint(
-        this.resourceName,
-        parameters,
-        queryParams,
-        "GetUsersAndGroups"
+      this.resourceName,
+      parameters,
+      queryParams,
+      "GetUsersAndGroups"
     );
     return this.apiHttpService.get<ApiResult<UserAndGroup[]>>(resourceEndpoint);
+  }
+  changePassword(data) {
+    const resourceEndpoint = this.apiEndpointsService.getResourceEndpoint(
+      this.resourceName,
+      null,
+      null,
+      "changePassword"
+    );
+    return this.apiHttpService.post<ApiResult<any>>(resourceEndpoint, data);
   }
 }

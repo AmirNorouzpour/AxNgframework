@@ -79,6 +79,7 @@ export abstract class AxForm<DataModel>
   }
 
   detectChanges() {
+    if (!this.baseFormComponent) return;
     this.baseFormComponentRef.changeDetectorRef.detectChanges();
   }
 
@@ -116,14 +117,14 @@ export abstract class AxForm<DataModel>
       this.componentFactoryResolver.resolveComponentFactory<
         AxFormComponent<DataModel>
       >(AxFormComponent);
-    let viewContainerRef = this.formHost.viewContainerRef;
+    let viewContainerRef = this.formHost?.viewContainerRef;
 
-    viewContainerRef.clear();
+    viewContainerRef?.clear();
 
     this.baseFormComponentRef =
-      viewContainerRef.createComponent(componentFactory);
+      viewContainerRef?.createComponent(componentFactory);
     this.baseFormComponent = <AxFormComponent<DataModel>>(
-      this.baseFormComponentRef.instance
+      this.baseFormComponentRef?.instance
     );
   }
 
@@ -134,7 +135,7 @@ export abstract class AxForm<DataModel>
   }
 
   subscribeToFormEvents() {
-    this.baseFormComponent.formSubmitted.subscribe(() => {
+    this.baseFormComponent?.formSubmitted.subscribe(() => {
       if (this.formMode == FormMode.New) {
         this.create();
       } else if (this.formMode == FormMode.Edit) {
@@ -142,7 +143,7 @@ export abstract class AxForm<DataModel>
       }
     });
 
-    this.baseFormComponent.formCanceled.subscribe(() => {
+    this.baseFormComponent?.formCanceled.subscribe(() => {
       this.cancel();
     });
   }
@@ -167,6 +168,7 @@ export abstract class AxForm<DataModel>
   setModelForCreate(data) {}
 
   initializeForm() {
+    if (!this.baseFormComponent) return;
     this.baseFormComponent.form = new FormGroup({});
     this.baseFormComponent.model =
       this.baseFormComponent.model || <DataModel>{};

@@ -55,6 +55,7 @@ export const environment = {
   getUsersAndGroups: "GetUsersAndGroups",
   exportToXlsxPih: "ExportToXlsx",
   getDamagedList: "GetDamagedList",
+  changePassword: "changePassword",
 
   /**** Routes ****/
   panelRoute: "panel",
