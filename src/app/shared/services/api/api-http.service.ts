@@ -41,7 +41,7 @@ export class ApiHttpService {
 
   public get<R>(url: string, options?: any): Observable<R> {
     // this.loaderService.show();
-    // debugger
+
     return <Observable<R>>(
       this.http
         .get<R>(url, Object.assign({}, options, { observe: this.observe }))

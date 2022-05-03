@@ -64,7 +64,8 @@ export class ProductInstanceListComponent implements OnInit {
   options: User[] = [];
   code: string;
   users: number[];
-  date: Date;
+  date1: Date;
+  date2: Date;
 
   onInput(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
@@ -73,14 +74,16 @@ export class ProductInstanceListComponent implements OnInit {
     this.filters = {
       code: this.code,
       userIds: this.users?.join(),
-      date: this.date?.toJSON(),
+      date1: this.date1?.toJSON(),
+      date2: this.date2?.toJSON(),
     };
   }
 
   clear() {
     this.code = null;
     this.users = null;
-    this.date = null;
+    this.date1 = null;
+    this.date2 = null;
     this.filters = {};
   }
   isLoading = false;

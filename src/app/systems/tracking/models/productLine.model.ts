@@ -1,4 +1,5 @@
 export interface ProductLine {
+  id: number;
   name: string;
   code: string;
   factoryName: string;

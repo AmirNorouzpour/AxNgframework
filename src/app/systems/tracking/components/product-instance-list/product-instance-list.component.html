@@ -38,15 +38,30 @@
     </div>
     <div nz-col [nzSpan]="4">
       <nz-form-item>
-        <nz-form-label [nzFor]="date">تاریخ</nz-form-label>
+        <nz-form-label [nzFor]="date1">از تاریخ</nz-form-label>
         <nz-form-control>
           <input
             autoComplete="off"
             (click)="picker.open()"
             nz-input
             [matDatepicker]="picker"
-            [(ngModel)]="date"
-            name="date"
+            [(ngModel)]="date1"
+            name="date1"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <nz-form-item>
+        <nz-form-label [nzFor]="date2">تا تاریخ</nz-form-label>
+        <nz-form-control>
+          <input
+            autoComplete="off"
+            (click)="picker2.open()"
+            nz-input
+            [matDatepicker]="picker2"
+            [(ngModel)]="date2"
+            name="date2"
           />
         </nz-form-control>
       </nz-form-item>
@@ -62,6 +77,7 @@
   </div>
 </form>
 <mat-datepicker #picker> </mat-datepicker>
+<mat-datepicker #picker2> </mat-datepicker>
 
 <ax-table
   [dataService]="productInstanceService"

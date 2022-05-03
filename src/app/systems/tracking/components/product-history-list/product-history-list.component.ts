@@ -6,6 +6,10 @@ import { OperationStation } from "../../models/operationStation.model";
 import { OperationStationService } from "../../services/operation-station.service";
 import { ProductHistoryService } from "../../services/product-history.service";
 import { saveAs } from "file-saver";
+import { ProductLineService } from "../../services/product-line.service";
+import { ProductLine } from "../../models/productLine.model";
+import { Machine } from "../../models/machine.model";
+import { MachineService } from "../../services/machine.service";
 
 @Component({
   selector: "app-product-history-list",
@@ -16,7 +20,9 @@ export class ProductHistoryListComponent implements OnInit {
   constructor(
     public productHistoryService: ProductHistoryService,
     public userService: UserService,
-    public operationStationService: OperationStationService
+    public operationStationService: OperationStationService,
+    public productLineService: ProductLineService,
+    public machineService: MachineService
   ) {}
   columns = [
     {
@@ -24,8 +30,16 @@ export class ProductHistoryListComponent implements OnInit {
       index: "code",
     },
     {
+      title: "خط تولید",
+      index: "productLineName",
+    },
+    {
       title: "ایستگاه",
       index: "opName",
+    },
+    {
+      title: "ماشین",
+      index: "machineName",
     },
     {
       title: "کاربر",
@@ -62,8 +76,10 @@ export class ProductHistoryListComponent implements OnInit {
       var parameters = {
         code: this.code,
         userIds: this.users?.join(),
-        date: this.date?.toJSON(),
+        date1: this.date1?.toJSON(),
+        date2: this.date2?.toJSON(),
         op: this.op,
+        line: this.line,
       };
       let date = new Date().toISOString();
       this.productHistoryService.export(parameters).subscribe((data) => {
@@ -94,15 +110,42 @@ export class ProductHistoryListComponent implements OnInit {
           } as OperationStation)
       );
     });
+
+    var lines = this.productLineService.getList();
+    lines.subscribe((data) => {
+      this.LinesOptions = data.data.map(
+        (item) =>
+          ({
+            id: item.id,
+            name: item.name,
+          } as ProductLine)
+      );
+    });
+
+    var machines = this.machineService.getList();
+    machines.subscribe((data) => {
+      this.machineOptions = data.data.map(
+        (item) =>
+          ({
+            id: item.id,
+            name: item.code,
+          } as Machine)
+      );
+    });
   }
 
   inputValue?: string;
   options: User[] = [];
   OpsOptions: OperationStation[] = [];
+  machineOptions: Machine[] = [];
+  LinesOptions: ProductLine[] = [];
   code: string;
   users: number[];
   op: number;
-  date: Date;
+  machine: number;
+  line: number;
+  date1: Date;
+  date2: Date;
   filters = {};
 
   onInput(event: Event): void {
@@ -112,16 +155,22 @@ export class ProductHistoryListComponent implements OnInit {
     this.filters = {
       code: this.code,
       userIds: this.users?.join(),
-      date: this.date?.toJSON(),
+      date1: this.date1?.toJSON(),
+      date2: this.date2?.toJSON(),
       op: this.op,
+      machine: this.machine,
+      line: this.line,
     };
   }
 
   clear() {
     this.code = null;
     this.users = null;
-    this.date = null;
+    this.date1 = null;
+    this.date2 = null;
     this.op = null;
+    this.machine = null;
+    this.line = null;
     this.filters = {};
   }
   isLoading = false;
