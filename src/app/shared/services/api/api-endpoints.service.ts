@@ -163,6 +163,13 @@ export class ApiEndpointsService {
     ]);
   }
 
+  getStopEndpoint(parameters?: string[]) {
+    const { apiVersion1, productInstanceApi, getStopList } = environment;
+    return this.createUrl(apiVersion1, productInstanceApi, getStopList, [
+      ...(parameters ? parameters : []),
+    ]);
+  }
+
   getPihXlsxEndpoint(filters) {
     const { apiVersion1, productInstanceHistoryApi, exportToXlsxPih } =
       environment;

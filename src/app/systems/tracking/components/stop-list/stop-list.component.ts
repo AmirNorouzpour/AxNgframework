@@ -1,37 +1,36 @@
 import { Component, OnInit } from "@angular/core";
 import { AxTableColumnType } from "shared/ax-common/model/ax-table-column-type";
-import { User } from "src/app/systems/basic/models";
-import { UserService } from "src/app/systems/basic/services";
-import { DamagedService } from "../../services/damaged.service";
+import { MachineService } from "src/app/systems/tracking/services/machine.service";
+import { Machine } from "../../models/machine.model";
+import { StopService } from "../../services/stop.service";
 
 @Component({
-  selector: "app-damaged-list",
-  templateUrl: "./damaged-list.component.html",
-  styleUrls: ["./damaged-list.component.scss"],
+  selector: "app-stop-list",
+  templateUrl: "./stop-list.component.html",
+  styleUrls: ["./stop-list.component.scss"],
 })
-export class DamagedListComponent implements OnInit {
+export class StopListComponent implements OnInit {
   constructor(
-    public damagedService: DamagedService,
-    public userService: UserService
+    public stopService: StopService,
+    public machineService: MachineService
   ) {}
   columns = [
     {
-      title: "کد محصول",
+      title: "ماشین",
+      index: "machineName",
+    },
+    {
+      title: "کد توقف",
       index: "code",
     },
     {
-      title: "کد ضایعات",
-      type: AxTableColumnType.DateTime,
-      index: "damageCode",
-    },
-    {
-      title: "کاربر",
-      index: "userName",
+      title: "آخرین وضعیت",
+      index: "lastStatus",
     },
     {
       title: "زمان",
       type: AxTableColumnType.DateTime,
-      index: "dateTime",
+      index: "insertDateTime",
     },
   ];
 
@@ -45,23 +44,22 @@ export class DamagedListComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    var users = this.userService.getList();
-    users.subscribe((data) => {
+    var machines = this.machineService.getList();
+    machines.subscribe((data) => {
       this.options = data.data.map(
         (item) =>
           ({
             id: item.id,
-            fullName: item.firstName + " " + item.lastName,
-          } as User)
+            name: item.name,
+          } as Machine)
       );
     });
   }
 
   inputValue?: string;
-  options: User[] = [];
+  options: Machine[] = [];
   code: string;
-  users: number[];
-  op: number;
+  machine: number;
   date: Date;
   filters = {};
 
@@ -71,17 +69,15 @@ export class DamagedListComponent implements OnInit {
   submitForm(): void {
     this.filters = {
       code: this.code,
-      userIds: this.users?.join(),
       date: this.date?.toJSON(),
-      op: this.op,
+      machine: this.machine,
     };
   }
 
   clear() {
     this.code = null;
-    this.users = null;
     this.date = null;
-    this.op = null;
+    this.machine = null;
     this.filters = {};
   }
   isLoading = false;

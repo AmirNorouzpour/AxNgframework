@@ -10,7 +10,7 @@ export const environment = {
   apiEndPoint: "http://192.168.0.12/services/api",
   //apiEndPoint: "http://192.168.0.10/services/api",
   //signalREndPoint: "http://192.168.0.10/services/axhub",
-  signalREndPoint: "http://192.168.0.12/services/axhub",
+  signalREndPoint: "http:/192.168.0.12/services/axhub",
 
   /**** Versions ****/
   apiVersion1: "v1",
@@ -55,6 +55,7 @@ export const environment = {
   getUsersAndGroups: "GetUsersAndGroups",
   exportToXlsxPih: "ExportToXlsx",
   getDamagedList: "GetDamagedList",
+  getStopList: "GetStopList",
   changePassword: "changePassword",
 
   /**** Routes ****/
