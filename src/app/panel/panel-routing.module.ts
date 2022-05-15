@@ -1,4 +1,3 @@
-import { TrackingSystemRoutes } from "./../systems/tracking/tracking-system-routes";
 import { SystemMenuResolver } from "./services/system-menu-resolver.service";
 import { SystemContainerComponent } from "./components/system-container/system-container.component";
 import { AppSetting } from "./services/app-setting.service";
@@ -43,11 +42,7 @@ const getSystemRoute: (string, Routes) => Route = (systemName, childRoutes) => {
   };
 };
 
-const SystemsRoutes = [
-  getSystemRoute("basic", BasicSystemRoutes),
-  getSystemRoute("reports", []),
-  getSystemRoute("tracking", TrackingSystemRoutes),
-];
+const SystemsRoutes = [getSystemRoute("basic", BasicSystemRoutes)];
 
 const routes: Routes = [
   {

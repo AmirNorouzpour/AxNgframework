@@ -19,6 +19,7 @@ export class SystemContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe((data) => {
+      debugger;
       this.currentSystem = this.appSetting.initialData.systemsList.find(
         (system) =>
           system.id == this.appSetting.getSystemIdByName(data["systemName"])
