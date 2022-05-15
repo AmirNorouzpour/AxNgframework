@@ -45,7 +45,6 @@ export class AddressListComponent implements OnInit {
       index: "insertDateTime",
     },
   ];
-  noResultContent = "برای این کاربر آدرسی ثبت نشده است";
   queryParams;
 
   @ViewChild("noContent", { static: true }) noContent: TemplateRef<any>;

@@ -6,16 +6,14 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes, Route } from "@angular/router";
 import { AuthGuardService as AuthGuard } from "../auth";
 import { AxDashboardComponent } from "shared/ax-dashboard/ax-dashboard.component";
-import { DashboardResolver } from "shared/ax-dashboard/services/dashboard-resolver.service";
 import { BasicSystemRoutes } from "./../systems/basic";
 
 const systemBreadCrumbNames = {
-  basic: "اطلاعات پایه",
-  reports: "گزارشات",
-  tracking: "ردیابی",
+  basic: "Basic",
 };
 
 const getSystemRoute: (string, Routes) => Route = (systemName, childRoutes) => {
+  debugger;
   return {
     path: systemName,
     component: SystemContainerComponent,
@@ -30,9 +28,6 @@ const getSystemRoute: (string, Routes) => Route = (systemName, childRoutes) => {
       {
         path: "",
         component: AxDashboardComponent,
-        resolve: {
-          dashboardCharts: DashboardResolver,
-        },
         data: {
           breadcrumb: null,
         },

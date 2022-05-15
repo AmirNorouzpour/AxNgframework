@@ -9,15 +9,13 @@ import { UserListComponent } from "./components/user-list/user-list.component";
 import { GroupListComponent } from "./components/group-list/group-list.component";
 import { AuditListComponent } from "./components/audit-list/audit-list.component";
 import { FormMode } from "shared/ax-form/models/form-mode.model";
-import { AddressFormComponent } from "./components/address-form/address-form.component";
-import { AddressService } from "./services/address.service";
 import { AuthorizationFormComponent } from "./components/authorization-form/authorization-form.component";
 
 export const BasicSystemRoutes: Routes = [
   {
     path: "users",
     data: {
-      breadcrumb: "کاربران",
+      breadcrumb: "Users",
     },
     children: [
       {
@@ -31,7 +29,7 @@ export const BasicSystemRoutes: Routes = [
         path: "new",
         component: UserFormComponent,
         data: {
-          breadcrumb: "کاربر جدید",
+          breadcrumb: "New User",
           formMode: FormMode.New,
         },
       },
@@ -39,38 +37,19 @@ export const BasicSystemRoutes: Routes = [
         path: "edit/:userId",
         component: UserFormComponent,
         data: {
-          breadcrumb: "ویرایش اطلاعات کاربر",
+          breadcrumb: "Edit User",
           formMode: FormMode.Edit,
         },
         resolve: {
           userDetail: UserService,
         },
-        children: [
-          {
-            path: "addresses/new",
-            component: AddressFormComponent,
-            data: {
-              formMode: FormMode.New,
-            },
-          },
-          {
-            path: "addresses/edit/:addressId",
-            component: AddressFormComponent,
-            data: {
-              formMode: FormMode.Edit,
-            },
-            resolve: {
-              addressDetail: AddressService,
-            },
-          },
-        ],
       },
     ],
   },
   {
     path: "serverLogs",
     data: {
-      breadcrumb: "خطاها",
+      breadcrumb: "Exceptions",
     },
     children: [
       {
@@ -85,7 +64,7 @@ export const BasicSystemRoutes: Routes = [
   {
     path: "groups",
     data: {
-      breadcrumb: "گروه ها",
+      breadcrumb: "Groups",
     },
     children: [
       {
@@ -99,7 +78,7 @@ export const BasicSystemRoutes: Routes = [
         path: "new",
         component: GroupFormComponent,
         data: {
-          breadcrumb: "گروه جدید",
+          breadcrumb: "New Group",
           formMode: FormMode.New,
         },
       },
@@ -107,7 +86,7 @@ export const BasicSystemRoutes: Routes = [
         path: "edit/:groupId",
         component: GroupFormComponent,
         data: {
-          breadcrumb: "ویرایش گروه",
+          breadcrumb: "Edit Group",
           formMode: FormMode.Edit,
         },
         resolve: {
@@ -119,7 +98,7 @@ export const BasicSystemRoutes: Routes = [
   {
     path: "audits",
     data: {
-      breadcrumb: "تاریخچه تغییرات",
+      breadcrumb: "Audit Histories",
     },
     children: [
       {
@@ -134,7 +113,7 @@ export const BasicSystemRoutes: Routes = [
   {
     path: "geo",
     data: {
-      breadcrumb: "اطلاعات جغرافیایی",
+      breadcrumb: "Geometry Information",
     },
     children: [
       {
@@ -149,7 +128,7 @@ export const BasicSystemRoutes: Routes = [
   {
     path: "authorization",
     data: {
-      breadcrumb: "حقوق دسترسی",
+      breadcrumb: "Authorization Management",
     },
     children: [
       {
