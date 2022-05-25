@@ -35,7 +35,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
   }
   getConfig(): FormConfig {
     return {
-      title: "کاربر جدید",
+      title: "New User",
       icon: "",
     };
   }
@@ -50,7 +50,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "مشخصات کاربر",
+          title: "User Information",
         },
         fieldGroup: [
           {
@@ -100,7 +100,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: "نام",
+                  label: "Firt Name",
                   required: true,
                 },
               },
@@ -109,7 +109,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: "نام خانوادگی",
+                  label: "Last Name",
                   required: true,
                 },
               },
@@ -117,7 +117,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 key: "birthDate",
                 type: "datetime",
                 templateOptions: {
-                  label: "تاریخ تولد",
+                  label: "Birthday",
                 },
               },
               {
@@ -125,14 +125,14 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 type: "radio",
                 templateOptions: {
                   required: true,
-                  label: "جنسیت",
+                  label: "Sex",
                   options: [
                     {
-                      label: "مرد",
+                      label: "Male",
                       value: 1,
                     },
                     {
-                      label: "زن",
+                      label: "Female",
                       value: 2,
                     },
                   ],
@@ -145,7 +145,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "اطلاعات حساب کاربری",
+          title: "Account Information",
         },
         fieldGroup: [
           {
@@ -170,7 +170,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 templateOptions: {
                   type: "text",
                   readonly: this.formMode === FormMode.Edit,
-                  label: "نام کاربری",
+                  label: "Username",
                   required: true,
                 },
               },
@@ -178,7 +178,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 key: "expireDateTime",
                 type: "datetime",
                 templateOptions: {
-                  label: "تاریخ اعتبار حساب",
+                  label: "Expiration Date",
                 },
               },
               {
@@ -188,7 +188,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 templateOptions: {
                   type: "password",
                   required: true,
-                  label: "رمز عبور",
+                  label: "Password",
                 },
               },
               {
@@ -198,14 +198,14 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 templateOptions: {
                   type: "password",
                   required: true,
-                  label: "تکرار رمز عبور",
+                  label: "Repeat Password",
                 },
               },
               {
                 key: "isActive",
                 type: "checkbox",
                 templateOptions: {
-                  label: "فعال / غیر فعال",
+                  label: "Active / Inactive",
                 },
               },
             ],
@@ -215,7 +215,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "تصویر کاربر",
+          title: "User Image",
         },
         fieldGroup: [
           {
@@ -224,7 +224,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
             templateOptions: {
               action:
                 "http://2.188.160.254/services/api/v1/users/UploadUserPic/1",
-              title: "بارگذاری تصویر",
+              title: "Upload Image",
               listType: "picture-card",
               showUploadList: false,
               // customRequest: (item) => {
@@ -241,7 +241,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
         type: "dynamic-field",
         templateOptions: {
           component: AddressListComponent,
-          title: "آدرس ها",
+          title: "Addresses",
           readonly: this.formMode === FormMode.New,
         },
       },
