@@ -1,4 +1,3 @@
-import { ProductInstance } from "./../app/systems/tracking/models/productInstance";
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -7,10 +6,8 @@ export const environment = {
   production: false,
 
   /**** Endpoint urls ****/
-  apiEndPoint: "http://192.168.0.12/services/api",
-  //apiEndPoint: "http://192.168.0.10/services/api",
-  //signalREndPoint: "http://192.168.0.10/services/axhub",
-  signalREndPoint: "http:/192.168.0.12/services/axhub",
+  apiEndPoint: "http://localhost:6223/api",
+  signalREndPoint: "http://localhost:6223/axhub",
 
   /**** Versions ****/
   apiVersion1: "v1",
@@ -43,7 +40,6 @@ export const environment = {
   getOrganizationLogo: "GetOrganizationLogo",
   getUserPermissions: "GetUserPermissions",
   getSystemMenus: "GetSystemMenus",
-  getDashboardCharts: "GetDashboardCharts",
   getChart: "GetChart",
   setUserConnectionId: "setUserConnectionId",
   disableUserConnectionId: "disableUserConnectionId",

@@ -1,39 +1,66 @@
 <div class="login">
-    <div class="login__form-wrapper">
-        <p class="login__form-title">ورود به حساب کاربری</p>
-        <form (ngSubmit)="onSubmit(loginForm)" [ngClass]="{login__form_submitted: isSubmitted}" class="login__form"
-            #loginForm="ngForm">
-            <div class="login__form-group">
-                <input class="login__form-input" placeholder="نام کاربری" type="text" ngModel name="username" required>
-            </div>
-            <div class="login__form-group">
-                <input class="login__form-input" placeholder="رمز عبور" type="password" ngModel name="password"
-                    required>
-            </div>
-            <button [disabled]="loginBtnDisabled" type="submit" class="login__form-button">
-                {{loginBtnDisabled ? "" : "ورود"}}
-                <ng-container *ngIf="loginBtnDisabled">
-                    <loading [color]="'#fff'"></loading>
-                </ng-container>
-            </button>
-        </form>
-        <div class="login__message">
-            <p>{{errorMessage}}</p>
-        </div>
+  <div class="login__sider">
+    <div>
+      <p class="login__sider-text login__sider-text_large">Dear User :</p>
+      <p class="login__sider-text">
+        This system is for authorized users only. Individual use of this
+        computer system and/or network without authority, or in excess of your
+        authority, is strictly prohibited. Monitoring of transmissions or
+        transactional information may be conducted to ensure the proper
+        functioning and security of electronic communication resources. Anyone
+        using this system expressly consents to such monitoring and is advised
+        that if such monitoring reveals possible criminal activity or policy
+        violation, system personnel may provide the evidence of such monitoring
+        to law enforcement or to other senior officials for disciplinary action.
+      </p>
     </div>
-    <div class="login__sider">
-        <div>
-            <p class=" login__sider-text login__sider-text_large">کاربر گرامی :</p>
-            <p class="login__sider-text"> از در اختیار قراردادن نام کاربری و رمز عبور خود با دیگران جدا
-                خودداری فرمائید</p>
-            <p class="login__sider-text">برای برقراری ارتباط بهتر از VPN سرورهای خارجی استفاده نکنید</p>
-            <p class="login__sider-text">رمز عبور خود را در بازه های زمانی مختلف تغییر دهید</p>
-            <p class="login__sider-text">برای بهترین کارایی با نرم افزار از مرورگر های بروز استفاد کنید</p>
-        </div>
+  </div>
+  <div class="login__form-wrapper">
+    <p class="login__form-title">AxStrategy Memeber's Login</p>
+    <form
+      (ngSubmit)="onSubmit(loginForm)"
+      [ngClass]="{ login__form_submitted: isSubmitted }"
+      class="login__form"
+      #loginForm="ngForm"
+    >
+      <div class="login__form-group">
+        <input
+          class="login__form-input"
+          placeholder="Username or Email"
+          type="text"
+          ngModel
+          name="username"
+          required
+        />
+      </div>
+      <div class="login__form-group">
+        <input
+          class="login__form-input"
+          placeholder="Password"
+          type="password"
+          ngModel
+          name="password"
+          required
+        />
+      </div>
+      <button
+        [disabled]="loginBtnDisabled"
+        type="submit"
+        class="login__form-button"
+      >
+        {{ loginBtnDisabled ? "" : "Login" }}
+        <ng-container *ngIf="loginBtnDisabled">
+          <loading [color]="'#fff'"></loading>
+        </ng-container>
+      </button>
+    </form>
+    <div class="login__message">
+      <p>{{ errorMessage }}</p>
     </div>
-    <div class="login__bg-wrapper">
-        <div class="login__shape login__shape_first"></div>
-        <div class="login__shape login__shape_second"></div>
-        <div class="login__shape login__shape_third"></div>
-    </div>
+  </div>
+  <div class="login__bg-wrapper">
+    <div class="login__shape login__shape_first"></div>
+    <div class="login__shape login__shape_second"></div>
+    <div class="login__shape login__shape_third"></div>
+  </div>
 </div>

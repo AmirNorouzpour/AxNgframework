@@ -1,9 +1,15 @@
-<ax-table [dataService]="auditService" [noResultContent]="noContent" [columns]="columns" [queryParams]="queryParams"
-    (onNew)="handleNew()" (onEdit)="handleEdit($event)">
+<ax-table
+  [dataService]="auditService"
+  [noResultContent]="noContent"
+  [columns]="columns"
+  [queryParams]="queryParams"
+  (onNew)="handleNew()"
+  (onEdit)="handleEdit($event)"
+>
 </ax-table>
 
 <ng-template #noContent>
-    <nz-empty [nzNotFoundContent]="noResultContent" nzNotFoundImage="simple"></nz-empty>
+  <nz-empty nzNotFoundImage="simple"></nz-empty>
 </ng-template>
 
 <router-outlet></router-outlet>

@@ -9,10 +9,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CoreModule } from "./core";
 import { SystemsModule } from "./systems/systems.module";
 import { registerLocaleData } from "@angular/common";
-import { NZ_I18N, fa_IR } from "ng-zorro-antd/i18n";
-import fa from "@angular/common/locales/fa";
+import { NZ_I18N, en_US } from "ng-zorro-antd/i18n";
+import en from "@angular/common/locales/en";
 import { BidiModule } from "@angular/cdk/bidi";
-registerLocaleData(fa);
+registerLocaleData(en);
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +27,7 @@ registerLocaleData(fa);
     SystemsModule,
     BidiModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: fa_IR }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

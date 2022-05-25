@@ -10,7 +10,7 @@ export class ThemeService {
   public activeTheme$: BehaviorSubject<string> = new BehaviorSubject("default");
 
   themes = of([
-    { key: "default", title: "آبی" },
+    { key: "default", title: "Blue" },
     { key: "1", title: "سورمه ای" },
     { key: "2", title: "مشکی" },
     { key: "3", title: "سبز" },
