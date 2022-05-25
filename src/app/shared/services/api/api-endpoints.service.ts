@@ -67,6 +67,11 @@ export class ApiEndpointsService {
     return this.createUrl(apiVersion1, menuApi, getSystemMenus, [systemId]);
   }
 
+  getDashboardChartsEndpoint(systemId) {
+    const { apiVersion1, menuApi, getDashboardCharts } = environment;
+    return this.createUrl(apiVersion1, menuApi, getDashboardCharts, [systemId]);
+  }
+
   getChart(chartId, filter, cid) {
     const { apiVersion1, chartApi, getChart } = environment;
     return this.createUrl(

@@ -7,6 +7,16 @@ const keyLinkMap = {
   "010206": "/panel/basic/groups",
   "010102": "/panel/basic/audits",
   "010501": "/panel/basic/geo",
+  "020101": "/panel/tracking/factories",
+  "020102": "/panel/tracking/productLines",
+  "020103": "/panel/tracking/machines",
+  "020104": "/panel/tracking/operationStations",
+  "020105": "/panel/tracking/shifts",
+  "020106": "/panel/tracking/personnels",
+  "020201": "/panel/tracking/productInstances",
+  "020202": "/panel/tracking/productInstanceHistories",
+  "020203": "/panel/tracking/damageds",
+  "020204": "/panel/tracking/stops",
 };
 
 @Pipe({

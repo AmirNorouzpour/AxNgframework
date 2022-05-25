@@ -28,7 +28,7 @@
         font-size: 12px;
         margin: 0 32px 4px 32px;
         line-height: 24px;
-        text-align: justify;
+
         &_large {
           font-size: 14px;
           margin-bottom: 16px;
@@ -58,6 +58,7 @@
 
       &-wrapper {
         @include login-col;
+
         display: flex;
         align-items: center;
         justify-content: center;

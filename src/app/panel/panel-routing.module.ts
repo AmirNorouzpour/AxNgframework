@@ -1,3 +1,4 @@
+import { TrackingSystemRoutes } from "./../systems/tracking/tracking-system-routes";
 import { SystemMenuResolver } from "./services/system-menu-resolver.service";
 import { SystemContainerComponent } from "./components/system-container/system-container.component";
 import { AppSetting } from "./services/app-setting.service";
@@ -6,14 +7,16 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes, Route } from "@angular/router";
 import { AuthGuardService as AuthGuard } from "../auth";
 import { AxDashboardComponent } from "shared/ax-dashboard/ax-dashboard.component";
+import { DashboardResolver } from "shared/ax-dashboard/services/dashboard-resolver.service";
 import { BasicSystemRoutes } from "./../systems/basic";
 
 const systemBreadCrumbNames = {
-  basic: "Basic",
+  basic: "اطلاعات پایه",
+  reports: "گزارشات",
+  tracking: "ردیابی",
 };
 
 const getSystemRoute: (string, Routes) => Route = (systemName, childRoutes) => {
-  debugger;
   return {
     path: systemName,
     component: SystemContainerComponent,
@@ -28,6 +31,9 @@ const getSystemRoute: (string, Routes) => Route = (systemName, childRoutes) => {
       {
         path: "",
         component: AxDashboardComponent,
+        resolve: {
+          dashboardCharts: DashboardResolver,
+        },
         data: {
           breadcrumb: null,
         },
@@ -37,7 +43,11 @@ const getSystemRoute: (string, Routes) => Route = (systemName, childRoutes) => {
   };
 };
 
-const SystemsRoutes = [getSystemRoute("basic", BasicSystemRoutes)];
+const SystemsRoutes = [
+  getSystemRoute("basic", BasicSystemRoutes),
+  getSystemRoute("reports", []),
+  getSystemRoute("tracking", TrackingSystemRoutes),
+];
 
 const routes: Routes = [
   {

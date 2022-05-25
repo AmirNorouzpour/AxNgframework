@@ -1,0 +1,143 @@
+<form nz-form class="ant-advanced-search-form" (ngSubmit)="submitForm()">
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="6">
+      <nz-form-item>
+        <nz-form-label [nzFor]="code">کد محصول</nz-form-label>
+        <nz-form-control>
+          <input
+            autoComplete="off"
+            nz-input
+            placeholder="کد محصول"
+            [(ngModel)]="code"
+            name="code"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-form-item>
+        <nz-form-label [nzFor]="line">خط تولید</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            name="line"
+            [(ngModel)]="line"
+            nzAllowClear
+            nzPlaceHolder="انتخاب کنید"
+            (nzOnSearch)="onSearch($event)"
+          >
+            <ng-container *ngFor="let item of LinesOptions">
+              <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-form-item>
+        <nz-form-label [nzFor]="op">ایستگاه</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            name="op"
+            [(ngModel)]="op"
+            nzAllowClear
+            nzPlaceHolder="انتخاب کنید"
+            (nzOnSearch)="onSearch($event)"
+          >
+            <ng-container *ngFor="let item of OpsOptions">
+              <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-form-item>
+        <nz-form-label [nzFor]="machine">ماشین</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            name="machine"
+            [(ngModel)]="machine"
+            nzAllowClear
+            nzPlaceHolder="انتخاب کنید"
+            (nzOnSearch)="onSearch($event)"
+          >
+            <ng-container *ngFor="let item of machineOptions">
+              <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-form-item>
+        <nz-form-label [nzFor]="users">کاربر</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            name="users"
+            [(ngModel)]="users"
+            nzAllowClear
+            nzMode="tags"
+            nzPlaceHolder="انتخاب کنید"
+            (nzOnSearch)="onSearch($event)"
+          >
+            <ng-container *ngFor="let item of options">
+              <nz-option
+                [nzValue]="item.id"
+                [nzLabel]="item.fullName"
+              ></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-form-item>
+        <nz-form-label [nzFor]="date1">از تاریخ</nz-form-label>
+        <nz-form-control>
+          <input
+            autoComplete="off"
+            (click)="picker.open()"
+            nz-input
+            [matDatepicker]="picker"
+            [(ngModel)]="date1"
+            name="date1"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-form-item>
+        <nz-form-label [nzFor]="date2">تا تاریخ</nz-form-label>
+        <nz-form-control>
+          <input
+            autoComplete="off"
+            (click)="picker2.open()"
+            nz-input
+            [matDatepicker]="picker2"
+            [(ngModel)]="date2"
+            name="date2"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <div nz-col [nzSpan]="24" class="search-area">
+        <button nz-button (click)="submitForm()" [nzType]="'primary'">
+          جستجو
+        </button>
+        <button nz-button (click)="clear()">پاک کردن</button>
+      </div>
+    </div>
+  </div>
+</form>
+<mat-datepicker #picker> </mat-datepicker>
+<mat-datepicker #picker2> </mat-datepicker>
+<ax-table
+  [dataService]="productHistoryService"
+  [columns]="columns"
+  [toolbarItems]="toolbarItems"
+  [customToolbarItems]="customToolbarItems"
+  (onCustomCommand)="handleCustomCommand($event)"
+  [queryParams]="filters"
+>
+</ax-table>

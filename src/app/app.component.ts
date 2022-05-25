@@ -8,7 +8,7 @@ import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  direction = "ltr";
+  direction = "rtl";
 
   constructor(
     private themeService: ThemeService,
@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
   }
 
   configureTranslateService() {
-    const lang = localStorage.getItem("lang") || "en";
+    const lang = localStorage.getItem("lang") || "fa";
     this.translateService.addLangs(["en", "fa"]);
-    this.translateService.setDefaultLang("en");
+    this.translateService.setDefaultLang("fa");
     this.translateService.use(lang);
     this.translateService.onLangChange.subscribe((params: LangChangeEvent) => {
       const direction = this.languageDirectionMapping[params.lang];

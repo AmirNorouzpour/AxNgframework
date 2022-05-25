@@ -15,7 +15,7 @@ export class UserListComponent implements OnInit {
   customToolbarItems = [
     {
       key: "changePwd",
-      title: "Change Password",
+      title: "تغییر رمز عبور",
       showAlways: true,
       icon: "lock",
     },
@@ -23,29 +23,70 @@ export class UserListComponent implements OnInit {
 
   columns = [
     {
-      title: "Username",
+      title: "نام کاربری",
       index: "userName",
+      filter: {
+        type: "text",
+      },
     },
     {
-      title: "Status",
+      title: "وضعیت",
       index: "isActive",
       flex: 1,
       type: AxTableColumnType.Boolean,
       options: {
-        trueCaption: "Active",
-        falseCaption: "InActive",
+        trueCaption: "فعال",
+        falseCaption: "غیر فعال",
+      },
+      filter: {
+        type: "boolean",
+        options: {
+          label: "فعال / غیر فعال",
+        },
       },
     },
     {
-      title: "First Name",
+      title: "نام",
       index: "firstName",
+      filter: {
+        type: "text",
+      },
     },
     {
-      title: "Last Name",
+      title: "نام خانوادگی",
       index: "lastName",
+      filter: {
+        type: "text",
+      },
     },
     {
-      title: "Expire Date",
+      title: "جنسیت",
+      index: "genderType",
+      type: AxTableColumnType.Enum,
+      options: {
+        enumDict: {
+          [GenderType.Male]: "مرد",
+          [GenderType.Female]: "زن",
+        },
+      },
+      filter: {
+        type: "enum",
+        options: {
+          items: [
+            {
+              label: "مرد",
+              value: 1,
+            },
+            {
+              label: "زن",
+              value: 2,
+            },
+          ],
+        },
+      },
+    },
+    {
+      title: "تاریخ اعتبار حساب",
       type: AxTableColumnType.DateTime,
       index: "expireDateTime",
     },
@@ -72,12 +113,12 @@ export class UserListComponent implements OnInit {
       //get first entry:
       var id = it.next();
       const modal = this.modal.create({
-        nzTitle: "Change Password",
+        nzTitle: "تغییر رمز عبور",
         nzContent: ChangePasswordComponent,
         nzViewContainerRef: this.viewContainerRef,
         nzFooter: [
           {
-            label: "Save",
+            label: "تائید",
             type: "primary",
             onClick: (componentInstance) => {
               componentInstance!.onSave(id);
