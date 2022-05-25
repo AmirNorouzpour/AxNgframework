@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-
+  
   /**** Endpoint urls ****/
-  apiEndPoint: "http://localhost:6223/api",
+  apiEndPoint: "ng serve",
   signalREndPoint: "http://localhost:6223/axhub",
 
   /**** Versions ****/
