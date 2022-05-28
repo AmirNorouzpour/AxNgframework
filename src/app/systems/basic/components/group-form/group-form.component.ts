@@ -25,7 +25,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
 
   getConfig(): FormConfig {
     return {
-      title: "گروه جدید",
+      title: "New Group",
       icon: "",
     };
   }
@@ -40,7 +40,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "مشخصات گروه",
+          title: "Group Details",
         },
         fieldGroup: [
           {
@@ -60,7 +60,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: "نام گروه",
+                  label: "Group Name",
                   required: true,
                 },
               },
@@ -69,7 +69,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: "توضیحات",
+                  label: "Description",
                   required: true,
                 },
               },
