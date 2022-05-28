@@ -9,23 +9,23 @@ import { AuditService } from "../../services/audit.service";
 export class AuditListComponent implements OnInit {
   columns = [
     {
-      title: "جدول",
+      title: "Table",
       index: "tableName",
     },
     {
-      title: "کلید",
+      title: "Key",
       index: "primaryKey",
     },
     {
-      title: "کاربر",
+      title: "User",
       index: "userDisplay",
     },
     {
-      title: "نوع",
+      title: "Type",
       index: "auditTypeDisplay",
     },
     {
-      title: "زمان",
+      title: "Date Time",
       index: "entityInsertDateTime",
     },
   ];
