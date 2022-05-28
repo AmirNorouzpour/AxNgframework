@@ -10,29 +10,29 @@ import { AxTableColumnType } from "shared/ax-common/model/ax-table-column-type";
 export class ServerlogListComponent implements OnInit {
   columns = [
     {
-      title: "شناسه",
+      title: "Id",
       index: "id",
       width: "5%",
     },
     {
-      title: "نام کاربری",
+      title: "Username",
       index: "userName",
       width: "100px",
       fixed: true,
     },
     {
-      title: "پیام",
+      title: "Message",
       index: "message",
       width: "45%",
       showTooltip: true,
     },
     {
-      title: "آدرس",
+      title: "Address",
       index: "url",
       width: "30%",
     },
     {
-      title: "تاریخ",
+      title: "DateTime",
       index: "logged",
       type: AxTableColumnType.DateTime,
       width: "10%",
