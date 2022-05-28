@@ -53,7 +53,7 @@ export class AuthorizationFormComponent
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "حقوق دسترسی",
+          title: "Authoriztion",
         },
         fieldGroup: [
           {
@@ -78,7 +78,7 @@ export class AuthorizationFormComponent
                   },
                 },
                 templateOptions: {
-                  label: "کاربر یا گروه کاربری",
+                  label: "Lable/GroupLable",
                   lazyLoad: true,
                   labelProp: "name",
                   valueProp: "id",
