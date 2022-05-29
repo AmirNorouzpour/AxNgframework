@@ -4,6 +4,7 @@ import { AxForm } from "shared/ax-form";
 import { FormlyFieldConfig } from "@ngx-formly/core";
 import { FormConfig } from "shared/ax-form/models/form-config";
 import { Group } from "../../models/group.model";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-group-form",
@@ -13,7 +14,7 @@ import { Group } from "../../models/group.model";
 export class GroupFormComponent extends AxForm<Group> implements OnInit {
   redirectUrl = "/panel/basic/groups";
   editParam = "groupId";
-  constructor(protected httpService: GroupService, injector: Injector) {
+  constructor(protected httpService: GroupService, injector: Injector, private translator: TranslateService) {
     super(httpService, injector);
   }
   setModelForCreate(data) { }
@@ -40,7 +41,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "Group Details",
+          title: this.translator.instant("Group Details"),
         },
         fieldGroup: [
           {
@@ -60,7 +61,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: "Group Name",
+                  label: this.translator.instant("Group Name"),
                   required: true,
                 },
               },
@@ -69,7 +70,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: "Description",
+                  label: this.translator.instant("Description"),
                   required: true,
                 },
               },
