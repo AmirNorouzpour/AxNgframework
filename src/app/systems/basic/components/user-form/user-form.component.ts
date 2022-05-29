@@ -34,7 +34,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
   }
   getConfig(): FormConfig {
     return {
-      title: "New User",
+      title: this.translator.instant("NewUser"),
       icon: "",
     };
   }
