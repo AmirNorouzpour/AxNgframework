@@ -16,7 +16,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
   constructor(protected httpService: GroupService, injector: Injector) {
     super(httpService, injector);
   }
-  setModelForCreate(data) {}
+  setModelForCreate(data) { }
 
   setModelForUpdate(data) {
     const { groupDetail } = data || {};
@@ -80,5 +80,5 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

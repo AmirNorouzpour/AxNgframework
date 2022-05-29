@@ -1,4 +1,10 @@
 {
-  "systems": "systems",
-  "NewUser": "New User"
+  "NewUser": "New User",
+  "systems": "Systems",
+  "Exit": "Exit",
+  "My Account": "My Account",
+  "Change Password": "Change Password",
+  "Messages": "Messages",
+  "Show All": "Show All",
+  "Delete All": "Delete All"
 }

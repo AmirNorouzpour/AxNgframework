@@ -10,15 +10,15 @@ import { Router } from "@angular/router";
 export class GroupListComponent implements OnInit {
   columns = [
     {
-      title: "نام گروه",
+      title: "Group Name",
       index: "groupName",
     },
     {
-      title: "شرح",
+      title: "Description",
       index: "description",
     },
     {
-      title: "تعداد کاربران",
+      title: "User Count",
       index: "usersCount",
     },
   ];
