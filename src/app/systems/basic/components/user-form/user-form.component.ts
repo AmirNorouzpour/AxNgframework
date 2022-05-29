@@ -26,7 +26,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
     super(httpService, injector);
   }
 
-  setModelForCreate(data) {}
+  setModelForCreate(data) { }
 
   setModelForUpdate(data) {
     const { userDetail } = data || {};
@@ -49,7 +49,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "User Information",
+          title: this.translator.instant("User Information"),
         },
         fieldGroup: [
           {
@@ -95,20 +95,20 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
               //   },
               // },
               {
-                key: "firstName",
+                key: "Firt Name",
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: "Firt Name",
+                  label: this.translator.instant("firstName"),
                   required: true,
                 },
               },
               {
-                key: "lastName",
+                key: "Last Name",
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: "Last Name",
+                  label: this.translator.instant("lastName"),
                   required: true,
                 },
               },
@@ -116,7 +116,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 key: "birthDate",
                 type: "datetime",
                 templateOptions: {
-                  label: "Birthday",
+                  label: this.translator.instant("Birthday"),
                 },
               },
               {
@@ -124,14 +124,14 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 type: "radio",
                 templateOptions: {
                   required: true,
-                  label: "Sex",
+                  label: this.translator.instant("Sex"),
                   options: [
                     {
-                      label: "Male",
+                      label: this.translator.instant("Male"),
                       value: 1,
                     },
                     {
-                      label: "Female",
+                      label: this.translator.instant("Female"),
                       value: 2,
                     },
                   ],
@@ -144,7 +144,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "Account Information",
+          title: this.translator.instant("Account Information"),
         },
         fieldGroup: [
           {
@@ -169,7 +169,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 templateOptions: {
                   type: "text",
                   readonly: this.formMode === FormMode.Edit,
-                  label: "Username",
+                  label: this.translator.instant("Username"),
                   required: true,
                 },
               },
@@ -177,7 +177,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 key: "expireDateTime",
                 type: "datetime",
                 templateOptions: {
-                  label: "Expiration Date",
+                  label: this.translator.instant("Expiration Date"),
                 },
               },
               {
@@ -187,7 +187,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 templateOptions: {
                   type: "password",
                   required: true,
-                  label: "Password",
+                  label: this.translator.instant("Password"),
                 },
               },
               {
@@ -197,14 +197,14 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 templateOptions: {
                   type: "password",
                   required: true,
-                  label: "Repeat Password",
+                  label: this.translator.instant("Repeat Password"),
                 },
               },
               {
                 key: "isActive",
                 type: "checkbox",
                 templateOptions: {
-                  label: "Active / Inactive",
+                  label: this.translator.instant("Active / Inactive"),
                 },
               },
             ],
@@ -214,7 +214,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "User Image",
+          title: this.translator.instant("User Image"),
         },
         fieldGroup: [
           {
@@ -223,7 +223,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
             templateOptions: {
               action:
                 "http://2.188.160.254/services/api/v1/users/UploadUserPic/1",
-              title: "Upload Image",
+              title: this.translator.instant("Upload Image"),
               listType: "picture-card",
               showUploadList: false,
               // customRequest: (item) => {
@@ -247,5 +247,5 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }
