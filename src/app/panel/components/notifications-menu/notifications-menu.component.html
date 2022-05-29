@@ -1,19 +1,11 @@
 <div class="ax-notifications-menu">
   <div class="ax-notifications-menu__header">
-    <span class="ax-notifications-menu__header-messages">Messages</span>
-    <span class="ax-notifications-menu__header-clear">Delete All</span>
+    <span class="ax-notifications-menu__header-messages">{{'Messages'| translate}}</span>
+    <span class="ax-notifications-menu__header-clear">{{'Delete All'| translate}}</span>
   </div>
-  <div
-    *ngIf="notifications$ | async as notifications"
-    class="ax-notifications-menu__list"
-  >
-    <a
-      *ngFor="let notification of notifications"
-      class="ax-notifications-menu__list-item"
-    >
-      <mat-icon class="ax-notifications-menu__message-icon"
-        >mail_outline</mat-icon
-      >
+  <div *ngIf="notifications$ | async as notifications" class="ax-notifications-menu__list">
+    <a *ngFor="let notification of notifications" class="ax-notifications-menu__list-item">
+      <mat-icon class="ax-notifications-menu__message-icon">mail_outline</mat-icon>
       <div>
         <p class="ax-notifications-menu__message-title">
           {{ notification.title }}
@@ -24,5 +16,5 @@
       </div>
     </a>
   </div>
-  <a class="ax-notifications-menu__view-all">Show All</a>
+  <a class="ax-notifications-menu__view-all">{{'Show All'| translate}}</a>
 </div>

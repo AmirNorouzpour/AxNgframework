@@ -1,3 +1,9 @@
 {
-    "systems": "سیستم ها" 
+    "systems": "سیستم ها",
+    "Exit": "خروج",
+    "My Account": "حساب کاربری",
+    "Change Password": "تغییر رمز",
+    "Messages": "پیام ها",
+    "Show All": "نمایش همه",
+    "Delete All": "حذف همه"
 }

@@ -1,3 +1,9 @@
 {
-    "systems": "Systems" 
+    "systems": "Systems",
+    "Exit": "Exit",
+    "My Account": "My Account",
+    "Change Password": "Change Password",
+    "Messages": "Messages",
+    "Show All": "Show All",
+    "Delete All": "Delete All"
 }
