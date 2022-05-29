@@ -5,6 +5,7 @@ import { AxTableColumnType } from "shared/ax-common/model/ax-table-column-type";
 import { Router } from "@angular/router";
 import { ChangePasswordComponent } from "../change-password/change-password.component";
 import { NzModalService } from "ng-zorro-antd/modal";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-user-list",
@@ -15,7 +16,7 @@ export class UserListComponent implements OnInit {
   customToolbarItems = [
     {
       key: "changePwd",
-      title: "Change Password",
+      title: this.translator.instant("Change Password"),
       showAlways: true,
       icon: "lock",
     },
@@ -23,11 +24,11 @@ export class UserListComponent implements OnInit {
 
   columns = [
     {
-      title: "Username",
+      title: this.translator.instant("Username"),
       index: "userName",
     },
     {
-      title: "Status",
+      title: this.translator.instant("Status"),
       index: "isActive",
       flex: 1,
       type: AxTableColumnType.Boolean,
@@ -37,15 +38,15 @@ export class UserListComponent implements OnInit {
       },
     },
     {
-      title: "First Name",
+      title: this.translator.instant("First Name"),
       index: "firstName",
     },
     {
-      title: "Last Name",
+      title: this.translator.instant("Last Name"),
       index: "lastName",
     },
     {
-      title: "Expire Date",
+      title: this.translator.instant("Expiration Date"),
       type: AxTableColumnType.DateTime,
       index: "expireDateTime",
     },
@@ -55,8 +56,9 @@ export class UserListComponent implements OnInit {
     public userService: UserService,
     private router: Router,
     private modal: NzModalService,
+    private translator: TranslateService,
     private viewContainerRef: ViewContainerRef
-  ) {}
+  ) { }
 
   handleNew() {
     this.router.navigate(["/panel/basic/users/new"]);
@@ -77,7 +79,7 @@ export class UserListComponent implements OnInit {
         nzViewContainerRef: this.viewContainerRef,
         nzFooter: [
           {
-            label: "Save",
+            label: this.translator.instant("Save"),
             type: "primary",
             onClick: (componentInstance) => {
               componentInstance!.onSave(id);
@@ -88,5 +90,5 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

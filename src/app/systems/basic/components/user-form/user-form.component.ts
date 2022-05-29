@@ -99,7 +99,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: this.translator.instant("firstName"),
+                  label: this.translator.instant("Firt Name"),
                   required: true,
                 },
               },
@@ -108,7 +108,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 type: "input",
                 templateOptions: {
                   type: "text",
-                  label: this.translator.instant("lastName"),
+                  label: this.translator.instant("Last Name"),
                   required: true,
                 },
               },
