@@ -18,7 +18,7 @@ import { FormlyNzRowFieldModule } from "./field-wrappers/row/row-field.module";
 import { FormlyNzCardFieldModule } from "./field-wrappers/card/card-field.module";
 import { passwordMatchValidator } from "./validators/password-match-validator";
 import { FormlyNzDynamicFieldModule } from "./fields/dynamic/dynamic-field.module";
-import { FormlyNzFileModule } from './fields/file/file.module';
+import { FormlyNzFileModule } from "./fields/file/file.module";
 
 @NgModule({
   declarations: [AxFormComponent, DynamicFormHostDirective],
@@ -28,7 +28,7 @@ import { FormlyNzFileModule } from './fields/file/file.module';
     ReactiveFormsModule,
     FormlyModule.forRoot({
       validationMessages: [
-        { name: "required", message: "این فیلد اجباری می باشد" },
+        { name: "required", message: "This field is required" },
       ],
       validators: [{ name: "fieldMatch", validation: passwordMatchValidator }],
     }),
@@ -45,7 +45,7 @@ import { FormlyNzFileModule } from './fields/file/file.module';
     FormlyNzCardFieldModule,
     FormlyNzDynamicFieldModule,
     FormlyNzCascaderModule,
-    FormlyNzFileModule
+    FormlyNzFileModule,
   ],
   exports: [AxFormComponent, DynamicFormHostDirective],
 })

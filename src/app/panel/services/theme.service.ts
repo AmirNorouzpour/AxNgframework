@@ -11,11 +11,11 @@ export class ThemeService {
 
   themes = of([
     { key: "default", title: "Blue" },
-    { key: "1", title: "سورمه ای" },
-    { key: "2", title: "مشکی" },
-    { key: "3", title: "سبز" },
-    { key: "4", title: "بنفش" },
-    { key: "5", title: "متالیک" },
+    { key: "1", title: "Navy Blue" },
+    { key: "2", title: "Black" },
+    { key: "3", title: "Green" },
+    { key: "4", title: "Purple" },
+    { key: "5", title: "Metalic" },
   ]);
 
   constructor() {

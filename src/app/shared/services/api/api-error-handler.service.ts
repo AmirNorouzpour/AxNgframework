@@ -30,7 +30,7 @@ export class ApiErrorHandlerService {
           this.router.navigate(["/auth"]);
         }
         default:
-          throw new Error("خطا در برقراری ارتباط با سرور");
+          throw new Error("Error in conncetion to server");
       }
     }
     throw new Error(error);

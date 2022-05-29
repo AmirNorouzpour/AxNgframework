@@ -55,7 +55,7 @@ export class AxChatItemComponent implements OnInit {
     msg.body = value;
     msg.fromContact = false;
     msg.receiverId = this.id;
-    msg.sending = "در حال ارسال ...";
+    msg.sending = "ُSending...";
     this.addChatItem(msg);
     this.messageService.create(msg).subscribe(
       (result) => {
@@ -78,7 +78,8 @@ export class AxChatItemComponent implements OnInit {
   scrollToBottom(): void {
     try {
       this.cdr.detectChanges();
-      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+      this.myScrollContainer.nativeElement.scrollTop =
+        this.myScrollContainer.nativeElement.scrollHeight;
     } catch (err) {}
   }
 

@@ -1,10 +1,19 @@
-<div class="ax-form" [ngClass]="config.wrapperCls ? config.wrapperCls : defaultWrapperCls">
-    <div class="ax-form__header">
-        <button nz-button nzType="primary" (click)="submit()" [disabled]="!form.valid">ذخیره</button>
-        <button nz-button type="button" (click)="cancel($event)">انصراف</button>
-    </div>
-    <form [formGroup]="form" #axForm="ngForm">
-        <formly-form [form]="form" [fields]="fields" [model]="model">
-        </formly-form>
-    </form>
+<div
+  class="ax-form"
+  [ngClass]="config.wrapperCls ? config.wrapperCls : defaultWrapperCls"
+>
+  <div class="ax-form__header">
+    <button
+      nz-button
+      nzType="primary"
+      (click)="submit()"
+      [disabled]="!form.valid"
+    >
+      Save
+    </button>
+    <button nz-button type="button" (click)="cancel($event)">Cancel</button>
+  </div>
+  <form [formGroup]="form" #axForm="ngForm">
+    <formly-form [form]="form" [fields]="fields" [model]="model"> </formly-form>
+  </form>
 </div>

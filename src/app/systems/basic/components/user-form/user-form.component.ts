@@ -5,7 +5,6 @@ import { AxForm } from "shared/ax-form";
 import { User } from "../../models";
 import { FormlyFieldConfig } from "@ngx-formly/core";
 import { FormConfig } from "shared/ax-form/models/form-config";
-import { AddressListComponent } from "../address-list/address-list.component";
 import { TranslateService } from "@ngx-translate/core";
 import { of } from "rxjs";
 
@@ -237,14 +236,14 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
           },
         ],
       },
-      {
-        type: "dynamic-field",
-        templateOptions: {
-          component: AddressListComponent,
-          title: "Addresses",
-          readonly: this.formMode === FormMode.New,
-        },
-      },
+      // {
+      //   type: "dynamic-field",
+      //   templateOptions: {
+      //     component: AddressListComponent,
+      //     title: "Addresses",
+      //     readonly: this.formMode === FormMode.New,
+      //   },
+      // },
     ];
   }
 

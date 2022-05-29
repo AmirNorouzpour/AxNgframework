@@ -212,7 +212,7 @@ export abstract class AxForm<DataModel>
       .update(this.getFormModel())
       .pipe(catchError(this.handleError.bind(this)))
       .subscribe((result) => {
-        this.snackBar.showSuccessMessage("با موفقیت ذخیره شد");
+        this.snackBar.showSuccessMessage("Successful");
         this.onSaveSuccess();
       });
   }
@@ -220,9 +220,9 @@ export abstract class AxForm<DataModel>
   handleError(error: HttpErrorResponse) {
     let me = this;
     if (error.error instanceof ErrorEvent) {
-      me.snackBar.showErrorMessage("خطا در ذخیره سازی");
+      me.snackBar.showErrorMessage("Error in Saving");
     } else {
-      me.snackBar.showErrorMessage("خطا در ذخیره سازی");
+      me.snackBar.showErrorMessage("Error in Saving");
     }
     return empty();
   }

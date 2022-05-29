@@ -42,7 +42,7 @@ const transformBooleanColumn = (value, options) => {
   }
 };
 
-const transformDateTimeColumn = (value, options: any = { isJalali: true }) => {
+const transformDateTimeColumn = (value, options: any = { isJalali: false }) => {
   const { format, isJalali } = options || {};
   const defaultFormat = isJalali
     ? "HH:mm:ss - jYYYY/jMM/jDD "

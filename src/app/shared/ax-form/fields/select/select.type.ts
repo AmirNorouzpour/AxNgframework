@@ -69,8 +69,7 @@ import { debounceTime, switchMap } from "rxjs/operators";
           </nz-option>
         </ng-container>
         <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
-          <i nz-icon nzType="loading" class="loading-icon"></i> در حال دریافت
-          اطلاعات...
+          <i nz-icon nzType="loading" class="loading-icon"></i> Fetching Data
         </nz-option>
       </ng-container>
     </nz-select>
@@ -103,9 +102,7 @@ export class FormlyFieldSelect extends FieldType {
 
   ngOnInit(): void {
     if (this.to.lazyLoad) {
-      const optionList$: Observable<
-        string[]
-      > = this.searchChange$
+      const optionList$: Observable<string[]> = this.searchChange$
         .asObservable()
         .pipe(debounceTime(500))
         .pipe(switchMap(this.to.loadData));

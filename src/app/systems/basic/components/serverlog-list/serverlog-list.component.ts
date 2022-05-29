@@ -29,13 +29,13 @@ export class ServerlogListComponent implements OnInit {
     {
       title: "Address",
       index: "url",
-      width: "30%",
+      width: "25%",
     },
     {
       title: "DateTime",
       index: "logged",
       type: AxTableColumnType.DateTime,
-      width: "10%",
+      width: "15%",
     },
   ];
 
