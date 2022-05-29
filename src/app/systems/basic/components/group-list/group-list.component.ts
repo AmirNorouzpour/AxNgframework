@@ -1,6 +1,7 @@
 import { GroupService } from "../../services/group.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-group-list",
@@ -10,19 +11,21 @@ import { Router } from "@angular/router";
 export class GroupListComponent implements OnInit {
   columns = [
     {
-      title: "Group Name",
+      title: this.translator.instant("Group Name"),
       index: "groupName",
     },
     {
-      title: "Description",
+      title: this.translator.instant("Description"),
       index: "description",
     },
     {
-      title: "User Count",
+      title: this.translator.instant("User Count"),
       index: "usersCount",
     },
   ];
-  constructor(public groupService: GroupService, private router: Router) {}
+  constructor(public groupService: GroupService,
+    private router: Router,
+    private translator: TranslateService) { }
 
   handleNew() {
     this.router.navigate(["/panel/basic/groups/new"]);
@@ -32,5 +35,5 @@ export class GroupListComponent implements OnInit {
     this.router.navigate(["/panel/basic/groups/edit/" + id]);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }
