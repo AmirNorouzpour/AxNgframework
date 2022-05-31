@@ -14,6 +14,7 @@ import { Authorization } from "../../models/authorization.model";
 import { UserService } from "../../services";
 import { AuthorizationService } from "../../services/authorization.service";
 import { AuthorizationTreeComponent } from "../authorization-tree/authorization-tree.component";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-authorization-form",
@@ -28,6 +29,7 @@ export class AuthorizationFormComponent
   constructor(
     public service: AuthorizationService,
     injector: Injector,
+    private translator: TranslateService,
     public userService: UserService
   ) {
     super(service, injector);
@@ -37,7 +39,7 @@ export class AuthorizationFormComponent
     alert("do what ever you want darling!");
   }
 
-  setModelForCreate(data) {}
+  setModelForCreate(data) { }
 
   setModelForUpdate(data) {
     const { userDetail } = data || {};
@@ -53,7 +55,7 @@ export class AuthorizationFormComponent
       {
         wrappers: ["card"],
         templateOptions: {
-          title: "Authoriztion",
+          title: this.translator.instant("Authoriztion"),
         },
         fieldGroup: [
           {
@@ -78,7 +80,7 @@ export class AuthorizationFormComponent
                   },
                 },
                 templateOptions: {
-                  label: "Lable/GroupLable",
+                  label: this.translator.instant("Lable/GroupLable"),
                   lazyLoad: true,
                   labelProp: "name",
                   valueProp: "id",
@@ -123,5 +125,5 @@ export class AuthorizationFormComponent
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

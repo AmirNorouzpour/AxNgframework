@@ -33,5 +33,7 @@
     "Change Password": "تغییر رمز",
     "Messages": "پیام ها",
     "Show All": "نمایش همه",
-    "Delete All": "حذف همه"
+    "Delete All": "حذف همه",
+    "Lable/GroupLable": "عنوان/عنوان گروه",
+    "Authoriztion": "حقوق دسترسی"
 }
