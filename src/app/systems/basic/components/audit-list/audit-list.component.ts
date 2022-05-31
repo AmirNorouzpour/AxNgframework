@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuditService } from "../../services/audit.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-audit-list",
@@ -9,27 +10,27 @@ import { AuditService } from "../../services/audit.service";
 export class AuditListComponent implements OnInit {
   columns = [
     {
-      title: "Table",
+      title: this.translate.instant("Table"),
       index: "tableName",
     },
     {
-      title: "Key",
+      title: this.translate.instant("Key"),
       index: "primaryKey",
     },
     {
-      title: "User",
+      title: this.translate.instant("User"),
       index: "userDisplay",
     },
     {
-      title: "Type",
+      title: this.translate.instant("Type"),
       index: "auditTypeDisplay",
     },
     {
-      title: "Date Time",
+      title: this.translate.instant("DateTime"),
       index: "entityInsertDateTime",
     },
   ];
-  constructor(public auditService: AuditService) {}
+  constructor(public auditService: AuditService, private translate: TranslateService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

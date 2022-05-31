@@ -35,5 +35,13 @@
     "Show All": "Show All",
     "Delete All": "Delete All",
     "Lable/GroupLable": "Lable/GroupLable",
-    "Authoriztion": "Authoriztion"
+    "Authoriztion": "Authoriztion",
+    "Message": "Message",
+    "Address": "Address",
+    "DateTime": "DateTime",
+    "Id": "Id",
+    "Table": "Table",
+    "Key": "Key",
+    "User": "User",
+    "Type": "Type"
 }

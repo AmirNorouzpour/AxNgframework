@@ -35,5 +35,13 @@
     "Show All": "نمایش همه",
     "Delete All": "حذف همه",
     "Lable/GroupLable": "عنوان/عنوان گروه",
-    "Authoriztion": "حقوق دسترسی"
+    "Authoriztion": "حقوق دسترسی",
+    "Message": "محتوا",
+    "Address": "آدرس",
+    "DateTime": "تاریخ ",
+    "Id": "شناسه",
+    "Table": "جدول",
+    "Key": "کلید",
+    "User": "کاربر",
+    "Type": "نوع"
 }
