@@ -3,11 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
 
   /**** Endpoint urls ****/
-  apiEndPoint: "http://localhost:6223/api",
-  signalREndPoint: "http://localhost:6223/axhub",
+  apiEndPoint: "http://localhost:808/services/api",
+  signalREndPoint: "http://localhost:808/services/axhub",
+
   /**** Versions ****/
   apiVersion1: "v1",
 
