@@ -1,4 +1,5 @@
 import { PanelModule } from "./panel/panel.module";
+import { EditorModule } from "./editor/editor.module";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, Injector, Optional } from "@angular/core";
@@ -12,6 +13,7 @@ import { registerLocaleData } from "@angular/common";
 import { NZ_I18N, en_US } from "ng-zorro-antd/i18n";
 import en from "@angular/common/locales/en";
 import { BidiModule } from "@angular/cdk/bidi";
+
 registerLocaleData(en);
 
 @NgModule({
@@ -21,11 +23,12 @@ registerLocaleData(en);
     AppRoutingModule,
     HttpClientModule,
     PanelModule,
+    EditorModule,
     AuthModule,
     CoreModule,
     BrowserAnimationsModule,
     SystemsModule,
-    BidiModule,
+    BidiModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

@@ -1,0 +1,88 @@
+<div class="header-box">
+  <app-header></app-header>
+</div>
+
+<div style="background-color: #000c17">
+  <div nz-row>
+    <div nz-col nzSpan="3" style="border-right: 2px solid balc">
+      <ul nz-menu nzMode="inline" style="width: 240px" nzTheme="dark">
+        <li
+          nz-submenu
+          [(nzOpen)]="openMap.sub1"
+          (nzOpenChange)="openHandler('sub1')"
+          nzTitle="Indicators"
+          nzIcon="mail"
+        >
+          <ul>
+            <li nz-menu-group>
+              <ul>
+                <li nz-menu-item>RSI</li>
+                <li nz-menu-item>SMA</li>
+                <li nz-menu-item>EMA</li>
+                <li nz-menu-item>ALMA</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li
+          nz-submenu
+          [(nzOpen)]="openMap.sub2"
+          (nzOpenChange)="openHandler('sub2')"
+          nzTitle="Indicators"
+          nzIcon="mail"
+        >
+          <ul>
+            <li nz-menu-group>
+              <ul>
+                <li nz-menu-item>RSI</li>
+                <li nz-menu-item>SMA</li>
+                <li nz-menu-item>EMA</li>
+                <li nz-menu-item>ALMA</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li
+          nz-submenu
+          [(nzOpen)]="openMap.sub3"
+          (nzOpenChange)="openHandler('sub3')"
+          nzTitle="Indicators"
+          nzIcon="mail"
+        >
+          <ul>
+            <li nz-menu-group>
+              <ul>
+                <li nz-menu-item>RSI</li>
+                <li nz-menu-item>SMA</li>
+                <li nz-menu-item>EMA</li>
+                <li nz-menu-item>ALMA</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li
+          nz-submenu
+          [(nzOpen)]="openMap.sub4"
+          (nzOpenChange)="openHandler('sub4')"
+          nzTitle="Indicators"
+          nzIcon="mail"
+        >
+          <ul>
+            <li nz-menu-group>
+              <ul>
+                <li nz-menu-item>RSI</li>
+                <li nz-menu-item>SMA</li>
+                <li nz-menu-item>EMA</li>
+                <li nz-menu-item>ALMA</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div nz-col nzSpan="21" style="height: 95vh" class="main">
+      <box name="RSI"></box>
+      <box name="MA"></box>
+    </div>
+  </div>
+</div>

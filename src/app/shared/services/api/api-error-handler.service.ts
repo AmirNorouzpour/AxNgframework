@@ -17,7 +17,6 @@ export class ApiErrorHandlerService {
   ) {}
 
   handleError(error: any, options: any) {
-    debugger;
     if (error instanceof ApiError) {
       throw new Error(error.toString());
     }

@@ -1,0 +1,54 @@
+<div
+  class="example-box"
+  cdkDrag
+  style="height: 120px; width: 100px; flex-direction: column"
+>
+  <div
+    cdkDragHandle
+    style="
+      width: 100%;
+      height: 30px;
+      padding-top: 5px;
+      background-color: #000c17;
+      color: white;
+      cursor: move;
+    "
+  >
+    {{ name }}
+  </div>
+  <div
+    style="
+      padding-top: 5px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      height: 100%;
+      background-color: #001529;
+    "
+  >
+    <div class="item">
+      <div style="width: 10px">
+        <div class="connector"><span class="dot list"></span></div>
+      </div>
+      <div style="width: 80px"><div class="title">Source</div></div>
+      <div style="width: 10px"></div>
+    </div>
+    <div class="item">
+      <div style="width: 10px">
+        <div class="connector"><span class="dot int"></span></div>
+      </div>
+      <div style="width: 80px"><div class="title">Length</div></div>
+      <div style="width: 10px"></div>
+    </div>
+    <div class="item">
+      <div style="width: 10px"></div>
+      <div style="width: 80px"><div class="title">Result</div></div>
+      <div style="width: 10px">
+        <div class="connector">
+          <span class="green-dot list"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

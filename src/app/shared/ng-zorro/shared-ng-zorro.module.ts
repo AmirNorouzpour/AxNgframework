@@ -22,6 +22,7 @@ import { NzSpinModule } from "ng-zorro-antd/spin";
 import { NzUploadModule } from "ng-zorro-antd/upload";
 import { NzAutocompleteModule } from "ng-zorro-antd/auto-complete";
 import { NzSelectModule } from "ng-zorro-antd/select";
+import { NzMenuModule } from "ng-zorro-antd/menu";
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { NzSelectModule } from "ng-zorro-antd/select";
     NzSpinModule,
     NzUploadModule,
     NzAutocompleteModule,
-    NzSelectModule
+    NzSelectModule,
+    NzMenuModule,
   ],
   exports: [
     NzTableModule,
@@ -73,6 +75,7 @@ import { NzSelectModule } from "ng-zorro-antd/select";
     NzIconModule,
     NzAutocompleteModule,
     NzSelectModule,
+    NzMenuModule,
   ],
 })
 export class SharedNgZorroModule {}

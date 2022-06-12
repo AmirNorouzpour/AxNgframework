@@ -13,7 +13,6 @@ const systemBreadCrumbNames = {
 };
 
 const getSystemRoute: (string, Routes) => Route = (systemName, childRoutes) => {
-  debugger;
   return {
     path: systemName,
     component: SystemContainerComponent,
