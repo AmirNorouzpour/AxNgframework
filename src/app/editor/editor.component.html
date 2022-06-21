@@ -80,9 +80,14 @@
         </li>
       </ul>
     </div>
-    <div nz-col nzSpan="21" style="height: 95vh" class="main">
-      <box name="RSI"></box>
-      <box name="MA"></box>
+    <div nz-col nzSpan="21" class="main">
+      <box #startingElement name="RSI" (MoveEvent)="boxMoved($event)"></box>
+      <box #endingElement name="MA" (MoveEvent)="boxMoved($event)"></box>
+
+      <!-- <LeaderLine
+        start="{{ startingElement }}"
+        end="{{ endingElement }}"
+      ></LeaderLine> -->
     </div>
   </div>
 </div>

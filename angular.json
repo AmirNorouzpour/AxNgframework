@@ -42,7 +42,7 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/sass"]
             },
-            "scripts": []
+            "scripts": ["node_modules/leader-line/leader-line.min.js"]
           },
           "configurations": {
             "production": {

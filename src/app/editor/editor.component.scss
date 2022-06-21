@@ -1,13 +1,13 @@
-$header-height: 40px;
+$header-height: 50px;
 
 .main {
   background-size: 10px 10px;
   background-image: linear-gradient(
       to right,
-      rgba(158, 158, 158, 0.02) 1px,
+      rgba(158, 158, 158, 0.04) 1px,
       transparent 1px
     ),
-    linear-gradient(to bottom, rgba(158, 158, 158, 0.02) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(158, 158, 158, 0.04) 1px, transparent 1px);
   background-color: #19222d;
   height: calc(100vh - #{$header-height});
 }

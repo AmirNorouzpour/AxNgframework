@@ -1,114 +1,37 @@
-$icon-color: #fff;
-$text-color: #fff;
+@import "theme";
+
+//$icon-color: #0b7;
+$icon-color: lightgray;
+$text-color: lightgray;
+img {
+  height: 30px;
+}
 
 .ax-header {
   display: flex;
-  align-items: stretch;
-  flex: 1;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  color: $text-color;
+  align-items: center;
+  height: 50px;
+  // &__ {
+  //   &start-section {
+  //     margin-right: auto;
+  //     display: flex;
+  //     color: $text-color;
+  //   }
 
-  &_rtl &__ {
-    &start-section {
-      margin-left: auto;
-      margin-right: 0;
-    }
+  //   &end-section {
+  //     margin-left: auto;
+  //     display: flex;
+  //   }
 
-    &end-section {
-      margin-right: auto;
-      margin-left: 0;
-    }
-
-    &separator {
-      margin-left: 16px;
-      margin-right: 0;
-    }
-  }
-
-  &__ {
-    &start-section {
-      margin-right: auto;
-      display: flex;
-      color: $text-color;
-    }
-
-    &end-section {
-      margin-left: auto;
-      display: flex;
-    }
-
-    &org {
-      margin-right: 16px;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-
-      &-title {
-        vertical-align: middle;
-      }
-
-      & mat-icon {
-        color: $icon-color;
-      }
-    }
-
-    &separator {
-      height: 30px;
-      width: 1px;
-      background-color: #69b0e0;
-      margin-top: 10px;
-      margin-right: 16px;
-    }
-
-    &systems {
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      &-text {
-        margin: 0 4px;
-      }
-
-      &-icon {
-        color: $icon-color;
-        font-size: 24px;
-      }
-
-      &-arrow-down.mat-icon {
-        vertical-align: sub;
-        font-size: 16px;
-        width: 16px;
-        height: 16px;
-      }
-    }
-
-    &user {
-      display: flex;
-      align-items: center;
-
-      &-icon {
-        color: $icon-color;
-        font-size: 22px;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .ax-header {
-    &__ {
-      &systems {
-        &-text {
-          display: none;
-        }
-      }
-
-      &org {
-        margin-left: 8px;
-
-        &-title {
-          display: none;
-        }
-      }
-    }
-  }
+  //   &separator {
+  //     height: 30px;
+  //     width: 1px;
+  //     background-color: #69b0e0;
+  //     margin-top: 10px;
+  //     margin-right: 16px;
+  //   }
+  // }
 }
