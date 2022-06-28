@@ -7,10 +7,11 @@ export const environment = {
   production: false,
 
   /**** Endpoint urls ****/
-  apiEndPoint: "http://192.168.0.12/services/api",
-  //apiEndPoint: "http://192.168.0.10/services/api",
-  //signalREndPoint: "http://192.168.0.10/services/axhub",
-  signalREndPoint: "http:/192.168.0.12/services/axhub",
+  // apiEndPoint: "http://192.168.0.12/services/api",
+  // signalREndPoint: "http:/192.168.0.12/services/axhub",
+
+  apiEndPoint: "http://localhost:6222/api",
+  signalREndPoint: "http://localhost:6222/axhub",
 
   /**** Versions ****/
   apiVersion1: "v1",
@@ -57,6 +58,7 @@ export const environment = {
   getDamagedList: "GetDamagedList",
   getStopList: "GetStopList",
   changePassword: "changePassword",
+  savePermissions: "savePermissions",
 
   /**** Routes ****/
   panelRoute: "panel",

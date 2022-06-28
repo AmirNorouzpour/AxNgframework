@@ -29,6 +29,18 @@ export class SnackBarService {
       politeness: "assertive",
       data: {
         message: message,
+      },
+    });
+  }
+
+  showWarringMessage(message: string) {
+    this.snackBar.openFromComponent(CustomSnackBarComponent, {
+      duration: 2000,
+      verticalPosition: "top",
+      panelClass: ["snack-bar_warning"],
+      politeness: "assertive",
+      data: {
+        message: message,
         icon: "cancel",
       },
     });

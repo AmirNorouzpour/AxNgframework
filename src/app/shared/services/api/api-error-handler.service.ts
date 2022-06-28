@@ -17,17 +17,21 @@ export class ApiErrorHandlerService {
   ) {}
 
   handleError(error: any, options: any) {
-    debugger;
     if (error instanceof ApiError) {
-      throw new Error(error.toString());
+      this.snackBarService.showWarringMessage(error.message);
     }
     if (error instanceof HttpErrorResponse) {
-      switch (error.status) {
+      switch (error.error.StatusCode) {
         case 400:
-        case 401: {
+        case 8: {
           localStorage.removeItem("access_token");
           localStorage.removeItem("exp");
           this.router.navigate(["/auth"]);
+        }
+        case 7: {
+          this.snackBarService.showWarringMessage(error.error.Message);
+        }
+        case 404: {
         }
         default:
           throw new Error("خطا در برقراری ارتباط با سرور");

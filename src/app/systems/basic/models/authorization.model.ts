@@ -1,7 +1,8 @@
 export interface Authorization {
-  tableName: string;
-  userDisplay: string;
-  primaryKey: number;
-  auditTypeDisplay: number;
-  entityInsertDateTime: Date;
+  id: number;
+  key: string;
+  title: string;
+  checked: boolean;
+  isLeaf: boolean;
+  children: Authorization[];
 }

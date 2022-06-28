@@ -56,18 +56,7 @@ export class AxTreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(private cdr: ChangeDetectorRef) {}
 
-  loadFromServer() {
-    this.dataService
-      .getList(null)
-      .pipe(
-        map((result) => result.data),
-        map<any, AxTreeNode[]>(this.mapChildren.bind(this))
-      )
-      .subscribe((treeData) => {
-        this.data = treeData;
-        this.cdr.detectChanges();
-      });
-  }
+  loadFromServer() {}
 
   mapChildren(result) {
     return (
@@ -113,6 +102,7 @@ export class AxTreeComponent implements OnInit, OnChanges, AfterViewInit {
   handleCheckBoxChange(e) {
     this.onCheckBoxChange.emit(e);
   }
+  getCheckedNodeList(e) {}
 
   handleExpandChange(event: NzFormatEmitEvent) {
     const node = event.node;
