@@ -37,6 +37,7 @@
       #block
       clickable
       (click)="mainClick($event)"
+      (contextmenu)="rightClick($event)"
       (mousemove)="mouseMove($event)"
     >
       <div #endingElement id="elm"></div>

@@ -31,7 +31,11 @@
     <div class="item" *ngFor="let parameter of indicator?.parameters">
       <div style="width: 10px" id="input">
         <div *ngIf="parameter.isInput" class="connector">
-          <span class="dot" [ngClass]="[parameter.type]"></span>
+          <span
+            class="dot"
+            [ngClass]="[parameter.type]"
+            attr.data-type="{{ parameter.type }}"
+          ></span>
         </div>
       </div>
       <div>
@@ -39,7 +43,11 @@
       </div>
       <div style="width: 10px" id="output">
         <div *ngIf="!parameter.isInput" class="connector">
-          <span class="g-dot" [ngClass]="[parameter.type]"></span>
+          <span
+            class="g-dot"
+            [ngClass]="[parameter.type]"
+            attr.data-type="{{ parameter.type }}"
+          ></span>
         </div>
       </div>
     </div>

@@ -37,7 +37,6 @@ export class EditorComponent implements OnInit {
 
   openHandler(value: string): void {
     for (const i in this.indicatorGroups) {
-      debugger;
       if (this.indicatorGroups[i].title !== value) {
         this.indicatorGroups[i].isOpen = false;
       }
@@ -51,7 +50,6 @@ export class EditorComponent implements OnInit {
   }
 
   itemClick(indicator) {
-    debugger;
     this.boxs.push(new Box(indicator.title, indicator));
     // this.modalService.success({
     //   nzTitle: "This is a success message",
@@ -59,28 +57,36 @@ export class EditorComponent implements OnInit {
     //   nzDirection: "ltr",
     // });
   }
-
+  lastType = "";
   mainClick($event) {
-    if ($event.target.classList.contains("g-dot")) {
-      debugger;
-      this.connectMode = true;
-      let color = window.getComputedStyle($event.target).backgroundColor;
-      this.line = new LeaderLine($event.target, this.point.nativeElement, {
-        path: "grid",
-        size: 2,
-        startSocket: "right",
-        endSocket: "left",
-        color: color,
-        endPlug: "behind",
-        dash: true,
+    debugger;
+    var type = $event.target.getAttribute("data-type");
+    if (this.connectMode && this.lastType != type) {
+      var c = this.line.color;
+      setTimeout(() => {
+        this.line.setOptions({
+          color: c,
+        });
+      }, 200);
+
+      this.line.setOptions({
+        color: "red",
       });
+
+      return false;
+    }
+    if ($event.target.classList.contains("g-dot")) {
+      this.connectMode = true;
+      this.lastType = type;
+      let color = window.getComputedStyle($event.target).backgroundColor;
+      this.line = this.getLine($event.target, color);
     }
 
     if ($event.target.classList.contains("dot")) {
-      debugger;
       this.line.setOptions({
         end: $event.target,
         endPlug: "behind",
+        color: window.getComputedStyle($event.target).backgroundColor,
         dash: false,
       });
 
@@ -88,14 +94,37 @@ export class EditorComponent implements OnInit {
       this.connectMode = false;
     }
   }
+
+  rightClick(e) {
+    debugger;
+    if (this.line) {
+      this.line.remove();
+      this.connectMode = false;
+    }
+    return false;
+  }
+
   mouseMove($event) {
     if (this.connectMode) {
       this.updateLine($event);
     }
   }
   updateLine(event) {
+    if (!this.line) return;
     this.point.nativeElement.style.left = `${event.clientX - 240}px`;
     this.point.nativeElement.style.top = `${event.clientY - 50}px`;
     this.line.position();
+  }
+
+  getLine(target, color) {
+    return new LeaderLine(target, this.point.nativeElement, {
+      path: "grid",
+      size: 2,
+      startSocket: "right",
+      endSocket: "left",
+      color: color,
+      endPlug: "behind",
+      dash: true,
+    });
   }
 }
