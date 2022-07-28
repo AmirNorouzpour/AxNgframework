@@ -6,10 +6,10 @@ export const environment = {
   production: false,
 
   /**** Endpoint urls ****/
-  // apiEndPoint: "http://localhost:6223/api",
-  // signalREndPoint: "http://localhost:6223/axhub",
-  apiEndPoint: "http://95.216.94.13:4200/services/api",
-  signalREndPoint: "http://95.216.94.13:4200/services/axhub",
+  apiEndPoint: "http://localhost:6223/api",
+  signalREndPoint: "http://localhost:6223/axhub",
+  // apiEndPoint: "http://95.216.94.13:4200/services/api",
+  // signalREndPoint: "http://95.216.94.13:4200/services/axhub",
 
   /**** Versions ****/
   apiVersion1: "v1",
@@ -34,6 +34,7 @@ export const environment = {
   msgApi: "Chat",
   productInstanceApi: "ProductInstances",
   productInstanceHistoryApi: "ProductInstanceHistories",
+  indicatorsApi: "Indicators",
 
   /**** Actions ****/
   axToken: "AxToken",
@@ -55,6 +56,7 @@ export const environment = {
   getDamagedList: "GetDamagedList",
   getStopList: "GetStopList",
   changePassword: "changePassword",
+  getMenuData: "getMenuData",
 
   /**** Routes ****/
   panelRoute: "panel",

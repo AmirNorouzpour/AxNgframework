@@ -6,6 +6,7 @@ import {
   Output,
   ViewEncapsulation,
 } from "@angular/core";
+import { Indicator } from "../../models/indicator";
 
 @Component({
   selector: "box",
@@ -16,8 +17,11 @@ import {
 export class BoxComponent implements OnInit {
   constructor() {}
   @Input() name = "";
+  @Input() indicator: Indicator;
   @Output() MoveEvent = new EventEmitter<any>();
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    debugger;
+  }
 
   moved($event) {
     this.MoveEvent.emit($event);

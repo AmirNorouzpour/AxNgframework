@@ -8,81 +8,47 @@
       <ul nz-menu nzMode="inline" style="width: 240px" nzTheme="dark">
         <li
           nz-submenu
-          [(nzOpen)]="openMap.sub1"
-          (nzOpenChange)="openHandler('sub1')"
-          nzTitle="Indicators"
-          nzIcon="mail"
+          *ngFor="let ig of indicatorGroups"
+          [(nzOpen)]="ig.isOpen"
+          (nzOpenChange)="openHandler(ig.title)"
+          [nzTitle]="ig.title"
+          [nzIcon]="ig.icon"
         >
           <ul>
             <li nz-menu-group>
               <ul>
-                <li nz-menu-item>RSI</li>
-                <li nz-menu-item>SMA</li>
-                <li nz-menu-item>EMA</li>
-                <li nz-menu-item>ALMA</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li
-          nz-submenu
-          [(nzOpen)]="openMap.sub2"
-          (nzOpenChange)="openHandler('sub2')"
-          nzTitle="Indicators"
-          nzIcon="mail"
-        >
-          <ul>
-            <li nz-menu-group>
-              <ul>
-                <li nz-menu-item>RSI</li>
-                <li nz-menu-item>SMA</li>
-                <li nz-menu-item>EMA</li>
-                <li nz-menu-item>ALMA</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li
-          nz-submenu
-          [(nzOpen)]="openMap.sub3"
-          (nzOpenChange)="openHandler('sub3')"
-          nzTitle="Indicators"
-          nzIcon="mail"
-        >
-          <ul>
-            <li nz-menu-group>
-              <ul>
-                <li nz-menu-item>RSI</li>
-                <li nz-menu-item>SMA</li>
-                <li nz-menu-item>EMA</li>
-                <li nz-menu-item>ALMA</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li
-          nz-submenu
-          [(nzOpen)]="openMap.sub4"
-          (nzOpenChange)="openHandler('sub4')"
-          nzTitle="Indicators"
-          nzIcon="mail"
-        >
-          <ul>
-            <li nz-menu-group>
-              <ul>
-                <li nz-menu-item>RSI</li>
-                <li nz-menu-item>SMA</li>
-                <li nz-menu-item>EMA</li>
-                <li nz-menu-item>ALMA</li>
+                <li
+                  *ngFor="let indicator of ig.indicators"
+                  (click)="itemClick(indicator)"
+                  nz-menu-item
+                >
+                  {{ indicator.title }}
+                </li>
               </ul>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    <div nz-col nzSpan="21" class="main">
-      <box #startingElement name="RSI" (MoveEvent)="boxMoved($event)"></box>
-      <box #endingElement name="MA" (MoveEvent)="boxMoved($event)"></box>
+    <div
+      nz-col
+      nzSpan="21"
+      class="main"
+      #block
+      clickable
+      (click)="mainClick($event)"
+      (mousemove)="mouseMove($event)"
+    >
+      <div #endingElement id="elm"></div>
+      <box
+        *ngFor="let box of boxs"
+        [name]="box.title"
+        [indicator]="box.indicator"
+        (MoveEvent)="boxMoved($event)"
+      ></box>
+
+      <!-- <box #startingElement  (MoveEvent)="boxMoved($event)"></box>
+      <box #endingElement name="MA" (MoveEvent)="boxMoved($event)"></box> -->
 
       <!-- <LeaderLine
         start="{{ startingElement }}"

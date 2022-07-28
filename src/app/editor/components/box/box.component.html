@@ -1,8 +1,8 @@
 <div
-  class="example-box"
+  class="box"
   cdkDrag
   (cdkDragMoved)="moved($event)"
-  style="height: 120px; width: 100px; flex-direction: column"
+  style="width: 130px; flex-direction: column"
 >
   <div
     cdkDragHandle
@@ -28,26 +28,18 @@
       background-color: #001529;
     "
   >
-    <div class="item">
+    <div class="item" *ngFor="let parameter of indicator?.parameters">
       <div style="width: 10px" id="input">
-        <div class="connector"><span class="dot list"></span></div>
+        <div *ngIf="parameter.isInput" class="connector">
+          <span class="dot" [ngClass]="[parameter.type]"></span>
+        </div>
       </div>
-      <div style="width: 80px"><div class="title">Source</div></div>
-      <div style="width: 10px"></div>
-    </div>
-    <div class="item">
-      <div style="width: 10px">
-        <div class="connector"><span class="dot int"></span></div>
+      <div>
+        <div class="title">{{ parameter?.title }}</div>
       </div>
-      <div style="width: 80px"><div class="title">Length</div></div>
-      <div style="width: 10px"></div>
-    </div>
-    <div class="item">
-      <div style="width: 10px"></div>
-      <div style="width: 80px"><div class="title">Result</div></div>
       <div style="width: 10px" id="output">
-        <div class="connector">
-          <span class="green-dot list"></span>
+        <div *ngIf="!parameter.isInput" class="connector">
+          <span class="g-dot" [ngClass]="[parameter.type]"></span>
         </div>
       </div>
     </div>
