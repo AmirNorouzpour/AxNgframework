@@ -1,33 +1,61 @@
+<div #endingElement id="elm"></div>
 <div class="header-box">
   <app-header></app-header>
 </div>
 
 <div style="background-color: #000c17">
   <div nz-row>
-    <div nz-col nzSpan="3" style="border-right: 2px solid balc">
-      <ul nz-menu nzMode="inline" style="width: 240px" nzTheme="dark">
-        <li
-          nz-submenu
-          *ngFor="let ig of indicatorGroups"
-          [(nzOpen)]="ig.isOpen"
-          (nzOpenChange)="openHandler(ig.title)"
-          [nzTitle]="ig.title"
-          [nzIcon]="ig.icon"
-        >
-          <ul>
-            <li nz-menu-group>
+    <div
+      nz-col
+      nzSpan="3"
+      style="border-right: 1px solid balck; border-top: 1px solid black"
+    >
+      <div class="search-box">
+        <input
+          placeholder="Search"
+          [(ngModel)]="searchValue"
+          class="search-input"
+        />
+      </div>
+      <ul>
+        <div *ngFor="let ig of indicatorGroups">
+          <div class="group-box">
+            <li class="group-li">
+              <div class="group-li-header" (click)="openHandler(ig.title)">
+                <i nz-icon [nzType]="ig.icon" style="font-size: 15px"></i>
+                <span style="margin-left: 5px">{{ ig.title }}</span>
+                <i
+                  *ngIf="ig.isOpen == false"
+                  style="margin-left: auto"
+                  nz-icon
+                  nzType="caret-down"
+                ></i>
+                <i
+                  *ngIf="ig.isOpen"
+                  style="margin-left: auto"
+                  nz-icon
+                  nzType="minus"
+                ></i>
+              </div>
+            </li>
+            <div *ngIf="ig.isOpen" class="items-box">
               <ul>
                 <li
                   *ngFor="let indicator of ig.indicators"
                   (click)="itemClick(indicator)"
-                  nz-menu-item
+                  style="color: #fff; font-size: 12px"
                 >
-                  {{ indicator.title }}
+                  <div class="items-body" (click)="openHandler(ig.title)">
+                    <i nz-icon nzType="star"></i>
+                    <span style="padding-left: 5px">
+                      {{ indicator.title }}</span
+                    >
+                  </div>
                 </li>
               </ul>
-            </li>
-          </ul>
-        </li>
+            </div>
+          </div>
+        </div>
       </ul>
     </div>
     <div
@@ -40,14 +68,17 @@
       (contextmenu)="rightClick($event)"
       (mousemove)="mouseMove($event)"
     >
-      <div #endingElement id="elm"></div>
-      <box
-        *ngFor="let box of boxs"
-        [name]="box.title"
-        [indicator]="box.indicator"
-        (MoveEvent)="boxMoved($event)"
-      ></box>
-
+      <div style="border: 1px soild red">
+        <box
+          *ngFor="let box of boxs; let i = index"
+          [name]="box.title"
+          [id]="'box_' + i"
+          [indicator]="box.indicator"
+          [hasBorder]="selectedBoxId == 'box_' + i"
+          (Move)="boxMoved($event)"
+          (Click)="boxClick($event)"
+        ></box>
+      </div>
       <!-- <box #startingElement  (MoveEvent)="boxMoved($event)"></box>
       <box #endingElement name="MA" (MoveEvent)="boxMoved($event)"></box> -->
 

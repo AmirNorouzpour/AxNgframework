@@ -17,13 +17,17 @@ import { Indicator } from "../../models/indicator";
 export class BoxComponent implements OnInit {
   constructor() {}
   @Input() name = "";
+  @Input() id = "";
+  @Input() hasBorder = false;
   @Input() indicator: Indicator;
-  @Output() MoveEvent = new EventEmitter<any>();
-  ngOnInit(): void {
-    debugger;
-  }
+  @Output() Move = new EventEmitter<any>();
+  @Output() Click = new EventEmitter<any>();
+  ngOnInit(): void {}
 
   moved($event) {
-    this.MoveEvent.emit($event);
+    this.Move.emit($event);
+  }
+  clicked($event) {
+    this.Click.emit(this);
   }
 }

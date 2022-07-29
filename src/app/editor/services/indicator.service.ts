@@ -20,7 +20,6 @@ export class IndicatorService
   implements Resolve<Indicator>
 {
   getMenuData() {
-    debugger;
     const resourceEndpoint = this.apiEndpointsService.getResourceEndpoint(
       this.resourceName,
       null,
@@ -31,7 +30,6 @@ export class IndicatorService
       resourceEndpoint
     );
   }
-
 
   constructor(
     apiHttpService: ApiHttpService,

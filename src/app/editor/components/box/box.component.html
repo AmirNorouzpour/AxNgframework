@@ -1,8 +1,11 @@
 <div
   class="box"
+  attr.data-id="{{ id }}"
   cdkDrag
   (cdkDragMoved)="moved($event)"
+  (click)="clicked($event)"
   style="width: 130px; flex-direction: column"
+  [ngStyle]="{ border: hasBorder ? '1px solid #185691' : '' }"
 >
   <div
     cdkDragHandle
