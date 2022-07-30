@@ -1,13 +1,11 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
-  production: true,
+  production: false,
 
   /**** Endpoint urls ****/
-  apiEndPoint: "http://95.216.94.13:4200/services/api",
-  signalREndPoint: "http://95.216.94.13:4200/services/axhub",
+  apiEndPoint: "http://localhost:6223/api",
+  signalREndPoint: "http://localhost:6223/axhub",
+  // apiEndPoint: "http://95.216.94.13:4200/services/api",
+  // signalREndPoint: "http://95.216.94.13:4200/services/axhub",
 
   /**** Versions ****/
   apiVersion1: "v1",
@@ -32,6 +30,7 @@ export const environment = {
   msgApi: "Chat",
   productInstanceApi: "ProductInstances",
   productInstanceHistoryApi: "ProductInstanceHistories",
+  indicatorsApi: "Indicators",
 
   /**** Actions ****/
   axToken: "AxToken",
@@ -40,7 +39,6 @@ export const environment = {
   getOrganizationLogo: "GetOrganizationLogo",
   getUserPermissions: "GetUserPermissions",
   getSystemMenus: "GetSystemMenus",
-  getDashboardCharts: "GetDashboardCharts",
   getChart: "GetChart",
   setUserConnectionId: "setUserConnectionId",
   disableUserConnectionId: "disableUserConnectionId",
@@ -54,16 +52,9 @@ export const environment = {
   getDamagedList: "GetDamagedList",
   getStopList: "GetStopList",
   changePassword: "changePassword",
+  getMenuData: "getMenuData",
+
   /**** Routes ****/
   panelRoute: "panel",
   authRoute: "auth",
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
