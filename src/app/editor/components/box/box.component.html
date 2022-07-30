@@ -16,9 +16,32 @@
       background-color: #000c17;
       color: white;
       cursor: move;
+      display: flex;
+      flex-direction: row;
     "
   >
-    {{ name }}
+    <ng-template #contentTemplate>
+      <div>
+        <div style="font-size: 12px">
+          About the {{ indicator.title }} :
+          <br />
+          {{ indicator.description }}
+        </div>
+      </div>
+    </ng-template>
+    <div style="width: 80%; text-align: center">{{ name }}</div>
+    <div style="cursor: help">
+      <i
+        style="font-size: 15px"
+        nz-icon
+        nzType="info-circle"
+        nz-popover
+        [nzPopoverTitle]="indicator.title"
+        nzPopoverTrigger="hover"
+        [nzPopoverContent]="contentTemplate"
+        nzPopoverPlacement="rightBottom"
+      ></i>
+    </div>
   </div>
   <div
     style="
@@ -42,10 +65,26 @@
         </div>
       </div>
       <div>
-        <div class="title">{{ parameter?.title }}</div>
+        <div *ngIf="parameter.dataEntry == false" class="title">
+          {{ parameter?.title }}
+        </div>
+        <div *ngIf="parameter.dataEntry" class="title">
+          <input
+            type="text"
+            [placeholder]="parameter?.title"
+            style="
+              border: none;
+              font-size: 12px;
+              width: 80%;
+              padding-left: 10px;
+              background-color: #303942;
+              color: #fff;
+            "
+          />
+        </div>
       </div>
       <div style="width: 10px" id="output">
-        <div *ngIf="!parameter.isInput" class="connector">
+        <div *ngIf="parameter.isInput == false" class="connector">
           <span
             class="g-dot"
             [ngClass]="[parameter.type]"

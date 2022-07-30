@@ -77,6 +77,7 @@ export class EditorComponent implements OnInit {
   }
 
   itemClick(indicator) {
+    debugger;
     this.boxs.push(
       new Box(indicator.title, "box_" + this.boxs.length, indicator)
     );
@@ -89,7 +90,12 @@ export class EditorComponent implements OnInit {
 
   mainClick($event) {
     var type = $event.target.getAttribute("data-type");
-    if (this.connectMode && this.lastType != type) {
+    if (
+      this.connectMode &&
+      this.lastType != type &&
+      type != "object" &&
+      this.lastType != "object"
+    ) {
       var c = this.line.color;
       setTimeout(() => {
         this.line.setOptions({

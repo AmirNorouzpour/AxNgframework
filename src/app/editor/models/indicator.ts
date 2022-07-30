@@ -26,6 +26,7 @@ export class IndicatorParameter {
   }
   title: string;
   type: string;
-  isInput: boolean;
+  isInput;
+  dataEntry: boolean;
   description: string;
 }
