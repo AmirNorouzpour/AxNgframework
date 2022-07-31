@@ -75,6 +75,7 @@
           [id]="'box_' + i"
           [indicator]="box.indicator"
           [hasBorder]="selectedBoxId == 'box_' + i"
+          [location]="[150, 50]"
           (Move)="boxMoved($event)"
           (Click)="boxClick($event)"
         ></box>

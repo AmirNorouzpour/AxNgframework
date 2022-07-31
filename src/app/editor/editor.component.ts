@@ -44,6 +44,14 @@ export class EditorComponent implements OnInit {
   connectMode = false;
   @ViewChild("block") block: ElementRef;
   ngOnInit(): void {
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      alert("no no!");
+    }
+
     this.point = document.getElementById("elm");
     this.indicatorService.getMenuData().subscribe((result) => {
       //  this.snackBarService.showSuccessMessage(result.message);

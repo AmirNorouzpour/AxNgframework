@@ -6,6 +6,8 @@
   (click)="clicked($event)"
   style="width: 130px; flex-direction: column"
   [ngStyle]="{ border: hasBorder ? '1px solid #185691' : '' }"
+  [ngStyle]="{ top: location[0] && !boxMoved ? location[0] : '0px' }"
+  [ngStyle]="{ left: location[1] && !boxMoved ? location[1] : '0px' }"
 >
   <div
     cdkDragHandle
