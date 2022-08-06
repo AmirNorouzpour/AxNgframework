@@ -9,6 +9,7 @@ import "leader-line";
 import { NzModalService } from "ng-zorro-antd/modal";
 import { Box } from "./models/box";
 import { IndicatorGroup } from "./models/indicator";
+import { Line } from "./models/line";
 import { IndicatorService } from "./services/indicator.service";
 declare type LeaderLineType = any;
 declare let LeaderLine: any;
@@ -62,6 +63,7 @@ export class EditorComponent implements OnInit {
 
   boxs: Array<Box> = [];
   lines: Array<LeaderLineType> = [];
+  lines0: Array<Line> = [];
   indicatorGroups: Array<IndicatorGroup> = [];
   lastType = "";
   searchValue = "";
@@ -85,10 +87,10 @@ export class EditorComponent implements OnInit {
   }
 
   itemClick(indicator) {
-    debugger;
-    this.boxs.push(
-      new Box(indicator.title, "box_" + this.boxs.length, indicator)
-    );
+    var exist = this.boxs.filter((x) => x.id == indicator.title);
+    var id =
+      exist.length > 0 ? indicator.title + (exist.length + 1) : indicator.title;
+    this.boxs.push(new Box(indicator.title, id, indicator));
     // this.modalService.success({
     //   nzTitle: "This is a success message",
     //   nzContent: "some messages...some messages...",
@@ -97,7 +99,9 @@ export class EditorComponent implements OnInit {
   }
 
   mainClick($event) {
+    if ($event.target.classList.contains("main")) this.selectedBoxId = "";
     var type = $event.target.getAttribute("data-type");
+
     if (
       this.connectMode &&
       this.lastType != type &&
@@ -117,30 +121,51 @@ export class EditorComponent implements OnInit {
 
       return false;
     }
-    if ($event.target.classList.contains("g-dot") && !this.connectMode) {
+  }
+
+  parameterClick(data) {
+    var type = data.event.target.getAttribute("data-type");
+    if (data.event.target.classList.contains("g-dot") && !this.connectMode) {
       this.connectMode = true;
-      this.point.nativeElement.style.left = $event.clientX + 10 + "px";
-      this.point.nativeElement.style.top = $event.clientY + 10 + "px";
+      this.point.nativeElement.style.left = data.event.clientX + 10 + "px";
+      this.point.nativeElement.style.top = data.event.clientY + 10 + "px";
       this.lastType = type;
-      let color = window.getComputedStyle($event.target).backgroundColor;
-      this.line = this.getLine($event.target, color);
+      let color = window.getComputedStyle(data.event.target).backgroundColor;
+      this.line = this.getLine(data.event.target, color);
+      var b = this.boxs.find((b) => b.id == data.obj.id);
+      var p = b.indicator.parameters.find(
+        (p) => p.title == data.parameter.title && p.isInput
+      );
+      var l0 = new Line(b.id + "_" + p.title, p);
+      this.lines0.push(l0);
+      p.inouts.push(l0);
     }
 
-    if ($event.target.classList.contains("dot")) {
+    if (data.event.target.classList.contains("dot")) {
       this.line.setOptions({
-        end: $event.target,
+        end: data.event.target,
         endPlug: "behind",
-        color: window.getComputedStyle($event.target).backgroundColor,
+        color: window.getComputedStyle(data.event.target).backgroundColor,
         dash: false,
       });
-
       this.lines.push(this.line);
+      var b = this.boxs.find((b) => b.id == data.obj.id);
+      var p = b.indicator.parameters.find(
+        (p) => p.title == data.parameter.title && !p.isInput
+      );
       this.connectMode = false;
+      var l0 = this.lines0.find((x) => !x.isComplete);
+      if (!l0) return;
+      l0.isComplete = true;
+      l0.end = p;
+      p.inouts.push(l0);
     }
   }
 
   rightClick(e) {
-    if (this.line) {
+    if (this.line && this.connectMode) {
+      var l0 = this.lines0.find((x) => !x.isComplete);
+      if (l0) this.lines0.pop();
       this.line.remove();
       this.connectMode = false;
     }
@@ -169,5 +194,10 @@ export class EditorComponent implements OnInit {
       endPlug: "behind",
       dash: true,
     });
+  }
+
+  save() {
+    var boxs = document.getElementsByClassName("box");
+    debugger;
   }
 }

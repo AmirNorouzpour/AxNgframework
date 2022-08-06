@@ -1,6 +1,6 @@
 <div #endingElement id="elm"></div>
 <div class="header-box">
-  <app-header></app-header>
+  <app-header (Save)="save()"></app-header>
 </div>
 
 <div style="background-color: #000c17">
@@ -70,14 +70,15 @@
     >
       <div style="border: 1px soild red">
         <box
-          *ngFor="let box of boxs; let i = index"
+          *ngFor="let box of boxs"
           [name]="box.title"
-          [id]="'box_' + i"
+          [id]="box.id"
           [indicator]="box.indicator"
-          [hasBorder]="selectedBoxId == 'box_' + i"
-          [location]="[150, 50]"
+          [hasBorder]="selectedBoxId == box.id"
+          [location]="[150, 100]"
           (Move)="boxMoved($event)"
           (Click)="boxClick($event)"
+          (ParameterClick)="parameterClick($event)"
         ></box>
       </div>
       <!-- <box #startingElement  (MoveEvent)="boxMoved($event)"></box>

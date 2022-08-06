@@ -1,3 +1,5 @@
+import { Line } from "./line";
+
 export class IndicatorGroup {
   constructor(title, icon) {
     this.title = title;
@@ -24,9 +26,11 @@ export class IndicatorParameter {
   constructor(title) {
     this.title = title;
   }
+  id: string;
   title: string;
   type: string;
   isInput;
   dataEntry: boolean;
   description: string;
+  inouts: Line[];
 }
