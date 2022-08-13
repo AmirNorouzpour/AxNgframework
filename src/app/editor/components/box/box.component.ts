@@ -19,7 +19,7 @@ export class BoxComponent implements OnInit {
   @Input() name = "";
   @Input() id = "";
   @Input() hasBorder = false;
-  @Input() location = [];
+  @Input() transform = "";
   @Input() indicator: Indicator;
   @Output() Move = new EventEmitter<any>();
   @Output() Click = new EventEmitter<any>();
@@ -42,11 +42,9 @@ export class BoxComponent implements OnInit {
   }
 
   styleObject(): Object {
-    var res = { border: "", left: "0px", top: "0px" };
+    var res = { border: "", transform: "" };
     if (this.hasBorder) res.border = "1px solid #185691";
-    if (this.location[0]) res.left = this.location[0] + "px";
-    if (this.location[1]) res.top = this.location[1] + "px";
-
+    if (this.transform) res.transform = this.transform;
     return res;
   }
 }

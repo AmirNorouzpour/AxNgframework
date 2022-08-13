@@ -5,8 +5,10 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
+import { debug } from "console";
 import "leader-line";
 import { NzModalService } from "ng-zorro-antd/modal";
+import { StrategyListComponent } from "./components/strategy-list/strategy-list.component";
 import { Box } from "./models/box";
 import { IndicatorGroup } from "./models/indicator";
 import { Line } from "./models/line";
@@ -58,8 +60,49 @@ export class EditorComponent implements OnInit {
       //  this.snackBarService.showSuccessMessage(result.message);
       this.indicatorGroups = result.data;
     });
+
+    let data = JSON.parse(
+      `{"name":"a","boxs":[{"title":"Close","id":"Close","indicator":{"title":"Close","description":"Close of candle price ","parameters":[{"title":"Result","type":"list","isInput":false,"dataEntry":false,"inouts":[{"id":"Close_Result","start":"Close_Result","isComplete":true,"end":"RSI_Source"}]}]},"transform":"translate3d(138px,  90px,0px)"},{"title":"RSI","id":"RSI","indicator":{"title":"RSI","parameters":[{"title":"Source","type":"list","isInput":true,"dataEntry":false,"inouts":[{"id":"Close_Result","start":"Close_Result","isComplete":true,"end":"RSI_Source"}]},{"title":"Length","type":"int","isInput":true,"dataEntry":false},{"title":"Result","type":"list","isInput":false,"dataEntry":false}]},"transform":"translate3d(410px,  165px,0px)"}]}`
+    );
+
+    for (let i = 0; i < data.boxs.length; i++) {
+      let b = data.boxs[i];
+      var exist = this.boxs.filter((x) => x.id == b.indicator.title);
+      this.boxs.push(new Box(b.title, b.id, b.indicator, b.transform));
+    }
   }
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    let data = JSON.parse(
+      `{"name":"a","boxs":[{"title":"Close","id":"Close","indicator":{"title":"Close","description":"Close of candle price ","parameters":[{"title":"Result","type":"list","isInput":false,"dataEntry":false,"inouts":[{"id":"Close_Result","start":"Close_Result","isComplete":true,"end":"RSI_Source"}]}]},"transform":"translate3d(138px,  90px,0px)"},{"title":"RSI","id":"RSI","indicator":{"title":"RSI","parameters":[{"title":"Source","type":"list","isInput":true,"dataEntry":false,"inouts":[{"id":"Close_Result","start":"Close_Result","isComplete":true,"end":"RSI_Source"}]},{"title":"Length","type":"int","isInput":true,"dataEntry":false},{"title":"Result","type":"list","isInput":false,"dataEntry":false}]},"transform":"translate3d(410px,  165px,0px)"}]}`
+    );
+
+    for (let i = 0; i < data.boxs.length; i++) {
+      let b = data.boxs[i];
+      for (let j = 0; j < b.indicator.parameters.length; j++) {
+        var p = b.indicator.parameters[j];
+        if (p.inouts) {
+          for (let k = 0; k < p.inouts.length; k++) {
+            var l = p.inouts[k];
+            var lsid = b.id + "_" + p.title;
+            if (l.start == lsid) {
+              let start = document.getElementById(lsid);
+              let end = document.getElementById(l.end);
+              if (!start || !end) continue;
+              let color = window.getComputedStyle(end).backgroundColor;
+              let line = this.getLine(start, color);
+              line.setOptions({
+                end: end,
+                endPlug: "behind",
+                color: color,
+                dash: false,
+              });
+              this.lines.push(line);
+            }
+          }
+        }
+      }
+    }
+  }
 
   boxs: Array<Box> = [];
   lines: Array<LeaderLineType> = [];
@@ -90,7 +133,9 @@ export class EditorComponent implements OnInit {
     var exist = this.boxs.filter((x) => x.id == indicator.title);
     var id =
       exist.length > 0 ? indicator.title + (exist.length + 1) : indicator.title;
-    this.boxs.push(new Box(indicator.title, id, indicator));
+    this.boxs.push(
+      new Box(indicator.title, id, indicator, "translate3d(220px, 88px, 0px);")
+    );
     // this.modalService.success({
     //   nzTitle: "This is a success message",
     //   nzContent: "some messages...some messages...",
@@ -134,10 +179,11 @@ export class EditorComponent implements OnInit {
       this.line = this.getLine(data.event.target, color);
       var b = this.boxs.find((b) => b.id == data.obj.id);
       var p = b.indicator.parameters.find(
-        (p) => p.title == data.parameter.title && p.isInput
+        (p) => p.title == data.parameter.title && !p.isInput
       );
-      var l0 = new Line(b.id + "_" + p.title, p);
+      var l0 = new Line(b.id + "_" + p.title, b.id + "_" + p.title);
       this.lines0.push(l0);
+      if (!p.inouts) p.inouts = [];
       p.inouts.push(l0);
     }
 
@@ -151,13 +197,14 @@ export class EditorComponent implements OnInit {
       this.lines.push(this.line);
       var b = this.boxs.find((b) => b.id == data.obj.id);
       var p = b.indicator.parameters.find(
-        (p) => p.title == data.parameter.title && !p.isInput
+        (p) => p.title == data.parameter.title && p.isInput
       );
       this.connectMode = false;
       var l0 = this.lines0.find((x) => !x.isComplete);
       if (!l0) return;
       l0.isComplete = true;
-      l0.end = p;
+      l0.end = b.id + "_" + p.title;
+      if (!p.inouts) p.inouts = [];
       p.inouts.push(l0);
     }
   }
@@ -196,8 +243,29 @@ export class EditorComponent implements OnInit {
     });
   }
 
+  showStrategiesList(): void {
+    this.modalService.create({
+      nzTitle: "Your Strategies",
+      nzContent: StrategyListComponent,
+      nzDirection: "ltr",
+      nzFooter: null,
+    });
+  }
+
   save() {
-    var boxs = document.getElementsByClassName("box");
-    debugger;
+    let boxs = document.getElementsByClassName("box");
+    let diagram = { name: "a", boxs: [] };
+    for (let i = 0; i < boxs.length; i++) {
+      let boxNode = boxs[i].getAttribute("data-id");
+      let box = this.boxs.find((b) => b.id == boxNode);
+      var locs = boxs[i]
+        .getAttribute("style")
+        .split("transform")[1]
+        .split("(")[1]
+        .split(")")[0]
+        .split(",");
+      box.transform = `translate3d(${locs[0]}, ${locs[1]},0px)`;
+      diagram.boxs.push(box);
+    }
   }
 }

@@ -1,6 +1,6 @@
 <div #endingElement id="elm"></div>
 <div class="header-box">
-  <app-header (Save)="save()"></app-header>
+  <app-header (Save)="save()" (Open)="showStrategiesList()"></app-header>
 </div>
 
 <div style="background-color: #000c17">
@@ -75,7 +75,7 @@
           [id]="box.id"
           [indicator]="box.indicator"
           [hasBorder]="selectedBoxId == box.id"
-          [location]="[150, 100]"
+          [transform]="box.transform"
           (Move)="boxMoved($event)"
           (Click)="boxClick($event)"
           (ParameterClick)="parameterClick($event)"

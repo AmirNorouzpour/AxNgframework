@@ -9,9 +9,14 @@ export class HeaderComponent implements OnInit {
   constructor() {}
   imagePath;
   @Output() Save = new EventEmitter<any>();
+  @Output() Open = new EventEmitter<any>();
   ngOnInit(): void {}
 
   save($event) {
     this.Save.emit($event);
+  }
+
+  open($event) {
+    this.Open.emit($event);
   }
 }

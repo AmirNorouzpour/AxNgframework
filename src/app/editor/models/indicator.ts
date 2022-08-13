@@ -26,10 +26,9 @@ export class IndicatorParameter {
   constructor(title) {
     this.title = title;
   }
-  id: string;
   title: string;
   type: string;
-  isInput;
+  isInput: boolean;
   dataEntry: boolean;
   description: string;
   inouts: Line[];

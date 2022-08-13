@@ -62,6 +62,7 @@
             (click)="parameterClicked($event, parameter)"
             [ngClass]="[parameter.type]"
             attr.data-type="{{ parameter.type }}"
+            [id]="this.id + '_' + parameter.title"
           ></span>
         </div>
       </div>
@@ -91,7 +92,7 @@
             (click)="parameterClicked($event, parameter)"
             [ngClass]="[parameter.type]"
             attr.data-type="{{ parameter.type }}"
-            attr.data-id="{{ parameter.id }}"
+            [id]="this.id + '_' + parameter.title"
           ></span>
         </div>
       </div>
