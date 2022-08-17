@@ -15,33 +15,32 @@ import { CustomSnackBarComponent } from "./components/custom-snack-bar/custom-sn
 import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedMaterialModule,
-    SharedNgZorroModule,
-    FormsModule,
-    RouterModule.forChild([]),
-  ],
-  declarations: [
-    LoadingComponent,
-    SideMenuComponent,
-    GlobalLoadingComponent,
-    AxCardComponent,
-    WithLoadingPipe,
-    AxToolbarComponent,
-    KeyTolinkPipe,
-    ColumnPipe,
-    CustomSnackBarComponent,
-  ],
-  exports: [
-    LoadingComponent,
-    SideMenuComponent,
-    GlobalLoadingComponent,
-    AxCardComponent,
-    WithLoadingPipe,
-    AxToolbarComponent,
-    ColumnPipe,
-  ],
-  entryComponents: [CustomSnackBarComponent],
+    imports: [
+        CommonModule,
+        SharedMaterialModule,
+        SharedNgZorroModule,
+        FormsModule,
+        RouterModule.forChild([]),
+    ],
+    declarations: [
+        LoadingComponent,
+        SideMenuComponent,
+        GlobalLoadingComponent,
+        AxCardComponent,
+        WithLoadingPipe,
+        AxToolbarComponent,
+        KeyTolinkPipe,
+        ColumnPipe,
+        CustomSnackBarComponent,
+    ],
+    exports: [
+        LoadingComponent,
+        SideMenuComponent,
+        GlobalLoadingComponent,
+        AxCardComponent,
+        WithLoadingPipe,
+        AxToolbarComponent,
+        ColumnPipe,
+    ]
 })
 export class AxCommonModule {}
