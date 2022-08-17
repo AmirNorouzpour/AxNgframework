@@ -11,8 +11,7 @@ import { EditorService } from "../../services/editor.service";
 export class StrategyListComponent implements OnInit {
   constructor(
     private editorService: EditorService,
-    private modalService: NzModalService,
-    private router: Router
+    private modalService: NzModalService
   ) {}
   data;
   ngOnInit(): void {}
