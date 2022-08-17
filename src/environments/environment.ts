@@ -35,6 +35,7 @@ export const environment = {
   productInstanceApi: "ProductInstances",
   productInstanceHistoryApi: "ProductInstanceHistories",
   indicatorsApi: "Indicators",
+  editorsApi: "Editor",
 
   /**** Actions ****/
   axToken: "AxToken",

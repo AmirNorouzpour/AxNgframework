@@ -26,7 +26,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
     super(httpService, injector);
   }
 
-  setModelForCreate(data) { }
+  setModelForCreate(data) {}
 
   setModelForUpdate(data) {
     const { userDetail } = data || {};
@@ -230,7 +230,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
               //   const formData: FormData = new FormData();
               //   formData.append("Image", item.file, item.file.name);
 
-              //   debugger;
+              //
               // },
             },
           },
@@ -247,5 +247,5 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
     ];
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }

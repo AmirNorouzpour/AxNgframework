@@ -13,6 +13,7 @@ import { registerLocaleData } from "@angular/common";
 import { NZ_I18N, en_US } from "ng-zorro-antd/i18n";
 import en from "@angular/common/locales/en";
 import { BidiModule } from "@angular/cdk/bidi";
+import { RouteReuseStrategy } from "@angular/router";
 
 registerLocaleData(en);
 
@@ -28,7 +29,7 @@ registerLocaleData(en);
     CoreModule,
     BrowserAnimationsModule,
     SystemsModule,
-    BidiModule
+    BidiModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

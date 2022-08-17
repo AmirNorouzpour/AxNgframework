@@ -1,17 +1,18 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes, Route } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { AuthGuardService as AuthGuard } from "../auth";
-import {EditorComponent} from "../editor/editor.component";
+import { EditorComponent } from "../editor/editor.component";
 
 const routes: Routes = [
+  {
+    path: "editor/:strategyId/:version",
+    component: EditorComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: "editor",
     component: EditorComponent,
     canActivate: [AuthGuard],
-    resolve: {
-      // initialData: AppSetting,
-    },
-    // children: SystemsRoutes,
   },
 ];
 

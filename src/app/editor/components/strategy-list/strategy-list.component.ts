@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { NzModalService } from "ng-zorro-antd/modal";
+import { EditorService } from "../../services/editor.service";
 
 @Component({
   selector: "app-strategy-list",
@@ -6,15 +9,26 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./strategy-list.component.scss"],
 })
 export class StrategyListComponent implements OnInit {
-  constructor() {}
-
+  constructor(
+    private editorService: EditorService,
+    private modalService: NzModalService,
+    private router: Router
+  ) {}
+  data;
   ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    this.editorService.GetUserStrategies().subscribe((result) => {
+      this.data = result.data;
+    });
+  }
 
-  data = [
-    { title: "RSI 14 and SMA", date: new Date() },
-    { title: "Test Bot", date: new Date() },
-    { title: "SMA 50& SMA100", date: new Date() },
-    { title: "MACD Strategy", date: new Date() },
-    { title: "Practice", date: new Date() },
-  ];
+  onEdit(item) {
+    this.modalService.closeAll();
+    // var routerLink = "/editor/" + item.unique;
+    // this.router.navigate([routerLink]);
+    // debugger;
+    // this.router.navigateByUrl(routerLink);
+  }
+
+  versionChange(event) {}
 }

@@ -33,3 +33,7 @@ export class IndicatorParameter {
   description: string;
   inouts: Line[];
 }
+
+export class Editor {
+  data: string;
+}

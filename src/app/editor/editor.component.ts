@@ -3,9 +3,10 @@ import {
   ElementRef,
   HostListener,
   OnInit,
+  TemplateRef,
   ViewChild,
+  ChangeDetectorRef,
 } from "@angular/core";
-import { debug } from "console";
 import "leader-line";
 import { NzModalService } from "ng-zorro-antd/modal";
 import { StrategyListComponent } from "./components/strategy-list/strategy-list.component";
@@ -13,6 +14,10 @@ import { Box } from "./models/box";
 import { IndicatorGroup } from "./models/indicator";
 import { Line } from "./models/line";
 import { IndicatorService } from "./services/indicator.service";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { EditorService } from "./services/editor.service";
+import { ActivatedRoute, Router } from "@angular/router";
+
 declare type LeaderLineType = any;
 declare let LeaderLine: any;
 
@@ -24,15 +29,39 @@ declare let LeaderLine: any;
 export class EditorComponent implements OnInit {
   constructor(
     public indicatorService: IndicatorService,
-    private modalService: NzModalService
-  ) {}
+    public editorService: EditorService,
+    private modalService: NzModalService,
+    private messageService: NzMessageService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    public ref: ChangeDetectorRef
+  ) {
+    this.activatedRoute.params.subscribe((params) => {
+      // this.unique = params.strategyId;
+      // this.loadBoxs(this.unique);
+      // ref.detectChanges();
+    });
+  }
 
   @HostListener("document:keydown.delete", ["$event"])
   onDeleteComponent(event: KeyboardEvent) {
-    debugger;
+    if (!this.selectedBoxId) return;
     var b = this.boxs.find((b) => b.id == this.selectedBoxId);
     const index = this.boxs.indexOf(b);
     if (index !== -1) {
+      this.lines.forEach((x) => {
+        var start, end;
+        if (x.start)
+          start =
+            x.start.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute(
+              "data-id"
+            );
+        end =
+          x.end.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute(
+            "data-id"
+          );
+        if (b.id == start || b.id == end) x.remove();
+      });
       if (this.connectMode) {
         this.line.remove();
         this.connectMode = false;
@@ -43,6 +72,9 @@ export class EditorComponent implements OnInit {
 
   @ViewChild("endingElement", { read: ElementRef })
   private point;
+  @ViewChild("saveModalContent", { read: TemplateRef })
+  saveModalContentTemplate: TemplateRef<any>;
+
   line: LeaderLineType;
   connectMode = false;
   @ViewChild("block") block: ElementRef;
@@ -54,56 +86,74 @@ export class EditorComponent implements OnInit {
     ) {
       alert("no no!");
     }
-
     this.point = document.getElementById("elm");
     this.indicatorService.getMenuData().subscribe((result) => {
       //  this.snackBarService.showSuccessMessage(result.message);
       this.indicatorGroups = result.data;
     });
-
-    let data = JSON.parse(
-      `{"name":"a","boxs":[{"title":"Close","id":"Close","indicator":{"title":"Close","description":"Close of candle price ","parameters":[{"title":"Result","type":"list","isInput":false,"dataEntry":false,"inouts":[{"id":"Close_Result","start":"Close_Result","isComplete":true,"end":"RSI_Source"}]}]},"transform":"translate3d(138px,  90px,0px)"},{"title":"RSI","id":"RSI","indicator":{"title":"RSI","parameters":[{"title":"Source","type":"list","isInput":true,"dataEntry":false,"inouts":[{"id":"Close_Result","start":"Close_Result","isComplete":true,"end":"RSI_Source"}]},{"title":"Length","type":"int","isInput":true,"dataEntry":false},{"title":"Result","type":"list","isInput":false,"dataEntry":false}]},"transform":"translate3d(410px,  165px,0px)"}]}`
-    );
-
-    for (let i = 0; i < data.boxs.length; i++) {
-      let b = data.boxs[i];
-      var exist = this.boxs.filter((x) => x.id == b.indicator.title);
-      this.boxs.push(new Box(b.title, b.id, b.indicator, b.transform));
-    }
   }
+
   ngAfterViewInit() {
-    let data = JSON.parse(
-      `{"name":"a","boxs":[{"title":"Close","id":"Close","indicator":{"title":"Close","description":"Close of candle price ","parameters":[{"title":"Result","type":"list","isInput":false,"dataEntry":false,"inouts":[{"id":"Close_Result","start":"Close_Result","isComplete":true,"end":"RSI_Source"}]}]},"transform":"translate3d(138px,  90px,0px)"},{"title":"RSI","id":"RSI","indicator":{"title":"RSI","parameters":[{"title":"Source","type":"list","isInput":true,"dataEntry":false,"inouts":[{"id":"Close_Result","start":"Close_Result","isComplete":true,"end":"RSI_Source"}]},{"title":"Length","type":"int","isInput":true,"dataEntry":false},{"title":"Result","type":"list","isInput":false,"dataEntry":false}]},"transform":"translate3d(410px,  165px,0px)"}]}`
-    );
+    this.unique = this.activatedRoute.snapshot.params["strategyId"];
+    var version = this.activatedRoute.snapshot.params["version"];
+    this.loadBoxs(this.unique, version);
+  }
 
-    for (let i = 0; i < data.boxs.length; i++) {
-      let b = data.boxs[i];
-      for (let j = 0; j < b.indicator.parameters.length; j++) {
-        var p = b.indicator.parameters[j];
-        if (p.inouts) {
-          for (let k = 0; k < p.inouts.length; k++) {
-            var l = p.inouts[k];
-            var lsid = b.id + "_" + p.title;
-            if (l.start == lsid) {
-              let start = document.getElementById(lsid);
-              let end = document.getElementById(l.end);
-              if (!start || !end) continue;
-              let color = window.getComputedStyle(end).backgroundColor;
-              let line = this.getLine(start, color);
-              line.setOptions({
-                end: end,
-                endPlug: "behind",
-                color: color,
-                dash: false,
-              });
-              this.lines.push(line);
-            }
+  loadBoxs(unique, version) {
+    if (unique) {
+      this.lines.forEach((x) => x.remove());
+      this.lines0 = [];
+      this.boxs = [];
+      this.editorService
+        .getByunique(this.unique, version)
+        .subscribe((result) => {
+          this.strategy = result.data.data;
+          this.strategyName = result.data.name;
+          let data = JSON.parse(this.strategy);
+          for (let i = 0; i < data.boxs.length; i++) {
+            let b = data.boxs[i];
+            var exist = this.boxs.filter((x) => x.id == b.indicator.title);
+
+            this.boxs.push(new Box(b.title, b.id, b.indicator, b.transform));
           }
-        }
-      }
+          setTimeout(() => {
+            for (let i = 0; i < data.boxs.length; i++) {
+              let b = data.boxs[i];
+              for (let j = 0; j < b.indicator.parameters.length; j++) {
+                var p = b.indicator.parameters[j];
+                if (p.inouts) {
+                  for (let k = 0; k < p.inouts.length; k++) {
+                    var l = p.inouts[k];
+                    var lsid = b.id + "_" + p.title;
+                    if (l.start == lsid) {
+                      let start = document.getElementById(lsid);
+                      if (!start) alert("start is null!!");
+                      let end = document.getElementById(l.end);
+                      if (!start || !end) continue;
+                      let color = window.getComputedStyle(end).backgroundColor;
+                      let line = this.getLine(start, color);
+                      line.setOptions({
+                        end: end,
+                        endPlug: "behind",
+                        color: color,
+                        dash: false,
+                        show: false,
+                      });
+                      line.show("draw");
+                      this.lines.push(line);
+                    }
+                  }
+                }
+              }
+            }
+          }, 50);
+        });
     }
   }
 
+  strategyName: string;
+  strategy: string;
+  unique: string;
   boxs: Array<Box> = [];
   lines: Array<LeaderLineType> = [];
   lines0: Array<Line> = [];
@@ -194,6 +244,7 @@ export class EditorComponent implements OnInit {
         color: window.getComputedStyle(data.event.target).backgroundColor,
         dash: false,
       });
+      this.line.show("draw");
       this.lines.push(this.line);
       var b = this.boxs.find((b) => b.id == data.obj.id);
       var p = b.indicator.parameters.find(
@@ -254,7 +305,7 @@ export class EditorComponent implements OnInit {
 
   save() {
     let boxs = document.getElementsByClassName("box");
-    let diagram = { name: "a", boxs: [] };
+    let diagram = { name: this.strategyName, boxs: [] };
     for (let i = 0; i < boxs.length; i++) {
       let boxNode = boxs[i].getAttribute("data-id");
       let box = this.boxs.find((b) => b.id == boxNode);
@@ -267,5 +318,33 @@ export class EditorComponent implements OnInit {
       box.transform = `translate3d(${locs[0]}, ${locs[1]},0px)`;
       diagram.boxs.push(box);
     }
+
+    this.modalService.create({
+      nzTitle: "Save strategy",
+      nzContent: this.saveModalContentTemplate,
+      nzDirection: "ltr",
+      nzOnOk: () => this.saveAction(diagram),
+    });
+  }
+  saveAction(diagram) {
+    var mid = this.messageService.loading(
+      "Saving strategy in progress..."
+    ).messageId;
+
+    diagram.name = this.strategyName;
+    let json = JSON.stringify(diagram);
+    let data = { Name: this.strategyName, Data: json, unique: this.unique };
+    return this.editorService.save(data).subscribe((result) => {
+      this.messageService.remove(mid);
+      if (result.isSuccess) {
+        this.messageService.success("Strategy saved successfully", {
+          nzDuration: 1000,
+        });
+        this.router.navigate(["editor", result.data]);
+      } else
+        this.messageService.error(result.message, {
+          nzDuration: 2000,
+        });
+    });
   }
 }
