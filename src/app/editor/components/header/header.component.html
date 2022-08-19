@@ -5,7 +5,7 @@
     </div>
   </div>
   <div style="flex-grow: 6; justify-content: center; display: flex">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="newItem($event)">
       <mat-icon class="ax-header__user-icon" style="color: lightgray"
         >add_box</mat-icon
       >
@@ -52,15 +52,35 @@
     </button>
   </div>
   <div style="flex-grow: 0; justify-content: flex-end; display: flex">
-    <button mat-icon-button>
-      <mat-icon class="ax-header__user-icon">chat</mat-icon>
+    <button mat-icon-button (click)="openMsg($event)">
+      <nz-badge [nzDot]="true" nzSize="small">
+        <mat-icon class="ax-header__user-icon" style="color: white"
+          >chat</mat-icon
+        >
+      </nz-badge>
     </button>
-    <button mat-icon-button>
-      <mat-icon class="ax-header__user-icon">notifications</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+      <nz-badge [nzCount]="2" [nzOverflowCount]="99" nzSize="small">
+        <mat-icon class="ax-header__user-icon" style="color: white"
+          >notifications</mat-icon
+        >
+      </nz-badge>
     </button>
-    <button mat-icon-button>
+
+    <mat-menu
+      class="ax-header__notifications-menu"
+      xPosition="before"
+      #notificationMenu
+    >
+      <ax-notifications-menu></ax-notifications-menu>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon class="ax-header__user-icon">account_circle</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <user-account-menu></user-account-menu>
+    </mat-menu>
     <button mat-icon-button>
       <mat-icon class="ax-header__user-icon">menu</mat-icon>
     </button>

@@ -1,0 +1,15 @@
+<div class="ax-user-menu">
+  <button class="ax-user-menu__btn" mat-button>
+    <mat-icon class="ax-user-menu__icon">account_box</mat-icon
+    >{{ "My Account" | translate }}
+  </button>
+  <button class="ax-user-menu__btn" mat-button>
+    <mat-icon class="ax-user-menu__icon">vpn_key</mat-icon>
+    {{ "Change Password" | translate }}
+  </button>
+  <div class="ax-user-menu__divider"></div>
+  <button (click)="logout()" class="ax-user-menu__btn" mat-button>
+    <mat-icon class="ax-user-menu__icon">exit_to_app</mat-icon>
+    {{ "Exit" | translate }}
+  </button>
+</div>

@@ -5,7 +5,6 @@ import {
   OnInit,
   TemplateRef,
   ViewChild,
-  ChangeDetectorRef,
 } from "@angular/core";
 import "leader-line";
 import { NzModalService } from "ng-zorro-antd/modal";
@@ -33,15 +32,8 @@ export class EditorComponent implements OnInit {
     private modalService: NzModalService,
     private messageService: NzMessageService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    public ref: ChangeDetectorRef
-  ) {
-    this.activatedRoute.params.subscribe((params) => {
-      // this.unique = params.strategyId;
-      // this.loadBoxs(this.unique);
-      // ref.detectChanges();
-    });
-  }
+    private router: Router
+  ) {}
 
   @HostListener("document:keydown.delete", ["$event"])
   onDeleteComponent(event: KeyboardEvent) {
@@ -74,9 +66,13 @@ export class EditorComponent implements OnInit {
   private point;
   @ViewChild("saveModalContent", { read: TemplateRef })
   saveModalContentTemplate: TemplateRef<any>;
+  @ViewChild("strategiesListContentTemplate", { read: TemplateRef })
+  strategiesListContentTemplate: TemplateRef<any>;
 
+  rightVisable = false;
   line: LeaderLineType;
   connectMode = false;
+  isDirty = false;
   @ViewChild("block") block: ElementRef;
   ngOnInit(): void {
     if (
@@ -91,17 +87,24 @@ export class EditorComponent implements OnInit {
       //  this.snackBarService.showSuccessMessage(result.message);
       this.indicatorGroups = result.data;
     });
+
+    this.activatedRoute.params.subscribe((params) => {
+      this.unique = this.activatedRoute.snapshot.params["strategyId"];
+      var version = this.activatedRoute.snapshot.params["version"];
+      this.loadBoxs(this.unique, version);
+    });
   }
 
   ngAfterViewInit() {
-    this.unique = this.activatedRoute.snapshot.params["strategyId"];
-    var version = this.activatedRoute.snapshot.params["version"];
-    this.loadBoxs(this.unique, version);
+    // this.unique = this.activatedRoute.snapshot.params["strategyId"];
+    // var version = this.activatedRoute.snapshot.params["version"];
+    // this.loadBoxs(this.unique, version);
   }
 
   loadBoxs(unique, version) {
     if (unique) {
       this.lines.forEach((x) => x.remove());
+      this.lines = [];
       this.lines0 = [];
       this.boxs = [];
       this.editorService
@@ -113,9 +116,9 @@ export class EditorComponent implements OnInit {
           for (let i = 0; i < data.boxs.length; i++) {
             let b = data.boxs[i];
             var exist = this.boxs.filter((x) => x.id == b.indicator.title);
-
             this.boxs.push(new Box(b.title, b.id, b.indicator, b.transform));
           }
+
           setTimeout(() => {
             for (let i = 0; i < data.boxs.length; i++) {
               let b = data.boxs[i];
@@ -146,6 +149,7 @@ export class EditorComponent implements OnInit {
                 }
               }
             }
+            this.isDirty = false;
           }, 50);
         });
     }
@@ -174,6 +178,7 @@ export class EditorComponent implements OnInit {
     for (let line of this.lines) {
       line.position();
     }
+    this.isDirty = true;
   }
   boxClick(box) {
     this.selectedBoxId = box.id;
@@ -186,10 +191,10 @@ export class EditorComponent implements OnInit {
     this.boxs.push(
       new Box(indicator.title, id, indicator, "translate3d(220px, 88px, 0px);")
     );
+    this.isDirty = true;
     // this.modalService.success({
     //   nzTitle: "This is a success message",
     //   nzContent: "some messages...some messages...",
-    //   nzDirection: "ltr",
     // });
   }
 
@@ -216,6 +221,14 @@ export class EditorComponent implements OnInit {
 
       return false;
     }
+  }
+
+  hanldeMsg() {
+    this.rightVisable = true;
+  }
+
+  rightClose(): void {
+    this.rightVisable = false;
   }
 
   parameterClick(data) {
@@ -257,6 +270,7 @@ export class EditorComponent implements OnInit {
       l0.end = b.id + "_" + p.title;
       if (!p.inouts) p.inouts = [];
       p.inouts.push(l0);
+      this.isDirty = true;
     }
   }
 
@@ -280,6 +294,7 @@ export class EditorComponent implements OnInit {
     this.point.nativeElement.style.left = $event.pageX + "px";
     this.point.nativeElement.style.top = $event.pageY + "px";
     this.line.position();
+    this.isDirty = true;
   }
 
   getLine(target, color) {
@@ -297,10 +312,41 @@ export class EditorComponent implements OnInit {
   showStrategiesList(): void {
     this.modalService.create({
       nzTitle: "Your Strategies",
-      nzContent: StrategyListComponent,
-      nzDirection: "ltr",
+      nzContent: this.strategiesListContentTemplate,
       nzFooter: null,
     });
+  }
+
+  editItem(item) {
+    this.showDirtyConfirm(() => {
+      this.modalService.closeAll();
+      this.router.navigate(["editor", item.unique, item.version]);
+    });
+  }
+
+  newItem() {
+    this.showDirtyConfirm(() => {
+      this.lines.forEach((x) => x.remove());
+      this.lines = [];
+      this.lines0 = [];
+      this.boxs = [];
+      this.router.navigate(["editor"]);
+    });
+  }
+
+  showDirtyConfirm(action): void {
+    if (this.isDirty) {
+      this.modalService.confirm({
+        nzTitle: "Leave?",
+        nzContent:
+          '<b style="color: red;">Changes you made may not be saved!</b>',
+        nzOkText: "Yes",
+        nzOkType: "primary",
+        nzOkDanger: true,
+        nzOnOk: () => action(),
+        nzCancelText: "No",
+      });
+    } else action();
   }
 
   save() {
@@ -311,18 +357,31 @@ export class EditorComponent implements OnInit {
       let box = this.boxs.find((b) => b.id == boxNode);
       var locs = boxs[i]
         .getAttribute("style")
-        .split("transform")[1]
+        .split("transform: translate3d")[1]
         .split("(")[1]
         .split(")")[0]
         .split(",");
-      box.transform = `translate3d(${locs[0]}, ${locs[1]},0px)`;
+      var old = boxs[i].getAttribute("style").split("translate3d")[2];
+
+      var x0 = parseInt(locs[0]);
+      var y0 = parseInt(locs[1]);
+      var x1 = 0,
+        y1 = 0;
+      if (old) {
+        debugger;
+        var oldNumbers = old.split("(")[1].split(")")[0].split(",");
+        y1 = parseInt(oldNumbers[1]);
+        x1 = parseInt(oldNumbers[0]);
+      }
+      var x = x1 + x0;
+      var y = y1 + y0;
+      box.transform = `translate3d(${x}px, ${y}px,0px)`;
       diagram.boxs.push(box);
     }
 
     this.modalService.create({
       nzTitle: "Save strategy",
       nzContent: this.saveModalContentTemplate,
-      nzDirection: "ltr",
       nzOnOk: () => this.saveAction(diagram),
     });
   }
@@ -337,10 +396,15 @@ export class EditorComponent implements OnInit {
     return this.editorService.save(data).subscribe((result) => {
       this.messageService.remove(mid);
       if (result.isSuccess) {
+        this.isDirty = false;
         this.messageService.success("Strategy saved successfully", {
           nzDuration: 1000,
         });
-        this.router.navigate(["editor", result.data]);
+        this.router.navigate([
+          "editor",
+          result.data.unique,
+          result.data.version,
+        ]);
       } else
         this.messageService.error(result.message, {
           nzDuration: 2000,

@@ -26,5 +26,6 @@ import { LanguageMenuComponent } from "./components/language-menu/language-menu.
     LanguageMenuComponent,
   ],
   imports: [SharedModule, PanelRoutingModule],
+  exports:[NotificationsMenuComponent]
 })
 export class PanelModule {}

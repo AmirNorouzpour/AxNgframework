@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { NzModalService } from "ng-zorro-antd/modal";
 import { EditorService } from "../../services/editor.service";
@@ -14,6 +14,7 @@ export class StrategyListComponent implements OnInit {
     private modalService: NzModalService
   ) {}
   data;
+  @Output() onEdit = new EventEmitter<any>();
   ngOnInit(): void {}
   ngAfterViewInit(): void {
     this.editorService.GetUserStrategies().subscribe((result) => {
@@ -21,12 +22,8 @@ export class StrategyListComponent implements OnInit {
     });
   }
 
-  onEdit(item) {
-    this.modalService.closeAll();
-    // var routerLink = "/editor/" + item.unique;
-    // this.router.navigate([routerLink]);
-    // debugger;
-    // this.router.navigateByUrl(routerLink);
+  onEditClick(item) {
+    this.onEdit.emit(item);
   }
 
   versionChange(event) {}

@@ -26,6 +26,7 @@ import { NzMenuModule } from "ng-zorro-antd/menu";
 import { NzPopoverModule } from "ng-zorro-antd/popover";
 import { NzListModule } from "ng-zorro-antd/list";
 import { NzMessageModule } from "ng-zorro-antd/message";
+import { NzBadgeModule } from "ng-zorro-antd/badge";
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import { NzMessageModule } from "ng-zorro-antd/message";
     NzPopoverModule,
     NzListModule,
     NzMessageModule,
+    NzBadgeModule,
   ],
   exports: [
     NzTableModule,
@@ -85,6 +87,7 @@ import { NzMessageModule } from "ng-zorro-antd/message";
     NzPopoverModule,
     NzListModule,
     NzMessageModule,
+    NzBadgeModule,
   ],
 })
 export class SharedNgZorroModule {}

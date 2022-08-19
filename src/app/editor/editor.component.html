@@ -1,6 +1,11 @@
 <div #endingElement id="elm"></div>
 <div class="header-box">
-  <app-header (Save)="save()" (Open)="showStrategiesList()"></app-header>
+  <app-header
+    (Save)="save()"
+    (Open)="showStrategiesList()"
+    (New)="newItem()"
+    (Msg)="hanldeMsg()"
+  ></app-header>
 </div>
 
 <div style="background-color: #000c17">
@@ -90,8 +95,22 @@
       ></LeaderLine> -->
     </div>
   </div>
+  <ng-template #saveModalContent>
+    <input nz-input placeholder="Strategy Name" [(ngModel)]="strategyName" />
+  </ng-template>
+  <ng-template #strategiesListContentTemplate>
+    <app-strategy-list (onEdit)="editItem($event)"></app-strategy-list>
+  </ng-template>
 </div>
 
-<ng-template #saveModalContent>
-  <input nz-input placeholder="Strategy Name" [(ngModel)]="strategyName" />
-</ng-template>
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="rightVisable"
+  nzPlacement="right"
+  nzTitle="Basic Drawer"
+  (nzOnClose)="rightClose()"
+>
+</nz-drawer>
+<div class="footer-box">
+  <app-footer></app-footer>
+</div>

@@ -34,11 +34,7 @@
           {{ item.dateTime | date: "yyyy-MM-dd HH:mm" }}
         </td>
         <td style="font-size: 12px; text-align: center">
-          <a
-            [routerLink]="'/editor/' + item.unique + '/' + item.version"
-            (click)="onEdit(item)"
-            >Edit</a
-          >
+          <a (click)="onEditClick(item)">Edit</a>
         </td>
       </tr>
     </tbody>

@@ -19,19 +19,19 @@ export class LineChartComponent implements OnInit {
     maintainAspectRatio: false,
     legend: {
       labels: {
-        fontFamily: "IranSans",
+        fontFamily: "Inter",
       },
     },
     tooltips: {
-      bodyFontFamily: "IranSans",
-      titleFontFamily: "IranSans",
+      bodyFontFamily: "Inter",
+      titleFontFamily: "Inter",
     },
     scales: {
       xAxes: [
         {
           id: "x",
           ticks: {
-            fontFamily: "IranSans",
+            fontFamily: "Inter",
           },
         },
       ],
@@ -39,7 +39,7 @@ export class LineChartComponent implements OnInit {
         {
           id: "y",
           ticks: {
-            fontFamily: "IranSans",
+            fontFamily: "Inter",
             min: 0,
           },
         },

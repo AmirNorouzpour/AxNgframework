@@ -32,8 +32,8 @@ export class BarChartComponent implements OnInit, OnChanges {
   public barChartOptions: ChartOptions = {
     responsive: true,
     tooltips: {
-      bodyFontFamily: "IranSans",
-      titleFontFamily: "IranSans",
+      bodyFontFamily: "Inter",
+      titleFontFamily: "Inter",
     },
     maintainAspectRatio: false,
     scales: {
@@ -41,7 +41,7 @@ export class BarChartComponent implements OnInit, OnChanges {
         {
           id: "x",
           ticks: {
-            fontFamily: "IranSans",
+            fontFamily: "Inter",
             minRotation: 45,
           },
         },
@@ -50,7 +50,7 @@ export class BarChartComponent implements OnInit, OnChanges {
         {
           id: "y",
           ticks: {
-            fontFamily: "IranSans",
+            fontFamily: "Inter",
             min: 0,
             stepSize: 10,
           },
@@ -65,7 +65,7 @@ export class BarChartComponent implements OnInit, OnChanges {
     },
     legend: {
       labels: {
-        fontFamily: "IranSans",
+        fontFamily: "Inter",
       },
     },
   };

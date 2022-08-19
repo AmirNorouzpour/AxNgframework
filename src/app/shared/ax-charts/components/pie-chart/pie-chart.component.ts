@@ -41,7 +41,7 @@ export class PieChartComponent implements OnInit {
   public pieChartOptions: ChartOptions = {
     responsive: true,
     tooltips: {
-      bodyFontFamily: "IranSans",
+      bodyFontFamily: "Inter",
       callbacks: {
         label: (item: ChartTooltipItem, data: ChartData) => {
           const { index, datasetIndex } = item;
@@ -58,7 +58,7 @@ export class PieChartComponent implements OnInit {
     legend: {
       position: "top",
       labels: {
-        fontFamily: "IranSans",
+        fontFamily: "Inter",
       },
     },
   };
