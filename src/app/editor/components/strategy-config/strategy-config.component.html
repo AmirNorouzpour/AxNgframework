@@ -1,0 +1,63 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="account"
+      >Account
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="The input is not valid Account!"
+    >
+      <nz-select ngModel="account">
+        <nz-option nzValue="1" nzLabel="Binance"></nz-option>
+        <nz-option nzValue="2" nzLabel="Kucoin"></nz-option>
+        <nz-option nzValue="3" nzLabel="Coinex"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password"
+      >Market</nz-form-label
+    >
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Please input your Market!"
+    >
+      <nz-select ngModel="market">
+        <nz-option nzValue="1" nzLabel="BTCUSDT"></nz-option>
+        <nz-option nzValue="2" nzLabel="ETHUSDT"></nz-option>
+        <nz-option nzValue="3" nzLabel="XRPUSDT"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Amount in {{ "BTC" }}</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <nz-input-number
+        style="width: 100%"
+        [(ngModel)]="demoValue"
+        [nzMin]="0"
+        [nzMax]="1000000"
+        [nzStep]="0.00001"
+      ></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname">
+      <span>Interval</span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <nz-select ngModel="interval">
+        <nz-option nzValue="1" nzLabel="1 Minute"></nz-option>
+        <nz-option nzValue="2" nzLabel="3 Minutes"></nz-option>
+        <nz-option nzValue="3" nzLabel="5 Minutes"></nz-option>
+        <nz-option nzValue="4" nzLabel="15 Minutes"></nz-option>
+        <nz-option nzValue="5" nzLabel="30 Minutes"></nz-option>
+        <nz-option nzValue="6" nzLabel="1 Hour"></nz-option>
+        <nz-option nzValue="7" nzLabel="2 Hours"></nz-option>
+        <nz-option nzValue="8" nzLabel="4 Hours"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+</form>

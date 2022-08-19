@@ -98,10 +98,10 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  menuSearch($event) {
+  menuSearch() {
     // debugger;
     // var tmp: Array<IndicatorGroup> = [];
-    // var value = $event.target.value;
+    // var value = this.searchValue;
     // if (!value) {
     //   this.indicatorGroups = this.indicatorGroupsAll;
     //   return;
