@@ -10,6 +10,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { UserAccountMenuComponent } from "./components/user-account-menu/user-account-menu.component";
 import { NotificationsMenuComponent } from "../panel/components/notifications-menu/notifications-menu.component";
 import { PanelModule } from "../panel";
+import { StrategyConfigComponent } from './components/strategy-config/strategy-config.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PanelModule } from "../panel";
     StrategyListComponent,
     FooterComponent,
     UserAccountMenuComponent,
+    StrategyConfigComponent,
   ],
   imports: [SharedModule, EditorRoutingModule, DragDropModule,PanelModule],
 })

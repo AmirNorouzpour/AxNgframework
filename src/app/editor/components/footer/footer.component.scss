@@ -1,5 +1,14 @@
 .item {
   color: snow;
-  margin-top: 7px;
-  font-size: 12px;
+  font-size: 11px;
+  width: 100px;
+  border-right: 1px solid black;
+  height: 100%;
+  text-align: center;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: rgb(49, 49, 49);
 }

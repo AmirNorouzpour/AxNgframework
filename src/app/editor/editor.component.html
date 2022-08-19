@@ -5,6 +5,7 @@
     (Open)="showStrategiesList()"
     (New)="newItem()"
     (Msg)="hanldeMsg()"
+    (Config)="onConfig()"
   ></app-header>
 </div>
 
@@ -18,6 +19,7 @@
       <div class="search-box">
         <input
           placeholder="Search"
+          (keyup)="menuSearch($event)"
           [(ngModel)]="searchValue"
           class="search-input"
         />
@@ -101,13 +103,17 @@
   <ng-template #strategiesListContentTemplate>
     <app-strategy-list (onEdit)="editItem($event)"></app-strategy-list>
   </ng-template>
+  <ng-template #configContentTemplate>
+    <strategy-config></strategy-config>
+  </ng-template>
 </div>
 
 <nz-drawer
   [nzClosable]="false"
   [nzVisible]="rightVisable"
   nzPlacement="right"
-  nzTitle="Basic Drawer"
+  nzWidth="500px"
+  nzTitle="Delvin Documentation"
   (nzOnClose)="rightClose()"
 >
 </nz-drawer>

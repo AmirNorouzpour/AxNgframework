@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
   selector: "app-header",
@@ -8,10 +8,12 @@ import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 export class HeaderComponent implements OnInit {
   constructor() {}
   imagePath;
+  MsgCount = 0;
   @Output() Save = new EventEmitter<any>();
   @Output() Open = new EventEmitter<any>();
   @Output() New = new EventEmitter<any>();
   @Output() Msg = new EventEmitter<any>();
+  @Output() Config = new EventEmitter<any>();
   ngOnInit(): void {}
 
   save($event) {
@@ -25,5 +27,11 @@ export class HeaderComponent implements OnInit {
   }
   openMsg($event) {
     this.Msg.emit($event);
+  }
+  msgCount(msgs) {
+    this.MsgCount = msgs.length;
+  }
+  config($event) {
+    this.Config.emit($event);
   }
 }

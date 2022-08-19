@@ -68,6 +68,8 @@ export class EditorComponent implements OnInit {
   saveModalContentTemplate: TemplateRef<any>;
   @ViewChild("strategiesListContentTemplate", { read: TemplateRef })
   strategiesListContentTemplate: TemplateRef<any>;
+  @ViewChild("configContentTemplate", { read: TemplateRef })
+  configContentTemplate: TemplateRef<any>;
 
   rightVisable = false;
   line: LeaderLineType;
@@ -86,6 +88,7 @@ export class EditorComponent implements OnInit {
     this.indicatorService.getMenuData().subscribe((result) => {
       //  this.snackBarService.showSuccessMessage(result.message);
       this.indicatorGroups = result.data;
+      this.indicatorGroupsAll = result.data;
     });
 
     this.activatedRoute.params.subscribe((params) => {
@@ -93,6 +96,35 @@ export class EditorComponent implements OnInit {
       var version = this.activatedRoute.snapshot.params["version"];
       this.loadBoxs(this.unique, version);
     });
+  }
+
+  menuSearch($event) {
+    // debugger;
+    // var tmp: Array<IndicatorGroup> = [];
+    // var value = $event.target.value;
+    // if (!value) {
+    //   this.indicatorGroups = this.indicatorGroupsAll;
+    //   return;
+    // }
+    // for (var i = 0; i < this.indicatorGroupsAll.length; i++) {
+    //   var item = this.indicatorGroupsAll[i];
+    //   for (var j = 0; i < item.indicators.length; j++) {
+    //     var child = item.indicators[j];
+    //     if (
+    //       child.title.toLocaleLowerCase().startsWith(value.toLocaleLowerCase())
+    //     ) {
+    //       var index = tmp.indexOf(item);
+    //       if (index == -1) {
+    //         item.indicators = [];
+    //         item.indicators.push(child);
+    //         tmp.push(item);
+    //       } else {
+    //         tmp[index].indicators.push(child);
+    //       }
+    //     }
+    //   }
+    // }
+    // this.indicatorGroups = tmp;
   }
 
   ngAfterViewInit() {
@@ -162,6 +194,7 @@ export class EditorComponent implements OnInit {
   lines: Array<LeaderLineType> = [];
   lines0: Array<Line> = [];
   indicatorGroups: Array<IndicatorGroup> = [];
+  indicatorGroupsAll: Array<IndicatorGroup> = [];
   lastType = "";
   searchValue = "";
   selectedBoxId: "";
@@ -314,6 +347,13 @@ export class EditorComponent implements OnInit {
       nzTitle: "Your Strategies",
       nzContent: this.strategiesListContentTemplate,
       nzFooter: null,
+    });
+  }
+
+  onConfig() {
+    this.modalService.create({
+      nzTitle: "Config Strategy",
+      nzContent: this.configContentTemplate,
     });
   }
 

@@ -15,7 +15,7 @@
         >list_alt</mat-icon
       >
     </button>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="config($event)">
       <mat-icon class="ax-header__user-icon" style="color: lightgray"
         >tune</mat-icon
       >
@@ -53,14 +53,12 @@
   </div>
   <div style="flex-grow: 0; justify-content: flex-end; display: flex">
     <button mat-icon-button (click)="openMsg($event)">
-      <nz-badge [nzDot]="true" nzSize="small">
-        <mat-icon class="ax-header__user-icon" style="color: white"
-          >chat</mat-icon
-        >
-      </nz-badge>
+      <mat-icon class="ax-header__user-icon" style="color: white"
+        >insert_drive_file</mat-icon
+      >
     </button>
     <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
-      <nz-badge [nzCount]="2" [nzOverflowCount]="99" nzSize="small">
+      <nz-badge [nzCount]="MsgCount" [nzOverflowCount]="99" nzSize="small">
         <mat-icon class="ax-header__user-icon" style="color: white"
           >notifications</mat-icon
         >
@@ -72,7 +70,9 @@
       xPosition="before"
       #notificationMenu
     >
-      <ax-notifications-menu></ax-notifications-menu>
+      <ax-notifications-menu
+        (OnMsgCount)="msgCount($event)"
+      ></ax-notifications-menu>
     </mat-menu>
 
     <button mat-icon-button [matMenuTriggerFor]="menu">
