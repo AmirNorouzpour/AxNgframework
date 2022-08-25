@@ -8,9 +8,31 @@
     flex-direction: row;
   "
 >
-  <div class="item">Console</div>
-  <div class="item">Chart</div>
-  <div class="item">Orders</div>
-  <div class="item">Positions</div>
-  <div class="item">Histories</div>
+  <div
+    *ngFor="let tab of tabs"
+    class="item"
+    [style.background-color]="active == tab ? '#041a2e' : '#000c17'"
+    (click)="openConsole(tab)"
+  >
+    {{ tab }}
+  </div>
+  <div
+    style="
+      width: 100%;
+      height: 300px;
+      background-color: #041a2e;
+      position: absolute;
+      border-top: 1px solid #000c17;
+      transform: translate(0px, -300px);
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      padding: 10px;
+      overflow-y: auto;
+    "
+    [style.display]="hide ? 'none' : 'block'"
+  >
+    <ax-console [style.display]="active == 'Console' ? 'block' : 'none'">
+    </ax-console>
+  </div>
 </div>

@@ -13,4 +13,12 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
     this.signalRService.addListener("PriceUpdate", this.onDataReceived);
   }
+  tabs = ["Console", "Chart", "Orders", "Positions", "Histories"];
+  openConsole(id) {
+    if (id == this.active) this.hide = !this.hide;
+    else this.hide = false;
+    this.active = id;
+  }
+  active = "";
+  hide = true;
 }

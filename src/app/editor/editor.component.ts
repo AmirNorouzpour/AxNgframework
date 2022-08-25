@@ -137,7 +137,7 @@ export class EditorComponent implements OnInit {
     if (unique) {
       this.lines.forEach((x) => x.remove());
       this.lines = [];
-      this.lines0 = [];
+      this.inner_lines = [];
       this.boxs = [];
       this.editorService
         .getByunique(this.unique, version)
@@ -172,9 +172,7 @@ export class EditorComponent implements OnInit {
                         endPlug: "behind",
                         color: color,
                         dash: false,
-                        show: false,
                       });
-                      line.show("draw");
                       this.lines.push(line);
                     }
                   }
@@ -192,7 +190,7 @@ export class EditorComponent implements OnInit {
   unique: string;
   boxs: Array<Box> = [];
   lines: Array<LeaderLineType> = [];
-  lines0: Array<Line> = [];
+  inner_lines: Array<Line> = [];
   indicatorGroups: Array<IndicatorGroup> = [];
   indicatorGroupsAll: Array<IndicatorGroup> = [];
   lastType = "";
@@ -209,6 +207,10 @@ export class EditorComponent implements OnInit {
 
   boxMoved($event) {
     for (let line of this.lines) {
+      if (!line.start) {
+        this.lines.pop();
+        continue;
+      }
       line.position();
     }
     this.isDirty = true;
@@ -278,7 +280,7 @@ export class EditorComponent implements OnInit {
         (p) => p.title == data.parameter.title && !p.isInput
       );
       var l0 = new Line(b.id + "_" + p.title, b.id + "_" + p.title);
-      this.lines0.push(l0);
+      this.inner_lines.push(l0);
       if (!p.inouts) p.inouts = [];
       p.inouts.push(l0);
     }
@@ -297,7 +299,7 @@ export class EditorComponent implements OnInit {
         (p) => p.title == data.parameter.title && p.isInput
       );
       this.connectMode = false;
-      var l0 = this.lines0.find((x) => !x.isComplete);
+      var l0 = this.inner_lines.find((x) => !x.isComplete);
       if (!l0) return;
       l0.isComplete = true;
       l0.end = b.id + "_" + p.title;
@@ -309,8 +311,8 @@ export class EditorComponent implements OnInit {
 
   rightClick(e) {
     if (this.line && this.connectMode) {
-      var l0 = this.lines0.find((x) => !x.isComplete);
-      if (l0) this.lines0.pop();
+      var l0 = this.inner_lines.find((x) => !x.isComplete);
+      if (l0) this.inner_lines.pop();
       this.line.remove();
       this.connectMode = false;
     }
@@ -368,7 +370,7 @@ export class EditorComponent implements OnInit {
     this.showDirtyConfirm(() => {
       this.lines.forEach((x) => x.remove());
       this.lines = [];
-      this.lines0 = [];
+      this.inner_lines = [];
       this.boxs = [];
       this.router.navigate(["editor"]);
     });
