@@ -127,12 +127,6 @@ export class EditorComponent implements OnInit {
     // this.indicatorGroups = tmp;
   }
 
-  ngAfterViewInit() {
-    // this.unique = this.activatedRoute.snapshot.params["strategyId"];
-    // var version = this.activatedRoute.snapshot.params["version"];
-    // this.loadBoxs(this.unique, version);
-  }
-
   loadBoxs(unique, version) {
     if (unique) {
       this.lines.forEach((x) => x.remove());

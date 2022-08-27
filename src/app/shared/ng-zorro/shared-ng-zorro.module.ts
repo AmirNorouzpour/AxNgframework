@@ -28,6 +28,7 @@ import { NzListModule } from "ng-zorro-antd/list";
 import { NzMessageModule } from "ng-zorro-antd/message";
 import { NzBadgeModule } from "ng-zorro-antd/badge";
 import { NzInputNumberModule } from "ng-zorro-antd/input-number";
+import { NzResizableModule } from "ng-zorro-antd/resizable";
 
 @NgModule({
   imports: [
@@ -60,6 +61,7 @@ import { NzInputNumberModule } from "ng-zorro-antd/input-number";
     NzMessageModule,
     NzBadgeModule,
     NzInputNumberModule,
+    NzResizableModule,
   ],
   exports: [
     NzTableModule,
@@ -91,6 +93,7 @@ import { NzInputNumberModule } from "ng-zorro-antd/input-number";
     NzMessageModule,
     NzBadgeModule,
     NzInputNumberModule,
+    NzResizableModule,
   ],
 })
 export class SharedNgZorroModule {}

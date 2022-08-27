@@ -63,4 +63,5 @@ export class EditorService
     );
     return this.apiHttpService.get<ApiResult<any>>(resourceEndpoint, null);
   }
+
 }

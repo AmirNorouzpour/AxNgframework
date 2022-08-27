@@ -1,14 +1,11 @@
-.item {
-  color: snow;
-  font-size: 11px;
-  width: 100px;
-  border-right: 1px solid black;
-  height: 100%;
-  text-align: center;
-  padding-top: 5px;
-  cursor: pointer;
+:host {
+  display: block;
+  height: 200px;
 }
-
-.item:hover {
-  background-color: #041a2e;
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  border: 1px solid #ddd;
 }

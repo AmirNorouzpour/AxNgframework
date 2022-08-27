@@ -12,6 +12,7 @@ import { NotificationsMenuComponent } from "../panel/components/notifications-me
 import { PanelModule } from "../panel";
 import { StrategyConfigComponent } from './components/strategy-config/strategy-config.component';
 import { ConsoleComponent } from './components/console/console.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ConsoleComponent } from './components/console/console.component';
     UserAccountMenuComponent,
     StrategyConfigComponent,
     ConsoleComponent,
+    ChartComponent,
   ],
   imports: [SharedModule, EditorRoutingModule, DragDropModule,PanelModule],
 })

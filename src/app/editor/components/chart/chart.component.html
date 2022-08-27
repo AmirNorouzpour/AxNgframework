@@ -1,0 +1,12 @@
+<nz-spin
+  [nzSpinning]="isSpinning"
+  style="width: 98%; height: 95%; position: absolute"
+  [style.display]="isSpinning ? 'block' : 'none'"
+>
+</nz-spin>
+
+<div
+  id="chart-box"
+  style="width: 100%; height: 100%; border: 1px solid"
+  [style.display]="!isSpinning ? 'block' : 'none'"
+></div>
