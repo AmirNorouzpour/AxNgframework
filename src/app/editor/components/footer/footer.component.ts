@@ -1,8 +1,6 @@
 import { Component, EventEmitter, OnInit } from "@angular/core";
 import { SignalRService } from "shared/services";
-import { NzSpaceModule } from "ng-zorro-antd/space";
 import { NzResizeEvent } from "ng-zorro-antd/resizable";
-
 
 @Component({
   selector: "app-footer",
@@ -19,13 +17,14 @@ export class FooterComponent implements OnInit {
   active = "";
   hide = true;
   openConsole(id) {
+    debugger;
     if (id == this.active) this.hide = !this.hide;
     else this.hide = false;
     this.active = id;
   }
 
-  width = 400;
-  height = 200;
+  width = 1910;
+  height = 250;
 
   onResize({ width, height }: NzResizeEvent): void {
     this.width = width!;

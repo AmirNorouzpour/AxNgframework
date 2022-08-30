@@ -1,11 +1,17 @@
-<div
-  class="box"
-  nz-resizable
-  nzPreview
-  (nzResizeEnd)="onResize($event)"
-  [style.height.px]="height"
-  [style.width.px]="width"
->
-  <nz-resize-handles></nz-resize-handles>
-  content
+<div style="display: flex; flex-direction: column-reverse; height: 100%">
+  <div>
+    <div id="panel" style="padding-left: 10px; padding-top: 5px">
+      <!-- <ax-console></ax-console> -->
+    </div>
+    <div style="display: flex; flex-direction: row">
+      <div
+        *ngFor="let tab of tabs"
+        class="item"
+        [ngClass]="active == tab ? 'active' : ''"
+        (click)="openConsole(tab)"
+      >
+        <span class="text">{{ tab }}</span>
+      </div>
+    </div>
+  </div>
 </div>
