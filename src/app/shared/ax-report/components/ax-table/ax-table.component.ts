@@ -149,9 +149,9 @@ export class AxTableComponent implements OnInit, OnDestroy, OnChanges {
     const filterArray = Object.values(this.filters);
     const flattendFilterArray: AxReportFilter[] = [].concat(...filterArray);
     return flattendFilterArray.filter(Boolean).reduce((acc, filter, i) => {
-      acc[`Filters[${i}].Property`] = filter.property;
-      acc[`Filters[${i}].Value1`] = filter.value1;
-      acc[`Filters[${i}].Operation`] = filter.operation;
+      acc[`Filters[${i}].field`] = filter.property;
+      acc[`Filters[${i}].value`] = filter.value1;
+      acc[`Filters[${i}].operator`] = filter.operation;
       return acc;
     }, {});
   }
