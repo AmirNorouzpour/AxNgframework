@@ -101,3 +101,25 @@ $footer-height: 30px;
   width: 100%;
   background-color: #000c17;
 }
+
+.panel {
+  min-height: 50px;
+  padding: 15px;
+  position: relative;
+  background-color: #001529;
+}
+
+.panel .grabber {
+  content: "";
+  position: absolute;
+  top: 0;
+  margin-left: -15px;
+  cursor: s-resize;
+  height: 5px;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgb(46, 46, 46);
+  background-position: 210px -364px;
+  background-size: initial;
+  background-repeat: no-repeat;
+}

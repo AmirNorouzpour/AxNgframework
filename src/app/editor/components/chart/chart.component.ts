@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { createChart } from "lightweight-charts";
 
@@ -10,11 +10,21 @@ import { createChart } from "lightweight-charts";
 export class ChartComponent implements OnInit {
   constructor(private http: HttpClient) {}
   isSpinning;
+  private _height: number;
+  @Input() set height(value) {
+    this._height = value;
+    this.resize(window.innerWidth - 20, this._height - 40);
+  }
+  get height() {
+    return this._height;
+  }
+  chart;
   ngOnInit(): void {
+    var w = window.innerWidth - 20;
     let div = document.getElementById("chart-box");
-    const chart = createChart(div, {
-      width: 1800,
-      height: 220,
+    this.chart = createChart(div, {
+      width: w,
+      height: this.height - 40,
       layout: {
         backgroundColor: "#041a2e",
         textColor: "rgba(255, 255, 255, 0.9)",
@@ -34,7 +44,7 @@ export class ChartComponent implements OnInit {
         borderColor: "rgba(197, 203, 206, 0.8)",
       },
     });
-    const series = chart.addCandlestickSeries();
+    const series = this.chart.addCandlestickSeries();
     this.isSpinning = true;
     this.http
       .get<[]>(
@@ -52,7 +62,7 @@ export class ChartComponent implements OnInit {
         });
         this.isSpinning = false;
         series.setData(cdata);
-        chart.timeScale().fitContent();
+        this.chart.timeScale().fitContent();
         let datesForMarkers = [
           cdata[cdata.length - 39],
           data[cdata.length - 19],
@@ -93,5 +103,8 @@ export class ChartComponent implements OnInit {
         }
         // series.setMarkers(markers);
       });
+  }
+  resize(width, height) {
+    this.chart.resize(width, height);
   }
 }

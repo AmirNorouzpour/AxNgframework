@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   flex-direction: row;
+  font-size: 12px;
 }
 .date {
   padding-left: 10px;
@@ -11,4 +12,5 @@
 .data {
   padding-left: 10px;
   padding-top: 5px;
+  user-select: text;
 }

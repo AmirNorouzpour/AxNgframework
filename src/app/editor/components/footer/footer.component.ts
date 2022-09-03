@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { SignalRService } from "shared/services";
 import { NzResizeEvent } from "ng-zorro-antd/resizable";
 
@@ -10,24 +10,16 @@ import { NzResizeEvent } from "ng-zorro-antd/resizable";
 export class FooterComponent implements OnInit {
   constructor(private signalRService: SignalRService) {}
   onDataReceived: EventEmitter<any> = new EventEmitter();
+  @Output() OnHide = new EventEmitter<any>();
+  @Output() OnChange = new EventEmitter<any>();
   ngOnInit(): void {
     // this.signalRService.addListener("PriceUpdate", this.onDataReceived);
   }
   tabs = ["Console", "Chart", "Orders", "Positions", "Histories"];
   active = "";
-  hide = true;
   openConsole(id) {
-    debugger;
-    if (id == this.active) this.hide = !this.hide;
-    else this.hide = false;
-    this.active = id;
-  }
-
-  width = 1910;
-  height = 250;
-
-  onResize({ width, height }: NzResizeEvent): void {
-    this.width = width!;
-    this.height = height!;
+    if (id == this.active) this.active = "";
+    else this.active = id;
+    this.OnChange.emit(this.active);
   }
 }

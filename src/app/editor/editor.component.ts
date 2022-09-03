@@ -16,6 +16,7 @@ import { IndicatorService } from "./services/indicator.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { EditorService } from "./services/editor.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { NzResizeEvent } from "ng-zorro-antd/resizable";
 
 declare type LeaderLineType = any;
 declare let LeaderLine: any;
@@ -96,6 +97,47 @@ export class EditorComponent implements OnInit {
       var version = this.activatedRoute.snapshot.params["version"];
       this.loadBoxs(this.unique, version);
     });
+    let h = window.innerHeight;
+    this.panelHeight = h - 300 - 30;
+  }
+  panelHeight = 500;
+
+  height = 300;
+  y = 100;
+  oldY = 0;
+  grabber = false;
+
+  @HostListener("document:mousemove", ["$event"])
+  onMouseMove(event: MouseEvent) {
+    if (!this.grabber) {
+      return;
+    }
+    this.resizer(event.clientY - this.oldY);
+    this.oldY = event.clientY;
+  }
+
+  @HostListener("document:mouseup", ["$event"])
+  onMouseUp(event: MouseEvent) {
+    this.grabber = false;
+  }
+
+  resizer(offsetY: number) {
+    this.height += offsetY * -1;
+    this.panelHeight += offsetY;
+  }
+
+  @HostListener("document:mousedown", ["$event"])
+  onMouseDown(event) {
+    if (event.target.id != "grabber") return;
+    this.grabber = true;
+    this.oldY = event.clientY;
+  }
+  panelHide = true;
+  panelActive = "";
+
+  onChangePanel(id) {
+    this.panelHide = id == "";
+    this.panelActive = id;
   }
 
   menuSearch() {

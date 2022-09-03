@@ -111,5 +111,21 @@
 >
 </nz-drawer>
 <div class="footer-box">
-  <app-footer></app-footer>
+  <app-footer (OnChange)="onChangePanel($event)"></app-footer>
+</div>
+<div
+  class="panel"
+  [style.top.px]="panelHeight"
+  [style.height.px]="height"
+  [hidden]="panelHide"
+  style="width: 100%; height: 300px; position: absolute; overflow-y: auto"
+>
+  <div [hidden]="panelActive == 'Console' ? false : true">
+    <ax-console></ax-console>
+  </div>
+  <div [hidden]="panelActive == 'Chart' ? false : true">
+    <ax-chart [height]="height"></ax-chart>
+  </div>
+
+  <div class="grabber" id="grabber"></div>
 </div>
