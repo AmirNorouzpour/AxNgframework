@@ -1,0 +1,10 @@
+<div style="display: flex; flex-direction: row">
+  <div style="color: snow">O</div>
+  <div [style.color]="ohlc?.color">{{ ohlc?.open }}</div>
+  <div style="padding-left: 5px; color: snow">H</div>
+  <div [style.color]="ohlc?.color">{{ ohlc?.high }}</div>
+  <div style="padding-left: 5px; color: snow">L</div>
+  <div [style.color]="ohlc?.color">{{ ohlc?.low }}</div>
+  <div style="padding-left: 5px; color: snow">C</div>
+  <div [style.color]="ohlc?.color">{{ ohlc?.close }}</div>
+</div>

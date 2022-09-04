@@ -3,7 +3,7 @@ const LessPluginCleanCSS = require("less-plugin-clean-css");
 const fs = require("fs");
 const themeVars = require("./theme-vars");
 
-const appStyles = "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+const appStyles = "../node_modules/ng-zorro-antd/ng-zorro-antd.dark.less";
 const themeContent = `@import '${appStyles}';`;
 
 themeVars.forEach((theme, index) => {

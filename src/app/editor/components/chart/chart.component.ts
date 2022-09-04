@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
-import { createChart } from "lightweight-charts";
+import { createChart, CrosshairMode } from "lightweight-charts";
 
 @Component({
   selector: "ax-chart",
@@ -19,41 +19,60 @@ export class ChartComponent implements OnInit {
     return this._height;
   }
   chart;
+  ohlc;
+  cdata;
   ngOnInit(): void {
     var w = window.innerWidth - 20;
     let div = document.getElementById("chart-box");
     this.chart = createChart(div, {
       width: w,
       height: this.height - 40,
+      crosshair: {
+        mode: CrosshairMode.Normal,
+      },
       layout: {
         backgroundColor: "#041a2e",
         textColor: "rgba(255, 255, 255, 0.9)",
+        fontSize: 12,
+        fontFamily: "Inter",
       },
       grid: {
         vertLines: {
-          color: "rgba(197, 203, 206, 0.5)",
+          color: "#b2b5be1c",
         },
         horzLines: {
-          color: "rgba(197, 203, 206, 0.5)",
+          color: "#b2b5be1c",
         },
       },
       rightPriceScale: {
-        borderColor: "rgba(197, 203, 206, 0.8)",
+        borderColor: "#b2b5be1c",
       },
       timeScale: {
-        borderColor: "rgba(197, 203, 206, 0.8)",
+        borderColor: "#b2b5be1c",
+        timeVisible: true,
+        secondsVisible: false,
       },
+    });
+    this.chart.subscribeCrosshairMove((param) => {
+      if (param.time) {
+        const prices = param.seriesPrices.get(series);
+        this.ohlc = prices;
+      } else {
+        this.ohlc = this.cdata[this.cdata.length - 1];
+      }
+      this.ohlc.color =
+        this.ohlc.close > this.ohlc.open ? "#f23645" : "#089981";
     });
     const series = this.chart.addCandlestickSeries();
     this.isSpinning = true;
     this.http
       .get<[]>(
-        `https://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=1d&limit=2000`
+        `https://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=1h&limit=2000`
       )
       .subscribe((data) => {
-        var cdata = data.map((d) => {
+        this.cdata = data.map((d) => {
           return {
-            time: new Date(parseInt(d[0])).toISOString(),
+            time: parseInt(d[0]) / 1000,
             open: parseFloat(d[1]),
             high: parseFloat(d[2]),
             low: parseFloat(d[3]),
@@ -61,47 +80,28 @@ export class ChartComponent implements OnInit {
           };
         });
         this.isSpinning = false;
-        series.setData(cdata);
-        this.chart.timeScale().fitContent();
-        let datesForMarkers = [
-          cdata[cdata.length - 39],
-          data[cdata.length - 19],
-        ];
-        var indexOfMinPrice = 0;
-        for (var i = 1; i < datesForMarkers.length; i++) {
-          if (datesForMarkers[i].high < datesForMarkers[indexOfMinPrice].high) {
-            indexOfMinPrice = i;
-          }
-        }
+        series.setData(this.cdata);
+        // this.chart.timeScale().fitContent();
         var markers = [
           {
-            time: cdata[cdata.length - 48].time,
+            time: this.cdata[this.cdata.length - 41].time,
             position: "aboveBar",
-            color: "#f68410",
-            shape: "circle",
-            text: "D",
+            color: "#f23645",
+            shape: "arrowDown",
+            text: "SHORT@" + this.cdata[this.cdata.length - 41].open,
+            size: 2,
+          },
+          {
+            time: this.cdata[this.cdata.length - 152].time,
+            position: "belowBar",
+            color: "#089981",
+            shape: "arrowUp",
+            text: "LONG@" + this.cdata[this.cdata.length - 152].open,
+            size: 2,
           },
         ];
-        for (var i = 0; i < datesForMarkers.length; i++) {
-          if (i !== indexOfMinPrice) {
-            markers.push({
-              time: datesForMarkers[i].time,
-              position: "aboveBar",
-              color: "#e91e63",
-              shape: "arrowDown",
-              text: "Sell @ " + Math.floor(datesForMarkers[i].high + 2),
-            });
-          } else {
-            markers.push({
-              time: datesForMarkers[i].time,
-              position: "belowBar",
-              color: "#2196F3",
-              shape: "arrowUp",
-              text: "Buy @ " + Math.floor(datesForMarkers[i].low - 2),
-            });
-          }
-        }
-        // series.setMarkers(markers);
+
+        series.setMarkers(markers);
       });
   }
   resize(width, height) {

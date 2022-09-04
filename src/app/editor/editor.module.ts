@@ -13,6 +13,7 @@ import { PanelModule } from "../panel";
 import { StrategyConfigComponent } from './components/strategy-config/strategy-config.component';
 import { ConsoleComponent } from './components/console/console.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { OhlcLegendComponent } from './components/ohlc-legend/ohlc-legend.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ChartComponent } from './components/chart/chart.component';
     StrategyConfigComponent,
     ConsoleComponent,
     ChartComponent,
+    OhlcLegendComponent,
   ],
   imports: [SharedModule, EditorRoutingModule, DragDropModule,PanelModule],
 })
