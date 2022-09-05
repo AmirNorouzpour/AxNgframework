@@ -14,6 +14,7 @@ import { StrategyConfigComponent } from './components/strategy-config/strategy-c
 import { ConsoleComponent } from './components/console/console.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { OhlcLegendComponent } from './components/ohlc-legend/ohlc-legend.component';
+import { PositionsComponent } from './components/positions/positions.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { OhlcLegendComponent } from './components/ohlc-legend/ohlc-legend.compon
     ConsoleComponent,
     ChartComponent,
     OhlcLegendComponent,
+    PositionsComponent,
   ],
   imports: [SharedModule, EditorRoutingModule, DragDropModule,PanelModule],
 })

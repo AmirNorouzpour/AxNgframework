@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { createChart, CrosshairMode } from "lightweight-charts";
+import { ChartsService } from "../../services/charts.service";
 
 @Component({
   selector: "ax-chart",
@@ -8,8 +9,11 @@ import { createChart, CrosshairMode } from "lightweight-charts";
   styleUrls: ["./chart.component.scss"],
 })
 export class ChartComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private chartsService: ChartsService) {}
   isSpinning;
+  symbol = "BTCUSDT";
+  interval = 15;
+  broker = "BINANCE";
   private _height: number;
   @Input() set height(value) {
     this._height = value;
@@ -61,16 +65,15 @@ export class ChartComponent implements OnInit {
         this.ohlc = this.cdata[this.cdata.length - 1];
       }
       this.ohlc.color =
-        this.ohlc.close > this.ohlc.open ? "#f23645" : "#089981";
+        this.ohlc.close < this.ohlc.open ? "#f23645" : "#089981";
     });
     const series = this.chart.addCandlestickSeries();
     this.isSpinning = true;
-    this.http
-      .get<[]>(
-        `https://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=1h&limit=2000`
-      )
-      .subscribe((data) => {
-        this.cdata = data.map((d) => {
+    this.chartsService
+      .GetKLines(this.symbol, this.interval)
+      .subscribe((res) => {
+        if (!res.isSuccess) return;
+        this.cdata = res.data.map((d) => {
           return {
             time: parseInt(d[0]) / 1000,
             open: parseFloat(d[1]),

@@ -8,8 +8,6 @@ export const environment = {
   /**** Endpoint urls ****/
   apiEndPoint: "http://localhost:6223/api",
   signalREndPoint: "http://localhost:6223/axhub",
-  // apiEndPoint: "http://95.216.94.13:4200/services/api",
-  // signalREndPoint: "http://95.216.94.13:4200/services/axhub",
 
   /**** Versions ****/
   apiVersion1: "v1",
@@ -36,6 +34,7 @@ export const environment = {
   productInstanceHistoryApi: "ProductInstanceHistories",
   indicatorsApi: "Indicators",
   editorsApi: "Editor",
+  chartsApi: "Charts",
 
   /**** Actions ****/
   axToken: "AxToken",
@@ -58,6 +57,7 @@ export const environment = {
   getStopList: "GetStopList",
   changePassword: "changePassword",
   getMenuData: "getMenuData",
+  getKLines: "GetKLines",
 
   /**** Routes ****/
   panelRoute: "panel",

@@ -17,7 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (this.authService.isAuthenticated()) {
       const authToken = this.authService.getAuthorizationToken();
-      if (req.url.toLocaleLowerCase().indexOf("localhost") == -1) {
+      if (req.url.toLocaleLowerCase().indexOf("binance.com") != -1) {
         return next.handle(req);
       }
       const authReq = req.clone({

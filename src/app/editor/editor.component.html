@@ -126,6 +126,9 @@
   <div [hidden]="panelActive == 'Chart' ? false : true">
     <ax-chart [height]="height"></ax-chart>
   </div>
+  <div [hidden]="panelActive == 'Positions' ? false : true">
+    <ax-positions></ax-positions>
+  </div>
 
   <div class="grabber" id="grabber"></div>
 </div>
