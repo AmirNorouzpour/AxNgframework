@@ -5,6 +5,7 @@ import {
   OnInit,
   TemplateRef,
   ViewChild,
+  ViewContainerRef,
 } from "@angular/core";
 import "leader-line";
 import { NzModalService } from "ng-zorro-antd/modal";
@@ -16,7 +17,9 @@ import { IndicatorService } from "./services/indicator.service";
 import { NzMessageService } from "ng-zorro-antd/message";
 import { EditorService } from "./services/editor.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { NzResizeEvent } from "ng-zorro-antd/resizable";
+import { StrategyConfigComponent } from "./components/strategy-config/strategy-config.component";
+import { TranslateService } from "@ngx-translate/core";
+import { ChartConfig } from "./models/chartConfig";
 
 declare type LeaderLineType = any;
 declare let LeaderLine: any;
@@ -33,7 +36,9 @@ export class EditorComponent implements OnInit {
     private modalService: NzModalService,
     private messageService: NzMessageService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private viewContainerRef: ViewContainerRef,
+    private translator: TranslateService
   ) {}
 
   @HostListener("document:keydown.delete", ["$event"])
@@ -69,13 +74,12 @@ export class EditorComponent implements OnInit {
   saveModalContentTemplate: TemplateRef<any>;
   @ViewChild("strategiesListContentTemplate", { read: TemplateRef })
   strategiesListContentTemplate: TemplateRef<any>;
-  @ViewChild("configContentTemplate", { read: TemplateRef })
-  configContentTemplate: TemplateRef<any>;
 
   rightVisable = false;
   line: LeaderLineType;
   connectMode = false;
   isDirty = false;
+  chartConfig = new ChartConfig("BTCUSDT", "15", "BINANCE");
   @ViewChild("block") block: ElementRef;
   ngOnInit(): void {
     if (
@@ -391,7 +395,19 @@ export class EditorComponent implements OnInit {
   onConfig() {
     this.modalService.create({
       nzTitle: "Config Strategy",
-      nzContent: this.configContentTemplate,
+      nzContent: StrategyConfigComponent,
+      nzViewContainerRef: this.viewContainerRef,
+      nzMaskClosable: false,
+      nzFooter: [
+        {
+          label: this.translator.instant("Save"),
+          type: "primary",
+          onClick: (componentInstance) => {
+            var config = componentInstance!.onSave();
+            this.chartConfig = config;
+          },
+        },
+      ],
     });
   }
 
@@ -446,7 +462,6 @@ export class EditorComponent implements OnInit {
       var x1 = 0,
         y1 = 0;
       if (old) {
-        debugger;
         var oldNumbers = old.split("(")[1].split(")")[0].split(",");
         y1 = parseInt(oldNumbers[1]);
         x1 = parseInt(oldNumbers[0]);

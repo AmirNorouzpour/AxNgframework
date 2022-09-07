@@ -19,9 +19,9 @@
     gap: 5px;
   "
 >
-  <div style="color: snow">{{symbol}}</div>
-  <div style="color: snow">{{interval}}</div>
-  <div style="color: snow">{{broker}}</div>
+  <div style="color: snow">{{ config.symbol }}</div>
+  <div style="color: snow">{{ config.interval }}</div>
+  <div style="color: snow">{{ config.broker }}</div>
   <ohlc-legend [ohlc]="ohlc"></ohlc-legend>
 </div>
 <div

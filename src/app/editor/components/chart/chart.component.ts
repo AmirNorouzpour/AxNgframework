@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { createChart, CrosshairMode } from "lightweight-charts";
 import { ChartsService } from "../../services/charts.service";
+import { ChartConfig } from "../../models/chartConfig";
 
 @Component({
   selector: "ax-chart",
@@ -11,16 +11,23 @@ import { ChartsService } from "../../services/charts.service";
 export class ChartComponent implements OnInit {
   constructor(private chartsService: ChartsService) {}
   isSpinning;
-  symbol = "BTCUSDT";
-  interval = 15;
-  broker = "BINANCE";
   private _height: number;
+  private _config: ChartConfig;
   @Input() set height(value) {
     this._height = value;
     this.resize(window.innerWidth - 20, this._height - 40);
   }
   get height() {
     return this._height;
+  }
+
+  @Input() set config(value) {
+    this._config = value;
+    debugger;
+    this.loadFromServer();
+  }
+  get config() {
+    return this._config;
   }
   chart;
   ohlc;
@@ -59,18 +66,23 @@ export class ChartComponent implements OnInit {
     });
     this.chart.subscribeCrosshairMove((param) => {
       if (param.time) {
-        const prices = param.seriesPrices.get(series);
+        const prices = param.seriesPrices.get(this.series);
         this.ohlc = prices;
       } else {
+        if (!this.cdata) return;
         this.ohlc = this.cdata[this.cdata.length - 1];
       }
       this.ohlc.color =
         this.ohlc.close < this.ohlc.open ? "#f23645" : "#089981";
     });
-    const series = this.chart.addCandlestickSeries();
+    this.series = this.chart.addCandlestickSeries();
+    this.loadFromServer();
+  }
+  series;
+  loadFromServer() {
     this.isSpinning = true;
     this.chartsService
-      .GetKLines(this.symbol, this.interval)
+      .GetKLines(this.config.symbol, this.config.interval)
       .subscribe((res) => {
         if (!res.isSuccess) return;
         this.cdata = res.data.map((d) => {
@@ -83,7 +95,7 @@ export class ChartComponent implements OnInit {
           };
         });
         this.isSpinning = false;
-        series.setData(this.cdata);
+        this.series.setData(this.cdata);
         // this.chart.timeScale().fitContent();
         var markers = [
           {
@@ -104,10 +116,11 @@ export class ChartComponent implements OnInit {
           },
         ];
 
-        series.setMarkers(markers);
+        this.series.setMarkers(markers);
       });
   }
+
   resize(width, height) {
-    this.chart.resize(width, height);
+    this.chart?.resize(width, height);
   }
 }

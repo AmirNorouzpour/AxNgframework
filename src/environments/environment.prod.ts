@@ -30,6 +30,7 @@ export const environment = {
   productInstanceHistoryApi: "ProductInstanceHistories",
   indicatorsApi: "Indicators",
   editorsApi: "Editor",
+  chartsApi: "Charts",
 
   /**** Actions ****/
   axToken: "AxToken",
@@ -52,7 +53,7 @@ export const environment = {
   getStopList: "GetStopList",
   changePassword: "changePassword",
   getMenuData: "getMenuData",
-
+  getKLines: "GetKLines",
   /**** Routes ****/
   panelRoute: "panel",
   authRoute: "auth",

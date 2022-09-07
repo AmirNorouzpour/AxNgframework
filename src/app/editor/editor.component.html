@@ -93,12 +93,6 @@
   <ng-template #saveModalContent>
     <input nz-input placeholder="Strategy Name" [(ngModel)]="strategyName" />
   </ng-template>
-  <ng-template #strategiesListContentTemplate>
-    <app-strategy-list (onEdit)="editItem($event)"></app-strategy-list>
-  </ng-template>
-  <ng-template #configContentTemplate>
-    <strategy-config></strategy-config>
-  </ng-template>
 </div>
 
 <nz-drawer
@@ -124,7 +118,7 @@
     <ax-console></ax-console>
   </div>
   <div [hidden]="panelActive == 'Chart' ? false : true">
-    <ax-chart [height]="height"></ax-chart>
+    <ax-chart [height]="height" [config]="chartConfig"></ax-chart>
   </div>
   <div [hidden]="panelActive == 'Positions' ? false : true">
     <ax-positions></ax-positions>
