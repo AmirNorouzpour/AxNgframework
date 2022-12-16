@@ -79,7 +79,7 @@ export class EditorComponent implements OnInit {
   line: LeaderLineType;
   connectMode = false;
   isDirty = false;
-  chartConfig = new ChartConfig("BTCUSDT", "15", "BINANCE");
+  chartConfig = new ChartConfig("ETHUSDT", "15", "BINANCE");
   @ViewChild("block") block: ElementRef;
   ngOnInit(): void {
     if (
