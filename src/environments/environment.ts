@@ -55,6 +55,7 @@ export const environment = {
   getTree: "GetTree",
   getUsersAndGroups: "GetUsersAndGroups",
   exportToXlsxPih: "ExportToXlsx",
+  performanceChart: "chart",
   getDamagedList: "GetDamagedList",
   getStopList: "GetStopList",
   changePassword: "changePassword",

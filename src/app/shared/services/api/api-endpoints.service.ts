@@ -187,4 +187,21 @@ export class ApiEndpointsService {
       }
     );
   }
+
+  getChartEndpoint(filters) {
+    const { apiVersion1, productInstanceHistoryApi, performanceChart } = environment;
+    return this.createUrl(
+      apiVersion1,
+      productInstanceHistoryApi,
+      performanceChart,
+      [],
+      (queryStringParameters) => {
+        if (filters) {
+          for (var key in filters) {
+            queryStringParameters.push(key, filters[key]);
+          }
+        }
+      }
+    );
+  }
 }

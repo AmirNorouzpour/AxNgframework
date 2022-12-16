@@ -1,0 +1,114 @@
+<form nz-form class="ant-advanced-search-form" (ngSubmit)="submitForm()">
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="4">
+      <nz-form-item>
+        <nz-form-label [nzFor]="line">خط تولید</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            name="line"
+            [(ngModel)]="line"
+            nzAllowClear
+            nzPlaceHolder="انتخاب کنید"
+            (nzOnSearch)="onSearch($event)"
+          >
+            <ng-container *ngFor="let item of LinesOptions">
+              <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <nz-form-item>
+        <nz-form-label [nzFor]="machine">ماشین</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            name="machine"
+            [(ngModel)]="machine"
+            nzAllowClear
+            nzPlaceHolder="انتخاب کنید"
+            (nzOnSearch)="onSearch($event)"
+          >
+            <ng-container *ngFor="let item of machineOptions">
+              <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <nz-form-item>
+        <nz-form-label [nzFor]="user">کاربر</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            name="users"
+            [(ngModel)]="user"
+            nzAllowClear
+            nzShowSearch
+            nzPlaceHolder="انتخاب کنید"
+            (nzOnSearch)="onSearch($event)"
+          >
+            <ng-container *ngFor="let item of options">
+              <nz-option
+                [nzValue]="item.id"
+                [nzLabel]="item.fullName"
+              ></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <nz-form-item>
+        <nz-form-label [nzFor]="date1">از تاریخ</nz-form-label>
+        <nz-form-control>
+          <input
+            autoComplete="off"
+            (click)="picker.open()"
+            nz-input
+            [matDatepicker]="picker"
+            [(ngModel)]="date1"
+            name="date1"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <nz-form-item>
+        <nz-form-label [nzFor]="date2">تا تاریخ</nz-form-label>
+        <nz-form-control>
+          <input
+            autoComplete="off"
+            (click)="picker2.open()"
+            nz-input
+            [matDatepicker]="picker2"
+            [(ngModel)]="date2"
+            name="date2"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="4">
+      <div nz-col [nzSpan]="24" class="search-area">
+        <button nz-button [nzType]="'primary'">اعمال</button>
+        <button nz-button (click)="clear()">پاک کردن</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<nz-spin [nzSpinning]="isLoading">
+  <div class="ax-bar">
+    <canvas
+      baseChart
+      [datasets]="model.datasets"
+      [labels]="model.labels"
+      [colors]="barChartColors"
+      [options]="barChartOptions"
+      [chartType]="'bar'"
+    >
+    </canvas>
+  </div>
+</nz-spin>
+<mat-datepicker #picker> </mat-datepicker>
+<mat-datepicker #picker2> </mat-datepicker>

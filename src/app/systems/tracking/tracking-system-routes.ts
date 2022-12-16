@@ -22,6 +22,7 @@ import { ProductInstanceListComponent } from "./components/product-instance-list
 import { ProductHistoryListComponent } from "./components/product-history-list/product-history-list.component";
 import { DamagedListComponent } from "./components/damaged-list/damaged-list.component";
 import { StopListComponent } from "./components/stop-list/stop-list.component";
+import { PerformanceChartComponent } from "./components/performance-chart/performance-chart.component";
 
 export const TrackingSystemRoutes: Routes = [
   {
@@ -252,6 +253,21 @@ export const TrackingSystemRoutes: Routes = [
       {
         path: "",
         component: ProductHistoryListComponent,
+        data: {
+          breadcrumb: null,
+        },
+      },
+    ],
+  },
+  {
+    path: "performance",
+    data: {
+      breadcrumb: "ارزیابی عملکرد",
+    },
+    children: [
+      {
+        path: "",
+        component: PerformanceChartComponent,
         data: {
           breadcrumb: null,
         },

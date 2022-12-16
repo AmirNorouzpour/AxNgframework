@@ -17,6 +17,7 @@ import { ProductInstanceListComponent } from "./components/product-instance-list
 import { ProductHistoryListComponent } from "./components/product-history-list/product-history-list.component";
 import { DamagedListComponent } from './components/damaged-list/damaged-list.component';
 import { StopListComponent } from './components/stop-list/stop-list.component';
+import { PerformanceChartComponent } from './components/performance-chart/performance-chart.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { StopListComponent } from './components/stop-list/stop-list.component';
     ProductHistoryListComponent,
     DamagedListComponent,
     StopListComponent,
+    PerformanceChartComponent,
   ],
   imports: [SharedModule, RouterModule.forChild([])],
 })

@@ -42,4 +42,10 @@ export class ProductHistoryService
       { responseType: "blob" }
     );
   }
+
+  chart(parameters) {
+    return this.apiHttpService.get<any>(
+      this.apiEndpointsService.getChartEndpoint(parameters)
+    );
+  }
 }
