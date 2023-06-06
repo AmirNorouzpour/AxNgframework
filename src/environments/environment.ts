@@ -6,8 +6,8 @@ export const environment = {
   production: false,
 
   /**** Endpoint urls ****/
-  apiEndPoint: "http://localhost:6223/api",
-  signalREndPoint: "http://localhost:6223/axhub",
+  apiEndPoint: "http://65.108.14.168:8011/services/api",
+  signalREndPoint: "http://65.108.14.168:8011/services/axhub",
 
   /**** Versions ****/
   apiVersion1: "v1",

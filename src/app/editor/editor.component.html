@@ -93,6 +93,9 @@
   <ng-template #saveModalContent>
     <input nz-input placeholder="Strategy Name" [(ngModel)]="strategyName" />
   </ng-template>
+  <ng-template #strategiesListContentTemplate>
+    <app-strategy-list (onEdit)="editItem($event)"></app-strategy-list>
+  </ng-template>
 </div>
 
 <nz-drawer
