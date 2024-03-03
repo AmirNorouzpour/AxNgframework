@@ -39,6 +39,7 @@ export const environment = {
   getOrganizationLogo: "GetOrganizationLogo",
   getUserPermissions: "GetUserPermissions",
   getSystemMenus: "GetSystemMenus",
+  getDashboardCharts: "GetDashboardCharts",
   getChart: "GetChart",
   setUserConnectionId: "setUserConnectionId",
   disableUserConnectionId: "disableUserConnectionId",
