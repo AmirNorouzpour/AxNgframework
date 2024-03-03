@@ -10,11 +10,11 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { UserAccountMenuComponent } from "./components/user-account-menu/user-account-menu.component";
 import { NotificationsMenuComponent } from "../panel/components/notifications-menu/notifications-menu.component";
 import { PanelModule } from "../panel";
-import { StrategyConfigComponent } from './components/strategy-config/strategy-config.component';
-import { ConsoleComponent } from './components/console/console.component';
-import { ChartComponent } from './components/chart/chart.component';
-import { OhlcLegendComponent } from './components/ohlc-legend/ohlc-legend.component';
-import { PositionsComponent } from './components/positions/positions.component';
+import { StrategyConfigComponent } from "./components/strategy-config/strategy-config.component";
+import { ConsoleComponent } from "./components/console/console.component";
+import { ChartComponent } from "./components/chart/chart.component";
+import { OhlcLegendComponent } from "./components/ohlc-legend/ohlc-legend.component";
+import { PositionsComponent } from "./components/positions/positions.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +30,6 @@ import { PositionsComponent } from './components/positions/positions.component';
     OhlcLegendComponent,
     PositionsComponent,
   ],
-  imports: [SharedModule, EditorRoutingModule, DragDropModule,PanelModule],
+  imports: [SharedModule, EditorRoutingModule, DragDropModule, PanelModule],
 })
 export class EditorModule {}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { InitialData } from "shared/models";
-import { Location } from "@angular/common";
 import { AppSetting } from "./services/app-setting.service";
 
 @Component({
