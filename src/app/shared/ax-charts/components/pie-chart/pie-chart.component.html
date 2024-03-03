@@ -1,5 +1,11 @@
 <div *ngIf="model" class="ax-pie-chart">
-    <canvas baseChart (chartClick)="handleClick($event)" [data]="model.series.data" [labels]="model.labels | chartLabel"
+  <!-- <canvas baseChart (chartClick)="handleClick($event)" [data]="model.series.data" [labels]="model.labels | chartLabel"
         [chartType]="pieChartType" [options]="pieChartOptions" [legend]="showLegend" [colors]="pieChartColors">
-    </canvas>
+    </canvas> -->
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [xaxis]="chartOptions.xaxis"
+    [title]="chartOptions.title"
+  ></apx-chart>
 </div>

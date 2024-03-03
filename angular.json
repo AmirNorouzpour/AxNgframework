@@ -43,7 +43,10 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/sass"]
             },
-            "scripts": ["node_modules/leader-line/leader-line.min.js"]
+            "scripts": [
+              "node_modules/leader-line/leader-line.min.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js"
+            ]
           },
           "configurations": {
             "production": {

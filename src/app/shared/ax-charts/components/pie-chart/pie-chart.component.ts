@@ -5,15 +5,16 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
+  ViewChild,
 } from "@angular/core";
 import {
-  ChartOptions,
-  ChartTooltipModel,
-  ChartTooltipItem,
-  ChartData,
-} from "chart.js";
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexTitleSubtitle,
+} from "ng-apexcharts";
 import { PieChart } from "shared/ax-charts/models/pie-chart.model";
-import { Color } from "ng2-charts";
 import {
   RED_COLOR,
   YELLOW_COLOR,
@@ -21,6 +22,13 @@ import {
   BLUE_COLOR,
   GREEN_COLOR,
 } from "./../../utils/chart-color";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  title: ApexTitleSubtitle;
+};
 
 @Component({
   selector: "ax-pie-chart",
@@ -32,50 +40,81 @@ import {
   },
 })
 export class PieChartComponent implements OnInit {
+  @ViewChild("chart") chart: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
   @Input() model: PieChart;
   @Input() pieChartType: "pie" | "doughnut" = "pie";
   @Input() showLegend: boolean = true;
   @Input() chartId: number;
   @Output() onClick: EventEmitter<any> = new EventEmitter();
 
-  public pieChartOptions: ChartOptions = {
-    responsive: true,
-    tooltips: {
-      bodyFontFamily: "Inter",
-      callbacks: {
-        label: (item: ChartTooltipItem, data: ChartData) => {
-          const { index, datasetIndex } = item;
-          const dataset = data.datasets[datasetIndex].data;
-          const total = (<number[]>dataset).reduce((acc, curr) => acc + curr);
-          const value = <number>dataset[index];
-          const percentage = ((value / total) * 100).toFixed(1);
+  // public pieChartOptions: ChartOptions = {
+  //   responsive: true,
+  //   tooltips: {
+  //     bodyFontFamily: "Inter",
+  //     callbacks: {
+  //       label: (item: ChartTooltipItem, data: ChartData) => {
+  //         const { index, datasetIndex } = item;
+  //         const dataset = data.datasets[datasetIndex].data;
+  //         const total = (<number[]>dataset).reduce((acc, curr) => acc + curr);
+  //         const value = <number>dataset[index];
+  //         const percentage = ((value / total) * 100).toFixed(1);
 
-          return `${data.labels[index]} (${percentage}%) : ${value}`;
+  //         return `${data.labels[index]} (${percentage}%) : ${value}`;
+  //       },
+  //     },
+  //   },
+  //   maintainAspectRatio: false,
+  //   legend: {
+  //     position: "top",
+  //     labels: {
+  //       fontFamily: "Inter",
+  //     },
+  //   },
+  // };
+
+  // public pieChartColors: Color[] = [
+  //   {
+  //     backgroundColor: [
+  //       RED_COLOR,
+  //       BLUE_COLOR,
+  //       GREEN_COLOR,
+  //       ORANGE_COLOR,
+  //       YELLOW_COLOR,
+  //     ],
+  //   },
+  // ];
+
+  constructor() {
+    this.chartOptions = {
+      series: [
+        {
+          name: "My-series",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
         },
-      },
-    },
-    maintainAspectRatio: false,
-    legend: {
-      position: "top",
-      labels: {
-        fontFamily: "Inter",
-      },
-    },
-  };
-
-  public pieChartColors: Color[] = [
-    {
-      backgroundColor: [
-        RED_COLOR,
-        BLUE_COLOR,
-        GREEN_COLOR,
-        ORANGE_COLOR,
-        YELLOW_COLOR,
       ],
-    },
-  ];
-
-  constructor() {}
+      chart: {
+        height: 350,
+        type: "bar",
+      },
+      title: {
+        text: "My First Angular Chart",
+      },
+      xaxis: {
+        categories: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+        ],
+      },
+    };
+  }
 
   ngOnInit() {}
 

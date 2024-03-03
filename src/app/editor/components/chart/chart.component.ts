@@ -90,7 +90,7 @@ export class ChartComponent implements OnInit {
         mode: CrosshairMode.Normal,
       },
       layout: {
-        backgroundColor: "#041a2e",
+        // backgroundColor: "#041a2e",
         textColor: "rgba(255, 255, 255, 0.9)",
         fontSize: 12,
         fontFamily: "Inter",

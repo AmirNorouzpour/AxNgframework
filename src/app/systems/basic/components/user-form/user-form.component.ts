@@ -95,7 +95,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
               //   },
               // },
               {
-                key: "Firt Name",
+                key: "firstName",
                 type: "input",
                 templateOptions: {
                   type: "text",
@@ -104,7 +104,7 @@ export class UserFormComponent extends AxForm<User> implements OnInit {
                 },
               },
               {
-                key: "Last Name",
+                key: "lastName",
                 type: "input",
                 templateOptions: {
                   type: "text",
