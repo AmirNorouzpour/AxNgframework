@@ -6,9 +6,9 @@ import { NumberWidgetComponent } from "./components/number-widget/number-widget.
 import { SharedMaterialModule } from "shared/material/shared-material.module";
 import { CommonModule } from "@angular/common";
 import { ChartLabelPipe } from "./pipes/chart-label.pipe";
-// import { BarChartComponent } from "./components/bar-chart/bar-chart.component";
+import { BarChartComponent } from "./components/bar-chart/bar-chart.component";
 import { ChartDatasetPipe } from "./pipes/chart-dataset.pipe";
-// import { LineChartComponent } from "./components/line-chart/line-chart.component";
+import { LineChartComponent } from "./components/line-chart/line-chart.component";
 import { ListWidgetComponent } from "./components/list-widget/list-widget.component";
 import { ChartPanelComponent } from "./components/chart-panel/chart-panel.component";
 import { NgApexchartsModule } from "ng-apexcharts";
@@ -17,11 +17,11 @@ import { NgApexchartsModule } from "ng-apexcharts";
   declarations: [
     PieChartComponent,
     NumberWidgetComponent,
-    // BarChartComponent,
+    BarChartComponent,
     ChartLabelPipe,
     ListWidgetColumnsPipe,
     ChartDatasetPipe,
-    // LineChartComponent,
+    LineChartComponent,
     ListWidgetComponent,
     ChartPanelComponent,
   ],
@@ -35,8 +35,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     NgApexchartsModule,
     PieChartComponent,
     NumberWidgetComponent,
-    // BarChartComponent,
-    // LineChartComponent,
+    BarChartComponent,
+    LineChartComponent,
     ListWidgetComponent,
     ChartPanelComponent,
   ],

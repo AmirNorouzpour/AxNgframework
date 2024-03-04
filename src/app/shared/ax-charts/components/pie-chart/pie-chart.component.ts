@@ -96,12 +96,24 @@ export class PieChartComponent implements OnInit {
     this.chartOptions = {
       series: this.model.series.data,
       chart: {
-        // width: 380,
-        height: 270,
+        width: "90%",
         type: "pie",
+        fontFamily: 1 == 1 ? "IranSans" : "Inter",
+        events: {
+          click(event, chartContext, config) {
+            console.log(config.config.series[config.seriesIndex]);
+            console.log(config.config.series[config.seriesIndex].name);
+            console.log(
+              config.config.series[config.seriesIndex].data[
+                config.dataPointIndex
+              ]
+            );
+          },
+        },
       },
       legend: {
         position: "top",
+        show: false,
       },
       dataLabels: { dropShadow: false },
       colors: [RED_COLOR, BLUE_COLOR, GREEN_COLOR, ORANGE_COLOR, YELLOW_COLOR],
@@ -110,24 +122,15 @@ export class PieChartComponent implements OnInit {
       }),
       responsive: [
         {
-          breakpoint: 400,
+          breakpoint: 780,
           options: {
             chart: {
-              // width: 200,
-            },
-            legend: {
-              position: "bottom",
+              // width: "100%",
+              height: 150,
             },
           },
         },
       ],
     };
-  }
-
-  public handleClick({ event, active }): void {
-    const index = active[0]["_index"];
-    const label = this.model.labels[index];
-
-    this.onClick.emit(label.tag);
   }
 }

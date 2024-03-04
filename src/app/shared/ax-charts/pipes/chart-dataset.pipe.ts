@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { ChartSeries } from "../models/chart-series.model";
-// import { ChartDataSets? } from "chart.js";
 
 @Pipe({
   name: "chartDataset",

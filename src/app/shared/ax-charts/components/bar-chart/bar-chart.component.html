@@ -1,5 +1,19 @@
-<!-- <div *ngIf="model" class="ax-bar-chart">
-    <canvas baseChart [datasets]="model.series | chartDataset" [labels]="model.labels" [options]="barChartOptions"
+<div *ngIf="model" class="ax-bar-chart">
+  <!-- <canvas baseChart [datasets]="model.series | chartDataset" [labels]="model.labels" [options]="barChartOptions"
         [legend]="barChartLegend" [chartType]="'bar'" [colors]="barChartColors">
-    </canvas>
-</div> -->
+    </canvas> -->
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [labels]="chartOptions.xaxis.labels"
+    [dataLabels]="chartOptions.dataLabels"
+    [colors]="chartOptions.colors"
+    [legend]="chartOptions.legend"
+    [yaxis]="chartOptions.yaxis"
+    [xaxis]="chartOptions.xaxis"
+    [fill]="chartOptions.fill"
+    [plotOptions]="chartOptions.plotOptions"
+    [tooltip]="chartOptions.tooltip"
+    [stroke]="chartOptions.stroke"
+  ></apx-chart>
+</div>

@@ -1,4 +1,17 @@
-<!-- <div *ngIf="model" class="ax-line-chart">
+<div *ngIf="model" class="ax-line-chart">
+  <!-- <div *ngIf="model" class="ax-line-chart">
     <canvas baseChart [datasets]="model.series | chartDataset" [labels]="model.labels" [options]="lineChartOptions"
         [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
 </div> -->
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [labels]="chartOptions.xaxis.labels"
+    [dataLabels]="chartOptions.dataLabels"
+    [colors]="chartOptions.colors"
+    [legend]="chartOptions.legend"
+    [xaxis]="chartOptions.xaxis"
+    [stroke]="chartOptions.stroke"
+    [grid]="chartOptions.grid"
+  ></apx-chart>
+</div>

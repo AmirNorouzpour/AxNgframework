@@ -93,7 +93,7 @@ export class ChartComponent implements OnInit {
         // backgroundColor: "#041a2e",
         textColor: "rgba(255, 255, 255, 0.9)",
         fontSize: 12,
-        fontFamily: "Inter",
+        fontFamily: "IranSans",
       },
       grid: {
         vertLines: {

@@ -1,66 +1,101 @@
-// import { LineChart } from "./../../models/line-chart.model";
-// import { Component, OnInit, Input } from "@angular/core";
-// import { ChartOptions } from "chart.js";
+import { LineChart } from "./../../models/line-chart.model";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexDataLabels,
+  ApexGrid,
+  ApexStroke,
+  ApexTitleSubtitle,
+  ChartComponent,
+  ApexLegend,
+} from "ng-apexcharts";
+import {
+  RED_COLOR,
+  BLUE_COLOR,
+  GREEN_COLOR,
+  ORANGE_COLOR,
+  YELLOW_COLOR,
+} from "shared/ax-charts/utils/chart-color";
 
-// @Component({
-//   selector: "ax-line-chart",
-//   templateUrl: "./line-chart.component.html",
-//   styleUrls: ["./line-chart.component.scss"],
-// })
-// export class LineChartComponent implements OnInit {
-//   @Input() chartId: number;
-//   @Input() model: LineChart;
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
+  title: ApexTitleSubtitle;
+  colors: any;
+  legend: ApexLegend;
+};
 
-//   public lineChartLegend = true;
-//   public lineChartType = "line";
+@Component({
+  selector: "ax-line-chart",
+  templateUrl: "./line-chart.component.html",
+  styleUrls: ["./line-chart.component.scss"],
+})
+export class LineChartComponent implements OnInit {
+  @ViewChild("chart") chart: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
+  @Input() chartId: number;
+  @Input() model: LineChart;
 
-//   public lineChartOptions: ChartOptions = {
-//     responsive: true,
-//     maintainAspectRatio: false,
-//     legend: {
-//       labels: {
-//         fontFamily: "Inter",
-//       },
-//     },
-//     tooltips: {
-//       bodyFontFamily: "Inter",
-//       titleFontFamily: "Inter",
-//     },
-//     scales: {
-//       xAxes: [
-//         {
-//           id: "x",
-//           ticks: {
-//             fontFamily: "Inter",
-//           },
-//         },
-//       ],
-//       yAxes: [
-//         {
-//           id: "y",
-//           ticks: {
-//             fontFamily: "Inter",
-//             min: 0,
-//           },
-//         },
-//       ],
-//     },
-//   };
+  public lineChartLegend = true;
+  public lineChartType = "line";
 
-//   constructor() {}
+  constructor() {}
 
-//   ngOnInit() {
-//     this.lineChartOptions = Object.assign({}, this.lineChartOptions, {
-//       animation: {
-//         duration: 1000,
-//       },
-//     });
-//   }
-//   ngOnChanges() {
-//     this.lineChartOptions = Object.assign({}, this.lineChartOptions, {
-//       animation: {
-//         duration: 0,
-//       },
-//     });
-//   }
-// }
+  ngOnInit() {
+    this.chartOptions = {
+      series: this.model.series,
+      chart: {
+        height: 250,
+        type: "line",
+        fontFamily: "IranSans",
+        zoom: {
+          enabled: true,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        curve: "straight",
+      },
+      title: {
+        text: this.model.title,
+        align: "left",
+      },
+      colors: [RED_COLOR, BLUE_COLOR, GREEN_COLOR, ORANGE_COLOR, YELLOW_COLOR],
+      grid: {
+        row: {
+          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5,
+        },
+      },
+      xaxis: {
+        categories: this.model.labels,
+        tickAmount: 10,
+        labels: {
+          formatter: function (value, timestamp, opts) {
+            return value + " ";
+          },
+        },
+      },
+    };
+    // this.lineChartOptions = Object.assign({}, this.lineChartOptions, {
+    //   animation: {
+    //     duration: 1000,
+    //   },
+    // });
+  }
+  ngOnChanges() {
+    // this.lineChartOptions = Object.assign({}, this.lineChartOptions, {
+    //   animation: {
+    //     duration: 0,
+    //   },
+    // });
+  }
+}
