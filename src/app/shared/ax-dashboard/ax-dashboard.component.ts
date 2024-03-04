@@ -18,7 +18,6 @@ export class AxDashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.data.subscribe((data) => {
-      debugger;
       this.dashboardCharts = data.dashboardCharts;
       if (
         this.dashboardCharts &&

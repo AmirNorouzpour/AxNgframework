@@ -9,10 +9,11 @@ import {
 } from "@angular/core";
 import {
   ChartComponent,
-  ApexAxisChartSeries,
   ApexChart,
-  ApexXAxis,
-  ApexTitleSubtitle,
+  ApexNonAxisChartSeries,
+  ApexResponsive,
+  ApexLegend,
+  ApexFill,
 } from "ng-apexcharts";
 import { PieChart } from "shared/ax-charts/models/pie-chart.model";
 import {
@@ -24,10 +25,14 @@ import {
 } from "./../../utils/chart-color";
 
 export type ChartOptions = {
-  series: ApexAxisChartSeries;
+  series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  xaxis: ApexXAxis;
-  title: ApexTitleSubtitle;
+  responsive: ApexResponsive[];
+  dataLabels: any;
+  fill: ApexFill;
+  labels: any;
+  colors: any[];
+  legend: ApexLegend;
 };
 
 @Component({
@@ -85,38 +90,39 @@ export class PieChartComponent implements OnInit {
   //   },
   // ];
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
     this.chartOptions = {
-      series: [
+      series: this.model.series.data,
+      chart: {
+        // width: 380,
+        height: 270,
+        type: "pie",
+      },
+      legend: {
+        position: "top",
+      },
+      dataLabels: { dropShadow: false },
+      colors: [RED_COLOR, BLUE_COLOR, GREEN_COLOR, ORANGE_COLOR, YELLOW_COLOR],
+      labels: this.model.labels.map(function (item) {
+        return item.name;
+      }),
+      responsive: [
         {
-          name: "My-series",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+          breakpoint: 400,
+          options: {
+            chart: {
+              // width: 200,
+            },
+            legend: {
+              position: "bottom",
+            },
+          },
         },
       ],
-      chart: {
-        height: 350,
-        type: "bar",
-      },
-      title: {
-        text: "My First Angular Chart",
-      },
-      xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-        ],
-      },
     };
   }
-
-  ngOnInit() {}
 
   public handleClick({ event, active }): void {
     const index = active[0]["_index"];
