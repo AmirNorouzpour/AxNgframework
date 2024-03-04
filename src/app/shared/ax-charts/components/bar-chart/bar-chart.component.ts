@@ -19,6 +19,7 @@ import {
   ApexChart,
   ApexDataLabels,
   ApexFill,
+  ApexGrid,
   ApexLegend,
   ApexPlotOptions,
   ApexStroke,
@@ -39,6 +40,7 @@ export type ChartOptions = {
   stroke: ApexStroke;
   legend: ApexLegend;
   colors: any;
+  grid: ApexGrid;
 };
 
 @Component({
@@ -67,6 +69,21 @@ export class BarChartComponent implements OnInit, OnChanges {
         type: "bar",
         height: 260,
         fontFamily: "IranSans",
+      },
+      grid: {
+        show: true,
+        borderColor: "#edede8",
+        position: "back",
+        xaxis: {
+          lines: {
+            show: true,
+          },
+        },
+        yaxis: {
+          lines: {
+            show: true,
+          },
+        },
       },
       colors: [RED_COLOR, BLUE_COLOR, GREEN_COLOR, ORANGE_COLOR, YELLOW_COLOR],
       plotOptions: {

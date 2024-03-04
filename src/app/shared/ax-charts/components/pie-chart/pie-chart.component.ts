@@ -96,7 +96,7 @@ export class PieChartComponent implements OnInit {
     this.chartOptions = {
       series: this.model.series.data,
       chart: {
-        width: "90%",
+        height: 280,
         type: "pie",
         fontFamily: 1 == 1 ? "IranSans" : "Inter",
         events: {

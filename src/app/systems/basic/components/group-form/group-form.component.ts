@@ -14,10 +14,14 @@ import { TranslateService } from "@ngx-translate/core";
 export class GroupFormComponent extends AxForm<Group> implements OnInit {
   redirectUrl = "/panel/basic/groups";
   editParam = "groupId";
-  constructor(protected httpService: GroupService, injector: Injector, private translator: TranslateService) {
+  constructor(
+    protected httpService: GroupService,
+    injector: Injector,
+    private translator: TranslateService
+  ) {
     super(httpService, injector);
   }
-  setModelForCreate(data) { }
+  setModelForCreate(data) {}
 
   setModelForUpdate(data) {
     const { groupDetail } = data || {};
@@ -57,7 +61,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
             },
             fieldGroup: [
               {
-                key: "GroupName",
+                key: "groupName",
                 type: "input",
                 templateOptions: {
                   type: "text",
@@ -66,7 +70,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
                 },
               },
               {
-                key: "Description",
+                key: "description",
                 type: "input",
                 templateOptions: {
                   type: "text",
@@ -81,5 +85,5 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
     ];
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }
