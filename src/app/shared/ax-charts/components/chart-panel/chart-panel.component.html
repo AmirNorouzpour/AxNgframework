@@ -5,21 +5,27 @@
         {{ chart.title }}
       </div>
       <div class="ax-chart-panel__toolbar">
-        <span
-          [ngClass]="{
-            'ax-chart-panel__live-indicator_active': liveChartReceivingData
-          }"
-          *ngIf="chart.isLive"
-          class="ax-chart-panel__live-indicator"
-          >Live</span
-        >
-        <button
-          (click)="loadChart(chart.id)"
-          class="ax-chart-panel__toolbar-button"
-          mat-icon-button
-        >
-          <mat-icon class="ax-chart-panel__toolbar-icon">refresh</mat-icon>
-        </button>
+        <div style="display: flex; width: auto; flex-flow: row wrap">
+          <div style="flex: 1 1 30%; margin-top: 10px">
+            <span
+              [ngClass]="{
+                'ax-chart-panel__live-indicator_active': liveChartReceivingData
+              }"
+              *ngIf="chart.isLive"
+              class="ax-chart-panel__live-indicator"
+              >Live</span
+            >
+          </div>
+          <div style="flex: 1 1 30%">
+            <button
+              (click)="loadChart(chart.id)"
+              class="ax-chart-panel__toolbar-button"
+              mat-icon-button
+            >
+              <mat-icon class="ax-chart-panel__toolbar-icon">refresh</mat-icon>
+            </button>
+          </div>
+        </div>
         <!-- <button class="ax-chart-panel__toolbar-button" mat-icon-button>
                     <mat-icon class="ax-chart-panel__toolbar-icon">more_vert</mat-icon>
                 </button> -->
