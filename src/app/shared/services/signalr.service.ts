@@ -1,10 +1,11 @@
 import { ApiEndpointsService } from "./api/api-endpoints.service";
 import { ApiHttpService } from "./api/api-http.service";
 import { Injectable, EventEmitter } from "@angular/core";
-import * as signalR from "@aspnet/signalr";
+import * as signalR from "@microsoft/signalr";
 import { environment } from "environments/environment";
 import { ReplaySubject } from "rxjs";
 import { ApiResult } from "shared/models";
+import { SnackBarService } from "./snack-bar.service";
 
 @Injectable({
   providedIn: "root",

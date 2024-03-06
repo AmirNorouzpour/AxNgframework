@@ -117,10 +117,6 @@ export class BarChartComponent implements OnInit, OnChanges {
     };
   }
   ngOnChanges() {
-    // this.barChartOptions = Object.assign({}, this.barChartOptions, {
-    //   animation: {
-    //     duration: 0,
-    //   },
-    // });
+    if (this.chartOptions) this.chartOptions.series = this.model.series;
   }
 }

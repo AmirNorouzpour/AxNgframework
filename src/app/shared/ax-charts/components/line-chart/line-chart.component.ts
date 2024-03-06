@@ -85,17 +85,8 @@ export class LineChartComponent implements OnInit {
         },
       },
     };
-    // this.lineChartOptions = Object.assign({}, this.lineChartOptions, {
-    //   animation: {
-    //     duration: 1000,
-    //   },
-    // });
   }
   ngOnChanges() {
-    // this.lineChartOptions = Object.assign({}, this.lineChartOptions, {
-    //   animation: {
-    //     duration: 0,
-    //   },
-    // });
+    if (this.chartOptions) this.chartOptions.series = this.model.series;
   }
 }

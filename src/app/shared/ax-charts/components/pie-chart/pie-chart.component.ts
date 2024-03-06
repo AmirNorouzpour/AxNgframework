@@ -45,7 +45,7 @@ export type ChartOptions = {
   },
 })
 export class PieChartComponent implements OnInit {
-  @ViewChild("chart") chart: ChartComponent;
+  @ViewChild("chart", { static: false }) chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   @Input() model: PieChart;
   @Input() pieChartType: "pie" | "doughnut" = "pie";
@@ -132,5 +132,9 @@ export class PieChartComponent implements OnInit {
         },
       ],
     };
+  }
+
+  ngOnChanges() {
+    if (this.chartOptions) this.chartOptions.series = this.model.series.data;
   }
 }
