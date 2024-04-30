@@ -155,35 +155,4 @@ export class ApiEndpointsService {
     ]);
   }
 
-  getDamagedEndpoint(parameters?: string[]) {
-    const { apiVersion1, productInstanceApi, getDamagedList } = environment;
-    return this.createUrl(apiVersion1, productInstanceApi, getDamagedList, [
-      ...(parameters ? parameters : []),
-    ]);
-  }
-
-  getStopEndpoint(parameters?: string[]) {
-    const { apiVersion1, productInstanceApi, getStopList } = environment;
-    return this.createUrl(apiVersion1, productInstanceApi, getStopList, [
-      ...(parameters ? parameters : []),
-    ]);
-  }
-
-  getPihXlsxEndpoint(filters) {
-    const { apiVersion1, productInstanceHistoryApi, exportToXlsxPih } =
-      environment;
-    return this.createUrl(
-      apiVersion1,
-      productInstanceHistoryApi,
-      exportToXlsxPih,
-      [],
-      (queryStringParameters) => {
-        if (filters) {
-          for (var key in filters) {
-            queryStringParameters.push(key, filters[key]);
-          }
-        }
-      }
-    );
-  }
 }
