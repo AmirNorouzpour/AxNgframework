@@ -1,7 +1,8 @@
 @import "theme";
 
 .ax-notifications-menu {
-  width: 320px;
+  width: 100%;
+  min-width: 280px;
   padding: 0 4px;
   color: #6c757d;
   font-size: 12px;

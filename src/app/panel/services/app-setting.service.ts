@@ -96,7 +96,7 @@ export class AppSetting implements Resolve<InitialData> {
   private createSystemNameMap(systemList: AxSystem[]) {
     return systemList.reduce((systemNameMap, system) => {
       if (!system.name) {
-        //alert(system.title + " has not name!");
+        alert(system.title + " has not name!");
         system.name = system.title;
       }
       return { ...systemNameMap, [system.name.toLowerCase()]: system.id };

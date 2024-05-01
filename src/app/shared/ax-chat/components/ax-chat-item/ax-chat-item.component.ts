@@ -31,7 +31,6 @@ export class AxChatItemComponent implements OnInit {
   ngOnInit(): void {
     this.liveChatService.listenToUpdateChat();
     this.liveChatService.onDataReceived.subscribe((msg) => {
-      debugger;
       this.getMessages();
       this.scrollToBottom();
     });

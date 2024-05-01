@@ -1,12 +1,5 @@
-import { AxTreeComponent } from "./../../../../shared/ax-report/components/ax-tree/ax-tree.component";
 import { Subject } from "rxjs";
-import {
-  Component,
-  ComponentRef,
-  Injector,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { Component, ComponentRef, Injector, OnInit } from "@angular/core";
 import { FormlyFieldConfig } from "@ngx-formly/core";
 import { map } from "rxjs/operators";
 import { AxForm } from "shared/ax-form";
@@ -14,7 +7,6 @@ import { Authorization } from "../../models/authorization.model";
 import { UserService } from "../../services";
 import { AuthorizationService } from "../../services/authorization.service";
 import { AuthorizationTreeComponent } from "../authorization-tree/authorization-tree.component";
-import { TranslateService } from "@ngx-translate/core";
 import { SnackBarService } from "shared/services/snack-bar.service";
 
 @Component({
@@ -27,20 +19,21 @@ export class AuthorizationFormComponent
   implements OnInit
 {
   $userId: Subject<string> = new Subject<string>();
+  data: Authorization[];
+  userId = 0;
 
   constructor(
     public service: AuthorizationService,
     injector: Injector,
-    private translator: TranslateService,
-    public userService: UserService,
-    public snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    public userService: UserService
   ) {
     super(service, injector);
   }
 
   update() {
     this.service
-      .savePermissions([1, this.$userId], null)
+      .savePermissions([1, this.userId], this.data)
       .subscribe((result) => {
         this.snackBarService.showSuccessMessage(result.message);
       });
@@ -62,7 +55,7 @@ export class AuthorizationFormComponent
       {
         wrappers: ["card"],
         templateOptions: {
-          title: this.translator.instant("Authoriztion"),
+          title: "حقوق دسترسی",
         },
         fieldGroup: [
           {
@@ -75,19 +68,20 @@ export class AuthorizationFormComponent
             },
             fieldGroup: [
               {
-                key: "UserId",
+                key: "userId",
                 type: "select",
                 hooks: {
                   onInit: (field) => {
                     field.form
-                      .get("UserId")
+                      .get("userId")
                       .valueChanges.subscribe((userId) => {
                         this.$userId.next(userId);
+                        this.userId = userId;
                       });
                   },
                 },
                 templateOptions: {
-                  label: this.translator.instant("Lable/GroupLable"),
+                  label: "کاربر یا گروه کاربری",
                   lazyLoad: true,
                   labelProp: "name",
                   valueProp: "id",
@@ -118,8 +112,10 @@ export class AuthorizationFormComponent
                   e.fieldRef.instance.ngOnChanges();
                   console.log(
                     e.fieldRef.instance.axTreeComponent.onCheckBoxChange.subscribe(
-                      (e) => {
-                        console.log(e);
+                      (d) => {
+                        // var aaaaa =
+                        //   e.fieldRef.instance.axTreeComponent.getCheckedNodeList(e);
+                        this.data = e.fieldRef.instance.data;
                       }
                     )
                   );

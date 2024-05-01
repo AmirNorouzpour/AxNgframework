@@ -25,7 +25,6 @@ export class PanelComponent implements OnInit {
 
   ngOnInit(): void {
     const { defaultSystemId } = this._initialData;
-
     if (!this.router.url.includes("/panel/")) {
       this.router.navigate([
         `/panel/${this.appSetting.getSystemNameById(defaultSystemId)}`,

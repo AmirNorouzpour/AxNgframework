@@ -1,3 +1,4 @@
+import { AxCommonModule } from "./../shared/ax-common/ax-common.module";
 import { PanelRoutingModule } from "./panel-routing.module";
 import { SharedModule } from "./../shared";
 import { NgModule } from "@angular/core";
@@ -25,7 +26,7 @@ import { LanguageMenuComponent } from "./components/language-menu/language-menu.
     ThemeMenuComponent,
     LanguageMenuComponent,
   ],
-  imports: [SharedModule, PanelRoutingModule],
-  exports:[NotificationsMenuComponent]
+  imports: [SharedModule, PanelRoutingModule, AxCommonModule],
+  exports: [NotificationsMenuComponent],
 })
 export class PanelModule {}

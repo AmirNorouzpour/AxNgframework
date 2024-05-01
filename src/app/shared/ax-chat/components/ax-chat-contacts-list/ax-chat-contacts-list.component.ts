@@ -13,7 +13,8 @@ import { Contact } from "../../models/contact";
 })
 export class AxChatContactsListComponent
   extends AxForm<Contact>
-  implements OnInit {
+  implements OnInit
+{
   constructor(
     protected httpService: ChatService,
     injector: Injector,
@@ -28,20 +29,20 @@ export class AxChatContactsListComponent
   ngOnInit(): void {
     var me = this;
     this.isSpinning = true;
-    this.userService.getList(null, null).subscribe(
-      (result) => {
-        result.data.forEach(function (user) {
-          var contact = new Contact();
-          contact.id = user.id;
-          contact.name = user.firstName + " " + user.lastName;
-          contact.lastLoginDate = user.lastLoginDate;
-          me.contacts.push(contact);
-          me.isSpinning = false;
-          // contact.datetime = user.lastLoginDate;
-        });
-      },
-      (err) => console.log(err)
-    );
+    // this.userService.getList(null, null).subscribe(
+    //   (result) => {
+    //     result.data.forEach(function (user) {
+    //       var contact = new Contact();
+    //       contact.id = user.id;
+    //       contact.name = user.firstName + " " + user.lastName;
+    //       contact.lastLoginDate = user.lastLoginDate;
+    //       me.contacts.push(contact);
+    //       me.isSpinning = false;
+    //       // contact.datetime = user.lastLoginDate;
+    //     });
+    //   },
+    //   (err) => console.log(err)
+    // );
   }
 
   onClick(id, name) {

@@ -58,7 +58,7 @@ export class UserListComponent implements OnInit {
     private modal: NzModalService,
     private translator: TranslateService,
     private viewContainerRef: ViewContainerRef
-  ) { }
+  ) {}
 
   handleNew() {
     this.router.navigate(["/panel/basic/users/new"]);
@@ -90,5 +90,5 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }

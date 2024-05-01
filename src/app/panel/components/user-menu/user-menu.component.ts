@@ -31,7 +31,7 @@ export class UserMenuComponent implements OnInit {
       nzContent: ChangePasswordComponent,
       nzViewContainerRef: this.viewContainerRef,
       nzOnOk: () => {
-        alert("Asdsadasdas a dsad");
+        alert("ok");
       },
       nzFooter: [
         {
