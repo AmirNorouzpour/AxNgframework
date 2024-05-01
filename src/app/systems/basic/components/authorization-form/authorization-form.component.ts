@@ -15,6 +15,7 @@ import { UserService } from "../../services";
 import { AuthorizationService } from "../../services/authorization.service";
 import { AuthorizationTreeComponent } from "../authorization-tree/authorization-tree.component";
 import { TranslateService } from "@ngx-translate/core";
+import { SnackBarService } from "shared/services/snack-bar.service";
 
 @Component({
   selector: "app-authorization-form",
@@ -23,23 +24,29 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class AuthorizationFormComponent
   extends AxForm<Authorization>
-  implements OnInit {
+  implements OnInit
+{
   $userId: Subject<string> = new Subject<string>();
 
   constructor(
     public service: AuthorizationService,
     injector: Injector,
     private translator: TranslateService,
-    public userService: UserService
+    public userService: UserService,
+    public snackBarService: SnackBarService
   ) {
     super(service, injector);
   }
 
   update() {
-    alert("do what ever you want darling!");
+    this.service
+      .savePermissions([1, this.$userId], null)
+      .subscribe((result) => {
+        this.snackBarService.showSuccessMessage(result.message);
+      });
   }
 
-  setModelForCreate(data) { }
+  setModelForCreate(data) {}
 
   setModelForUpdate(data) {
     const { userDetail } = data || {};
@@ -68,12 +75,12 @@ export class AuthorizationFormComponent
             },
             fieldGroup: [
               {
-                key: "operationStationId",
+                key: "UserId",
                 type: "select",
                 hooks: {
                   onInit: (field) => {
                     field.form
-                      .get("operationStationId")
+                      .get("UserId")
                       .valueChanges.subscribe((userId) => {
                         this.$userId.next(userId);
                       });
@@ -125,5 +132,5 @@ export class AuthorizationFormComponent
     ];
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }
