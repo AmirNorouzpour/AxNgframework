@@ -61,6 +61,7 @@ export const environment = {
   changePassword: "changePassword",
   getMenuData: "getMenuData",
   getKLines: "GetKLines",
+  getGroupUsers: "getGroupUsers",
 
   /**** Routes ****/
   panelRoute: "panel",

@@ -9,6 +9,7 @@
   "User Information": "اطلاعات کاربر",
   "First Name": "نام",
   "Last Name": "نام خانوادگی",
+  "FullName": "نام و نام خانوادگی",
   "Birthday": "تاریخ تولد",
   "Sex": "جنسیت",
   "Male": "آقا",
@@ -45,5 +46,6 @@
   "Table": "جدول",
   "Key": "کلید",
   "User": "کاربر",
-  "Type": "نوع"
+  "Type": "نوع",
+  "GroupUsers": "کاربران گروه"
 }

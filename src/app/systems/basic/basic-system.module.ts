@@ -13,6 +13,7 @@ import { UserFormComponent } from "./components/user-form/user-form.component";
 import { GeoTreeComponent } from "./components/geo-tree/geo-tree.component";
 import { AuthorizationTreeComponent } from "./components/authorization-tree/authorization-tree.component";
 import { ChangePasswordComponent } from "./components/change-password/change-password.component";
+import { GroupUsersComponent } from "./components/group-users/group-users.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ChangePasswordComponent } from "./components/change-password/change-pas
     GroupListComponent,
     ServerlogListComponent,
     AuditListComponent,
+    GroupUsersComponent,
     AuthorizationFormComponent,
     GeoFormComponent,
     GroupFormComponent,

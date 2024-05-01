@@ -186,4 +186,11 @@ export class ApiEndpointsService {
       }
     );
   }
+
+  getGroupUsersEndpoint(parameters?: string[]) {
+    const { apiVersion1, groupApi, getGroupUsers } = environment;
+    return this.createUrl(apiVersion1, groupApi, getGroupUsers, [
+      ...(parameters ? parameters : []),
+    ]);
+  }
 }

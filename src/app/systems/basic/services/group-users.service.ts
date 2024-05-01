@@ -1,3 +1,4 @@
+import { ResourceUrlFn } from "./../../../shared/models/api/resource-url-fn";
 import { Injectable } from "@angular/core";
 import { ApiHttpService, ApiEndpointsService } from "src/app/shared/services";
 import { Group } from "../models";
@@ -16,9 +17,9 @@ import { ApiResult } from "shared/models";
 @Injectable({
   providedIn: "root",
 })
-export class GroupService
-  extends ResourceSerivce<Group>
-  implements Resolve<Group>
+export class GroupUsersService
+  extends ResourceSerivce<UserAndGroup>
+  implements Resolve<UserAndGroup>
 {
   constructor(
     apiHttpService: ApiHttpService,
@@ -30,7 +31,7 @@ export class GroupService
   resolve(
     route: ActivatedRouteSnapshot,
     routerState: RouterStateSnapshot
-  ): Observable<Group> {
+  ): Observable<UserAndGroup> {
     const id = route.params["groupId"];
     return this.getById([id]).pipe(map((result) => result.data));
   }

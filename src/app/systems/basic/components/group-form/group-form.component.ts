@@ -5,6 +5,8 @@ import { FormlyFieldConfig } from "@ngx-formly/core";
 import { FormConfig } from "shared/ax-form/models/form-config";
 import { Group } from "../../models/group.model";
 import { TranslateService } from "@ngx-translate/core";
+import { FormMode } from "shared/ax-form/models/form-mode.model";
+import { GroupUsersComponent } from "../group-users/group-users.component";
 
 @Component({
   selector: "app-group-form",
@@ -30,7 +32,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
 
   getConfig(): FormConfig {
     return {
-      title: "New Group",
+      title: "گروه جدید",
       icon: "",
     };
   }
@@ -55,9 +57,9 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
               colXs: 24,
               colSm: 24,
               colMd: 12,
-              colLg: 6,
-              colXl: 6,
-              colXXl: 6,
+              colLg: 12,
+              colXl: 12,
+              colXXl: 12,
             },
             fieldGroup: [
               {
@@ -79,6 +81,19 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
                 },
               },
             ],
+          },
+        ],
+      },
+      {
+        wrappers: ["row"],
+        fieldGroup: [
+          {
+            type: "dynamic-field",
+            templateOptions: {
+              component: GroupUsersComponent,
+              title: this.translator.instant("GroupUsers"),
+              readonly: this.formMode === FormMode.New,
+            },
           },
         ],
       },

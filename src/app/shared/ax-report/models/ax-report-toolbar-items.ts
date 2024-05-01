@@ -3,13 +3,13 @@ import { AxReportToolbarItem } from "./../../ax-common/model/ax-toolbar-item";
 export const reportDefaultToolbarItems: AxReportToolbarItem[] = [
   {
     key: "new",
-    title: "New",
+    title: "جدید",
     icon: "plus-square",
     showAlways: true,
   },
   {
     key: "edit",
-    title: "Edit",
+    title: "ویرایش",
     icon: "edit",
     color: "warning",
     showAlways: false,
@@ -18,7 +18,7 @@ export const reportDefaultToolbarItems: AxReportToolbarItem[] = [
   },
   {
     key: "delete",
-    title: "Delete",
+    title: "حذف",
     icon: "delete",
     color: "danger",
     showAlways: false,
