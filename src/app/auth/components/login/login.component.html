@@ -1,22 +1,24 @@
 <div class="login">
   <div class="login__sider">
     <div>
-      <p class="login__sider-text login__sider-text_large">Dear User :</p>
+      <p class="login__sider-text login__sider-text_large">کاربر عزیز</p>
       <p class="login__sider-text">
-        This system is for authorized users only. Individual use of this
-        computer system and/or network without authority, or in excess of your
-        authority, is strictly prohibited. Monitoring of transmissions or
-        transactional information may be conducted to ensure the proper
-        functioning and security of electronic communication resources. Anyone
-        using this system expressly consents to such monitoring and is advised
-        that if such monitoring reveals possible criminal activity or policy
-        violation, system personnel may provide the evidence of such monitoring
-        to law enforcement or to other senior officials for disciplinary action.
+        با سلام و احترام، در اینجا در وبسایت ما، صفحه لاگین به عنوان دروازه‌ای
+        به جهان محصولات و خدمات ما، آماده است. این صفحه فراگیری راحتی فراهم
+        می‌کند تا به عنوان کاربران ما، وارد دنیایی از امکانات و تجربه‌های منحصر
+        به فرد شوید. لطفاً از نام کاربری و رمز عبور خود استفاده کنید تا به محیط
+        شخصی خود دسترسی داشته باشید. این محیط، جایی است که شما می‌توانید با
+        اطلاعات شخصی خود را به‌روزرسانی کنید، از آخرین اخبار ما مطلع شوید و
+        بهترین و پیشنهادات ویژه را برای شما دنبال کنید. ما برای امنیت شما، تلاش
+        می‌کنیم تا اطلاعات شما را محرمانه نگه داریم و تجربه‌ای امن و مطمئن برای
+        شما فراهم کنیم. لطفاً به خصوص در مواردی که از دسترسی عمومی استفاده
+        می‌کنید، به امنیت رمز عبور خود توجه کافی داشته باشید. با تشکر از شما
+        برای اعتماد و حضورتان در اینجا. صفحه لاگین تیم ما
       </p>
     </div>
   </div>
   <div class="login__form-wrapper">
-    <p class="login__form-title">AxStrategy Memeber's Login</p>
+    <p class="login__form-title">احراز هویت</p>
     <form
       (ngSubmit)="onSubmit(loginForm)"
       [ngClass]="{ login__form_submitted: isSubmitted }"
@@ -26,7 +28,7 @@
       <div class="login__form-group">
         <input
           class="login__form-input"
-          placeholder="Username or Email"
+          placeholder="نام کاربری"
           type="text"
           ngModel
           name="username"
@@ -36,7 +38,7 @@
       <div class="login__form-group">
         <input
           class="login__form-input"
-          placeholder="Password"
+          placeholder="رمز عبور"
           type="password"
           ngModel
           name="password"
@@ -48,7 +50,7 @@
         type="submit"
         class="login__form-button"
       >
-        {{ loginBtnDisabled ? "" : "Login" }}
+        {{ loginBtnDisabled ? "" : "ورود" }}
         <ng-container *ngIf="loginBtnDisabled">
           <loading [color]="'#fff'"></loading>
         </ng-container>

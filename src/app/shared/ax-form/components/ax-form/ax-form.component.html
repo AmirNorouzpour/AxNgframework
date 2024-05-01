@@ -9,9 +9,11 @@
       (click)="submit()"
       [disabled]="!form.valid"
     >
-      Save
+      {{ "Save" | translate }}
     </button>
-    <button nz-button type="button" (click)="cancel($event)">Cancel</button>
+    <button nz-button type="button" (click)="cancel($event)">
+      {{ "Cancel" | translate }}
+    </button>
   </div>
   <form [formGroup]="form" #axForm="ngForm">
     <formly-form [form]="form" [fields]="fields" [model]="model"> </formly-form>

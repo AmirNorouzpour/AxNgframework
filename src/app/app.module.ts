@@ -1,5 +1,4 @@
 import { PanelModule } from "./panel/panel.module";
-import { EditorModule } from "./editor/editor.module";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, Injector, Optional } from "@angular/core";
@@ -10,7 +9,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CoreModule } from "./core";
 import { SystemsModule } from "./systems/systems.module";
 import { registerLocaleData } from "@angular/common";
-import { NZ_I18N, en_US } from "ng-zorro-antd/i18n";
+import { NZ_I18N, en_US, fa_IR } from "ng-zorro-antd/i18n";
 import en from "@angular/common/locales/en";
 import { BidiModule } from "@angular/cdk/bidi";
 
@@ -23,7 +22,6 @@ registerLocaleData(en);
     AppRoutingModule,
     HttpClientModule,
     PanelModule,
-    EditorModule,
     AuthModule,
     CoreModule,
     BrowserAnimationsModule,
@@ -38,7 +36,7 @@ registerLocaleData(en);
           case "en":
             return en_US;
           default:
-            return en_US;
+            return fa_IR;
         }
       },
     },

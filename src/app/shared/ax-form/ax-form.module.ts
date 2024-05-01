@@ -19,6 +19,7 @@ import { FormlyNzCardFieldModule } from "./field-wrappers/card/card-field.module
 import { passwordMatchValidator } from "./validators/password-match-validator";
 import { FormlyNzDynamicFieldModule } from "./fields/dynamic/dynamic-field.module";
 import { FormlyNzFileModule } from "./fields/file/file.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   declarations: [AxFormComponent, DynamicFormHostDirective],
@@ -38,6 +39,7 @@ import { FormlyNzFileModule } from "./fields/file/file.module";
     FormlyNzCheckboxModule,
     FormlyNzSelectModule,
     FormlyNzRadioModule,
+    TranslateModule,
     FormlyNzTextAreaModule,
     FormlyNzDateTimeModule,
     FormlyNzTabFieldModule,
