@@ -15,7 +15,7 @@ export const BasicSystemRoutes: Routes = [
   {
     path: "users",
     data: {
-      breadcrumb: "Users",
+      breadcrumb: "کاربران",
     },
     children: [
       {
@@ -29,7 +29,7 @@ export const BasicSystemRoutes: Routes = [
         path: "new",
         component: UserFormComponent,
         data: {
-          breadcrumb: "New User",
+          breadcrumb: "کاربر جدید",
           formMode: FormMode.New,
         },
       },
@@ -37,7 +37,7 @@ export const BasicSystemRoutes: Routes = [
         path: "edit/:userId",
         component: UserFormComponent,
         data: {
-          breadcrumb: "Edit User",
+          breadcrumb: "ویرایش کاربر",
           formMode: FormMode.Edit,
         },
         resolve: {
@@ -49,7 +49,7 @@ export const BasicSystemRoutes: Routes = [
   {
     path: "serverLogs",
     data: {
-      breadcrumb: "Exceptions",
+      breadcrumb: "لیست خطا ها",
     },
     children: [
       {
@@ -64,7 +64,7 @@ export const BasicSystemRoutes: Routes = [
   {
     path: "groups",
     data: {
-      breadcrumb: "Groups",
+      breadcrumb: "لیست گروه ها",
     },
     children: [
       {
@@ -78,7 +78,7 @@ export const BasicSystemRoutes: Routes = [
         path: "new",
         component: GroupFormComponent,
         data: {
-          breadcrumb: "New Group",
+          breadcrumb: "گروه جدید",
           formMode: FormMode.New,
         },
       },
@@ -86,7 +86,7 @@ export const BasicSystemRoutes: Routes = [
         path: "edit/:groupId",
         component: GroupFormComponent,
         data: {
-          breadcrumb: "Edit Group",
+          breadcrumb: "ویرایش گروه",
           formMode: FormMode.Edit,
         },
         resolve: {
@@ -98,7 +98,7 @@ export const BasicSystemRoutes: Routes = [
   {
     path: "audits",
     data: {
-      breadcrumb: "Audit Histories",
+      breadcrumb: "تاریخچه تغییرات",
     },
     children: [
       {
@@ -128,7 +128,7 @@ export const BasicSystemRoutes: Routes = [
   {
     path: "authorization",
     data: {
-      breadcrumb: "Authorization Management",
+      breadcrumb: "حقوق دسترسی",
     },
     children: [
       {
