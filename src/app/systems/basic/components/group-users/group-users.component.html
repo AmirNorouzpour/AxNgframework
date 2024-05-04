@@ -1,12 +1,59 @@
-<nz-table #basicTable [nzData]="listOfData">
+<div class="box">
+  <button nz-button nzType="primary" nzShape="circle" (click)="showModal()">
+    <span nz-icon nzType="plus"></span>
+  </button>
+</div>
+<nz-table #basicTable [nzData]="listOfData" nzSize="small">
   <thead>
     <tr>
       <th>نام و نام خانوادگی</th>
+      <th nzWidth="100px" nzRight>حذف</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of basicTable.data">
       <td>{{ data.name }}</td>
+      <td>
+        <button nz-button nzType="primary" nzDanger nzShape="circle">
+          <span
+            nz-icon
+            nzType="delete"
+            nz-popconfirm
+            nzPopconfirmTitle="آیا اطمینان دارید؟"
+            (nzOnConfirm)="del(data.id)"
+          ></span>
+        </button>
+      </td>
     </tr>
   </tbody>
 </nz-table>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzDirection="rtl"
+  nzTitle="اضافه کردن کاربر به گروه"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <nz-select
+      nzMode="multiple"
+      nzPlaceHolder="کاربران را انتخاب کنید"
+      nzAllowClear
+      nzShowSearch
+      [(ngModel)]="selectedUsers"
+    >
+      <ng-container *ngFor="let o of optionList">
+        <nz-option
+          *ngIf="!isLoading"
+          [nzValue]="o.value"
+          [nzLabel]="o.text"
+        ></nz-option>
+      </ng-container>
+      <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+        <span nz-icon nzType="loading" class="loading-icon"></span>
+        در حال بارگذاری
+      </nz-option>
+    </nz-select>
+  </ng-container>
+</nz-modal>

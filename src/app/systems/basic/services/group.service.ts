@@ -34,4 +34,39 @@ export class GroupService
     const id = route.params["groupId"];
     return this.getById([id]).pipe(map((result) => result.data));
   }
+
+  getUsersAndGroups(parameters) {
+    const resourceEndpoint = this.apiEndpointsService.getResourceEndpoint(
+      this.resourceName,
+      parameters,
+      null,
+      "GetGroupUsers"
+    );
+    return this.apiHttpService.get<ApiResult<UserAndGroup[]>>(resourceEndpoint);
+  }
+
+  addUserstoGroup(data) {
+    const resourceEndpoint = this.apiEndpointsService.getResourceEndpoint(
+      this.resourceName,
+      null,
+      null,
+      "AddUsers"
+    );
+    return this.apiHttpService.post<ApiResult<UserAndGroup>>(
+      resourceEndpoint,
+      data
+    );
+  }
+
+  removeUserFromGroup(id) {
+    const resourceEndpoint = this.apiEndpointsService.getResourceEndpoint(
+      this.resourceName,
+      id,
+      null,
+      "RemoveUser"
+    );
+    return this.apiHttpService.delete<ApiResult<UserAndGroup>>(
+      resourceEndpoint
+    );
+  }
 }

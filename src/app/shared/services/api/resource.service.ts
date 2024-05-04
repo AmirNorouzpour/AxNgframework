@@ -15,7 +15,6 @@ export abstract class ResourceSerivce<Resource> {
   getList(parameters?, queryParams?) {
     const { resourceFn, resourceName } = this;
     const { getUrlFn } = resourceFn || {};
-    debugger;
 
     const resourceEndpoint =
       getUrlFn && typeof getUrlFn === "function"

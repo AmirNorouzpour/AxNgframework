@@ -85,7 +85,7 @@ export class GroupFormComponent extends AxForm<Group> implements OnInit {
         ],
       },
       {
-        wrappers: ["row"],
+        wrappers: ["card"],
         fieldGroup: [
           {
             type: "dynamic-field",
