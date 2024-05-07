@@ -58,9 +58,9 @@ export class AxTreeComponent implements OnInit, OnChanges, AfterViewInit {
 
   loadFromServer() {
     this.dataService
-      .getList(null)
+      .getList([0])
       .pipe(
-        map((result) => result.data),
+        map((result) => result?.data),
         map<any, AxTreeNode[]>(this.mapChildren.bind(this))
       )
       .subscribe((treeData) => {

@@ -37,6 +37,7 @@ export const environment = {
   indicatorsApi: "Indicators",
   editorsApi: "Editor",
   chartsApi: "Charts",
+  contractsApi: "Contracts",
 
   /**** Actions ****/
   axToken: "AxToken",

@@ -24,6 +24,7 @@ export class ApiErrorHandlerService {
       switch (error.status) {
         case 400:
         case 401: {
+          debugger;
           localStorage.removeItem("access_token");
           localStorage.removeItem("exp");
           this.router.navigate(["/auth"]);

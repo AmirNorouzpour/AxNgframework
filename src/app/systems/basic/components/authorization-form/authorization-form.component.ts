@@ -21,6 +21,7 @@ export class AuthorizationFormComponent
   $userId: Subject<string> = new Subject<string>();
   data: Authorization[];
   userId = 0;
+  ugtype = 0;
 
   constructor(
     public service: AuthorizationService,
@@ -33,7 +34,7 @@ export class AuthorizationFormComponent
 
   update() {
     this.service
-      .savePermissions([1, this.userId], this.data)
+      .savePermissions([this.ugtype, this.userId], this.data)
       .subscribe((result) => {
         this.snackBarService.showSuccessMessage(result.message);
       });
@@ -72,12 +73,12 @@ export class AuthorizationFormComponent
                 type: "select",
                 hooks: {
                   onInit: (field) => {
-                    field.form
-                      .get("userId")
-                      .valueChanges.subscribe((userId) => {
-                        this.$userId.next(userId);
-                        this.userId = userId;
-                      });
+                    field.form.get("userId").valueChanges.subscribe((user) => {
+                      debugger;
+                      this.$userId.next(user.id);
+                      this.userId = user.id;
+                      this.ugtype = user.type;
+                    });
                   },
                 },
                 templateOptions: {

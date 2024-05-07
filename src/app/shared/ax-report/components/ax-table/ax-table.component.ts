@@ -20,6 +20,7 @@ import { AxReportToolbarItem } from "shared/ax-common/model/ax-toolbar-item";
 import { tap } from "rxjs/operators";
 import { AxReportFilter } from "shared/ax-report/models/ax-report-filter.model";
 import { reportDefaultToolbarItems } from "./../../models/ax-report-toolbar-items";
+import { NzResizeEvent } from "ng-zorro-antd/resizable";
 
 @Component({
   selector: "ax-table",
@@ -68,6 +69,12 @@ export class AxTableComponent implements OnInit, OnDestroy, OnChanges {
     } else {
       this.setOfCheckedId.delete(id);
     }
+  }
+
+  onResize({ width }: NzResizeEvent, col: string): void {
+    this.columns = this.columns.map((e) =>
+      e.title === col ? { ...e, width: `${width}px` } : e
+    );
   }
 
   refreshCheckedStatus(): void {

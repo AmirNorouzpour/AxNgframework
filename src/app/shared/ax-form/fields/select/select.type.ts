@@ -26,13 +26,13 @@ import { debounceTime, switchMap } from "rxjs/operators";
     >
       <ng-container *ngIf="!to.lazyLoad">
         <ng-container
-          *ngFor="let item of to.options | formlySelectOptions: field | async"
+          *ngFor="let item of to.options | formlySelectOptions : field | async"
         >
           <nz-option
             [nzCustomContent]="
               to.optionTemplate !== null && to.optionTemplate !== undefined
             "
-            [nzValue]="item.value"
+            [nzValue]="item"
             [nzDisabled]="item.disabled"
             [nzLabel]="item.label"
           >
@@ -54,8 +54,9 @@ import { debounceTime, switchMap } from "rxjs/operators";
               to.optionTemplate !== null && to.optionTemplate !== undefined
             "
             *ngIf="!isLoading"
-            [nzValue]="item[to.valueProp]"
+            [nzValue]="item"
             [nzLabel]="item[to.labelProp]"
+            [attr.data-item]="item"
           >
             <ng-container *ngIf="to.optionTemplate">
               <ng-container
@@ -79,6 +80,7 @@ import { debounceTime, switchMap } from "rxjs/operators";
 export class FormlyFieldSelect extends FieldType {
   isLoading = false;
   searchChange$ = new BehaviorSubject("");
+  modelChange$ = new BehaviorSubject("");
   optionList: string[] = [];
 
   constructor(private cdr: ChangeDetectorRef) {

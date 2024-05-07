@@ -29,6 +29,7 @@ import { NzMessageModule } from "ng-zorro-antd/message";
 import { NzBadgeModule } from "ng-zorro-antd/badge";
 import { NzInputNumberModule } from "ng-zorro-antd/input-number";
 import { NzResizableModule } from "ng-zorro-antd/resizable";
+import { NzCardModule } from "ng-zorro-antd/card";
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { NzResizableModule } from "ng-zorro-antd/resizable";
     NzButtonModule,
     NzSpaceModule,
     NzIconModule,
+    NzCardModule,
     NzToolTipModule,
     NzPaginationModule,
     NzFormModule,
@@ -69,6 +71,7 @@ import { NzResizableModule } from "ng-zorro-antd/resizable";
     NzSpaceModule,
     NzToolTipModule,
     NzPaginationModule,
+    NzCardModule,
     NzFormModule,
     NzInputModule,
     NzSwitchModule,

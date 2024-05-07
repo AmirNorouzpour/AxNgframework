@@ -10,6 +10,7 @@ import { GroupListComponent } from "./components/group-list/group-list.component
 import { AuditListComponent } from "./components/audit-list/audit-list.component";
 import { FormMode } from "shared/ax-form/models/form-mode.model";
 import { AuthorizationFormComponent } from "./components/authorization-form/authorization-form.component";
+import { ContractsComponent } from "./components/contracts/contracts.component";
 
 export const BasicSystemRoutes: Routes = [
   {
@@ -55,6 +56,21 @@ export const BasicSystemRoutes: Routes = [
       {
         path: "",
         component: ServerlogListComponent,
+        data: {
+          breadcrumb: null,
+        },
+      },
+    ],
+  },
+  {
+    path: "contracts",
+    data: {
+      breadcrumb: "لیست قرار داد ها",
+    },
+    children: [
+      {
+        path: "",
+        component: ContractsComponent,
         data: {
           breadcrumb: null,
         },

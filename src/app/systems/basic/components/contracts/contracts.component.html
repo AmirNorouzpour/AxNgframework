@@ -1,0 +1,51 @@
+<nz-card nzTitle="جستجو پیشرفته" style="margin-top: 30px">
+  <form nz-form class="ant-advanced-search-form" (ngSubmit)="submitForm()">
+    <div nz-row [nzGutter]="24">
+      <div nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label [nzFor]="date1">از تاریخ</nz-form-label>
+          <nz-form-control>
+            <input
+              autoComplete="off"
+              (click)="picker.open()"
+              nz-input
+              [matDatepicker]="picker"
+              [(ngModel)]="date1"
+              name="date1"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label [nzFor]="date2">تا تاریخ</nz-form-label>
+          <nz-form-control>
+            <input
+              autoComplete="off"
+              (click)="picker2.open()"
+              nz-input
+              [matDatepicker]="picker2"
+              [(ngModel)]="date2"
+              name="date2"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <div nz-col [nzSpan]="24" class="search-area">
+          <button nz-button (click)="submitForm()" [nzType]="'primary'">
+            جستجو
+          </button>
+          <button nz-button (click)="clear()">پاک کردن</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</nz-card>
+<mat-datepicker #picker> </mat-datepicker>
+<mat-datepicker #picker2> </mat-datepicker>
+<ax-table
+  [dataService]="service"
+  [columns]="columns"
+  [hideToolbar]="true"
+></ax-table>

@@ -34,12 +34,13 @@ export class AuthorizationTreeComponent implements OnInit, OnChanges {
   }
 
   loadData() {
-    this.service
-      .getList([this.userId])
-      .pipe(map((result) => result.data))
-      .subscribe((treeData) => {
-        this.data = treeData;
-        this.cdr.detectChanges();
-      });
+    if (this.userId != "null")
+      this.service
+        .getList([this.userId])
+        .pipe(map((result) => result.data))
+        .subscribe((treeData) => {
+          this.data = treeData;
+          this.cdr.detectChanges();
+        });
   }
 }

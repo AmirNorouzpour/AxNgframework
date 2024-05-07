@@ -14,6 +14,7 @@
       [nzLoading]="loading"
       [nzTitle]="title"
       #axTable
+      nzOuterBordered
       [nzData]="listOfCurrentPageData"
       [nzSize]="'middle'"
       [nzShowTotal]="rangeTemplate"
@@ -32,13 +33,16 @@
             [nzIndeterminate]="indeterminate"
             (nzCheckedChange)="onAllChecked($event)"
           ></th>
+          <!-- [nzSortFn]="false" -->
           <th
             [nzColumnKey]="col.index"
-            [nzSortFn]="false"
             *ngFor="let col of columns"
             nzEllipsis
             [ngStyle]="{ width: col.width }"
             class="ax-table__th"
+            (nzResizeEnd)="onResize($event, col.title)"
+            nz-resizable
+            nzPreview
           >
             {{ col.title }}
             <ng-container *ngIf="col.filter">
@@ -46,6 +50,9 @@
                 *ngTemplateOutlet="filterTemplate; context: { col: col }"
               ></ng-container>
             </ng-container>
+            <nz-resize-handle nzDirection="left">
+              <div class="resize-trigger"></div>
+            </nz-resize-handle>
           </th>
         </tr>
       </thead>
@@ -63,7 +70,7 @@
             nzEllipsis
             class="ax-table__td"
           >
-            {{ data[col.index] | columnType: [col.type, col.options] }}
+            {{ data[col.index] | columnType : [col.type, col.options] }}
           </td>
         </tr>
       </tbody>

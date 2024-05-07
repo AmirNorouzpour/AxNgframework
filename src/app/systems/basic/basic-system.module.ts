@@ -14,6 +14,7 @@ import { GeoTreeComponent } from "./components/geo-tree/geo-tree.component";
 import { AuthorizationTreeComponent } from "./components/authorization-tree/authorization-tree.component";
 import { ChangePasswordComponent } from "./components/change-password/change-password.component";
 import { GroupUsersComponent } from "./components/group-users/group-users.component";
+import { ContractsComponent } from "./components/contracts/contracts.component";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { GroupUsersComponent } from "./components/group-users/group-users.compon
     UserFormComponent,
     GeoTreeComponent,
     AuthorizationTreeComponent,
+    ContractsComponent,
     ChangePasswordComponent,
   ],
   imports: [SharedModule, RouterModule.forChild([])],

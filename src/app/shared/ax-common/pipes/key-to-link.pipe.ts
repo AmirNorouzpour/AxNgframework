@@ -7,6 +7,7 @@ const keyLinkMap = {
   "010206": "/panel/basic/groups",
   "010102": "/panel/basic/audits",
   "010501": "/panel/basic/geo",
+  "010701": "/panel/basic/contracts",
 };
 
 @Pipe({
