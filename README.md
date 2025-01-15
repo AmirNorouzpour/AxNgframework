@@ -1,4 +1,8 @@
 # NgFramework
+![Dashboard](https://raw.githubusercontent.com/AmirNorouzpour/AxNgFramework/refs/heads/AxStrategy/dashboard.PNG)
+![Form](https://raw.githubusercontent.com/AmirNorouzpour/AxNgFramework/refs/heads/AxStrategy/form.PNG)
+![Responsive](https://raw.githubusercontent.com/AmirNorouzpour/AxNgFramework/refs/heads/AxStrategy/responsive.PNG)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 
